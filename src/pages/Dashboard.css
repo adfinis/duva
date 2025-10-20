@@ -1,4 +1,4 @@
-@import './styles/themes.css';
+@import "./styles/themes.css";
 
 .dashboard-container {
   display: flex;
@@ -51,4 +51,3 @@
   text-align: center;
   margin: 0;
 }
-

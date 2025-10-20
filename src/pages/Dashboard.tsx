@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
@@ -13,6 +13,7 @@ const Dashboard: React.FC = () => {
     <div className="dashboard-container">
       <div className="dashboard-column">
         <button
+          type="button"
           onClick={handleFormsClick}
           className="dashboard-button forms-button"
         >
@@ -20,16 +21,12 @@ const Dashboard: React.FC = () => {
         </button>
       </div>
       <div className="dashboard-column">
-        <button
-          className="dashboard-button data-button"
-        >
+        <button type="button" className="dashboard-button data-button">
           DATA
         </button>
       </div>
       <div className="dashboard-column">
-        <button
-          className="dashboard-button data-button"
-        >
+        <button type="button" className="dashboard-button data-button">
           ADMIN DASHBOARD
         </button>
       </div>

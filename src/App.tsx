@@ -1,8 +1,8 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import Header from './components/shared/Header';
 import Dashboard from './pages/Dashboard';
 import Forms from './pages/Forms';
-import Header from './components/shared/Header';
 
 const App = () => {
   return (
