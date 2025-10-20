@@ -1,12 +1,12 @@
 :root {
   /* Primary Colors */
-  --color-primary-red: #E0202C;
-  --color-primary-white: #FFFFFF;
-  
+  --color-primary-red: #e0202c;
+  --color-primary-white: #ffffff;
+
   /* Secondary Colors */
-  --color-secondary-beige: #F4F1E5;
+  --color-secondary-beige: #f4f1e5;
   --color-secondary-black: #000000;
-  --color-secondary-sand: #A3A18F;
-  --color-secondary-green: #81CD30;
-  --color-secondary-orange: #F68223;
+  --color-secondary-sand: #a3a18f;
+  --color-secondary-green: #81cd30;
+  --color-secondary-orange: #f68223;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/shared/Button';
 import './Forms.css';
@@ -23,7 +23,7 @@ const Forms: React.FC = () => {
       description: 'Form for new user registration and account setup',
       status: 'Published',
       createdAt: '2024-01-15',
-      submissions: 142
+      submissions: 142,
     },
     {
       id: 2,
@@ -31,7 +31,7 @@ const Forms: React.FC = () => {
       description: 'Collecting customer satisfaction and feedback',
       status: 'Published',
       createdAt: '2024-01-20',
-      submissions: 89
+      submissions: 89,
     },
     {
       id: 3,
@@ -39,7 +39,7 @@ const Forms: React.FC = () => {
       description: 'Registration form for upcoming company events',
       status: 'Draft',
       createdAt: '2024-01-25',
-      submissions: 0
+      submissions: 0,
     },
     {
       id: 4,
@@ -47,7 +47,7 @@ const Forms: React.FC = () => {
       description: 'New employee information and documentation',
       status: 'Published',
       createdAt: '2024-01-10',
-      submissions: 23
+      submissions: 23,
     },
     {
       id: 5,
@@ -55,7 +55,7 @@ const Forms: React.FC = () => {
       description: 'Form for placing product orders and requests',
       status: 'Archived',
       createdAt: '2024-01-05',
-      submissions: 67
+      submissions: 67,
     },
     {
       id: 6,
@@ -63,8 +63,8 @@ const Forms: React.FC = () => {
       description: 'Customer support and technical assistance requests',
       status: 'Published',
       createdAt: '2024-01-18',
-      submissions: 156
-    }
+      submissions: 156,
+    },
   ];
 
   const handleBackClick = () => {
@@ -92,15 +92,15 @@ const Forms: React.FC = () => {
   return (
     <div className="forms-container">
       <div className="forms-header">
-        <Button 
-          text="← Back to Dashboard" 
+        <Button
+          text="← Back to Dashboard"
           backgroundColor="var(--color-primary-red)"
           textColor="var(--color-primary-white)"
           onClick={handleBackClick}
         />
         <h1 className="forms-title">Forms</h1>
-        <Button 
-          text="+ Add New Form" 
+        <Button
+          text="+ Add New Form"
           backgroundColor="var(--color-secondary-green)"
           textColor="var(--color-primary-white)"
           onClick={handleAddFormClick}
@@ -125,7 +125,9 @@ const Forms: React.FC = () => {
                   <td className="form-title">{form.title}</td>
                   <td className="form-description">{form.description}</td>
                   <td>
-                    <span className={`status-badge ${getStatusClass(form.status)}`}>
+                    <span
+                      className={`status-badge ${getStatusClass(form.status)}`}
+                    >
                       {form.status}
                     </span>
                   </td>

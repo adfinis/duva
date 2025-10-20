@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import './Button.css';
 
 interface ButtonProps {
@@ -10,22 +10,23 @@ interface ButtonProps {
   className?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ 
-  text, 
-  backgroundColor = 'var(--color-secondary-beige)', 
+const Button: React.FC<ButtonProps> = ({
+  text,
+  backgroundColor = 'var(--color-secondary-beige)',
   textColor = 'var(--color-primary-red)',
   hoverBackgroundColor = 'var(--color-secondary-sand)',
-  onClick, 
-  className = '' 
+  onClick,
+  className = '',
 }) => {
   const buttonStyle = {
     backgroundColor,
     color: textColor,
-    '--hover-bg': hoverBackgroundColor
+    '--hover-bg': hoverBackgroundColor,
   } as React.CSSProperties;
 
   return (
     <button
+      type="button"
       onClick={onClick}
       className={`button ${className}`}
       style={buttonStyle}
