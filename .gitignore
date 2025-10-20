@@ -16,3 +16,4 @@ volumes/
 .vscode/*
 !.vscode/extensions.json
 .idea
+.zed
