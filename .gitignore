@@ -6,6 +6,8 @@
 # Dist
 node_modules
 dist/
+tmp/
+volumes/
 
 # Profile
 .rspack-profile-*/
