@@ -1,5 +1,3 @@
-@import "./styles/themes.css";
-
 .dashboard-container {
   display: flex;
   height: 100vh;
