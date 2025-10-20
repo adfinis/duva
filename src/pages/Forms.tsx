@@ -1,6 +1,6 @@
 import type React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '../components/shared/Button';
+import Button from '@shared/Button';
 import './Forms.css';
 
 interface Form {
