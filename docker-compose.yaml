@@ -73,11 +73,12 @@ services:
     image: ghcr.io/projectcaluma/caluma:latest
     platform: linux/amd64
     ports:
-      - "8000:8000"    
+      - "8000:8000"
     depends_on:
       postgres:
         condition: service_healthy
     environment:
+      - ENV=development
       - DATABASE_HOST=postgres
       - DATABASE_PORT=5432
       - DATABASE_NAME=caluma
