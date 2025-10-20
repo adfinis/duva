@@ -1,0 +1,143 @@
+@import './styles/themes.css';
+
+.forms-container {
+  min-height: 100vh;
+  background-color: var(--color-primary-white);
+  padding: 1.25rem;
+}
+
+.forms-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: 1.875rem;
+}
+
+
+.forms-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+
+.forms-content {
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+.forms-summary {
+  margin-bottom: 1.25rem;
+}
+
+.forms-count {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #495057;
+  margin: 0;
+}
+
+.table-container {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.forms-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.forms-table th {
+  background-color: #e9ecef;
+  padding: 1.25rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: #495057;
+  border-bottom: 0.125rem solid #dee2e6;
+  min-height: 3.125rem;
+}
+
+.forms-table td {
+  padding: 1.5625rem 0.75rem;
+  border-bottom: 0.0625rem solid #dee2e6;
+  vertical-align: top;
+  min-height: 3.75rem;
+}
+
+.forms-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.form-title {
+  font-weight: 600;
+  color: #333;
+}
+
+.form-description {
+  color: #6c757d;
+  max-width: 18.75rem;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-published {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-draft {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-archived {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+
+/* Responsive design */
+@media (max-width: 48rem) {
+  .forms-container {
+    padding: 0.625rem;
+  }
+  
+  .forms-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.625rem;
+  }
+  
+  .forms-title {
+    font-size: 1.5rem;
+    text-align: left;
+  }
+  
+  
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  .forms-table {
+    min-width: 37.5rem;
+  }
+  
+  .forms-table th,
+  .forms-table td {
+    padding: 0.625rem 0.5rem;
+    font-size: 0.875rem;
+  }
+}

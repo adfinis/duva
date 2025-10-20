@@ -1,0 +1,54 @@
+@import './styles/themes.css';
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--color-primary-white);
+}
+
+.dashboard-column {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.dashboard-button {
+  width: 100%;
+  height: 100%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.forms-button {
+  background-color: var(--color-secondary-beige);
+  color: var(--color-primary-red);
+}
+
+.forms-button:hover {
+  background-color: var(--color-secondary-sand);
+}
+
+.data-button {
+  background-color: var(--color-secondary-beige);
+  color: var(--color-primary-red);
+}
+
+.data-button:hover {
+  background-color: var(--color-secondary-sand);
+}
+
+.duva-header {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin: 0;
+}
+
