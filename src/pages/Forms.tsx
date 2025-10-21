@@ -1,6 +1,7 @@
 import type React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/shared/Button';
+import Card from '../components/shared/Card';
 import './Forms.css';
 
 interface Form {
@@ -110,31 +111,22 @@ const Forms: React.FC = () => {
         <div className="forms-summary">
           <p className="forms-count">Total Forms: {mockForms.length}</p>
         </div>
-        <div className="table-container">
-          <table className="forms-table">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {mockForms.map((form) => (
-                <tr key={form.id}>
-                  <td className="form-title">{form.title}</td>
-                  <td className="form-description">{form.description}</td>
-                  <td>
-                    <span
-                      className={`status-badge ${getStatusClass(form.status)}`}
-                    >
-                      {form.status}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="forms-cards-container">
+          {mockForms.map((form) => (
+            <Card key={form.id} className="form-card">
+              <div className="form-card-content">
+                <h3 className="form-card-title">{form.title}</h3>
+                <p className="form-card-description">{form.description}</p>
+              </div>
+              <div className="form-card-status">
+                <span
+                  className={`status-badge ${getStatusClass(form.status)}`}
+                >
+                  {form.status}
+                </span>
+              </div>
+            </Card>
+          ))}
         </div>
       </div>
     </div>
