@@ -1,3 +1,4 @@
+/* OIDC CONFIG */
 const KEYCLOAK_URL = import.meta.env.KEYCLOAK_URL || 'http://localhost:8080';
 const KEYCLOAK_REALM = import.meta.env.KEYCLOAK_REALM || 'duva';
 const KEYCLOAK_CLIENT_ID = import.meta.env.KEYCLOAK_CLIENT_ID || 'frontend';
@@ -16,3 +17,7 @@ export const OidcConfig = {
     window.history.replaceState({}, document.title, window.location.pathname);
   },
 };
+
+/* API CONFIG */
+export const BASE_URL =
+  import.meta.env.BASE_URL || 'http://localhost:8000/graphql';
