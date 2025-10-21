@@ -1,13 +1,22 @@
 import './App.css';
+import { ApolloProvider } from '@apollo/client/react';
+import { useMemo } from 'react';
 import { useAuth } from 'react-oidc-context';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Header from './components/shared/Header';
+import { createApolloClient } from './graphql/client';
 import Dashboard from './pages/Dashboard';
 import Forms from './pages/Forms';
 import { RedirectPage } from './pages/Redirect';
 
 const App = () => {
   const auth = useAuth();
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Client created once, token fetched per-request
+  const graphqlClient = useMemo(
+    () => createApolloClient(() => auth.user?.access_token),
+    [],
+  );
 
   if (auth.isLoading) {
     return <div>Loading...</div>;
@@ -27,7 +36,14 @@ const App = () => {
   const ProtectedApp = () => {
     return (
       <>
-        <Header title="DUVA" rightElement={<button type="button" onClick={() => auth.signoutRedirect()}>Logout</button>} />
+        <Header
+          title="DUVA"
+          rightElement={
+            <button type="button" onClick={() => auth.signoutRedirect()}>
+              Logout
+            </button>
+          }
+        />
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -38,9 +54,11 @@ const App = () => {
   };
 
   return (
-    <Router>
-      {auth.isAuthenticated ? <ProtectedApp /> : <RedirectPage />}
-    </Router>
+    <ApolloProvider client={graphqlClient}>
+      <Router>
+        {auth.isAuthenticated ? <ProtectedApp /> : <RedirectPage />}
+      </Router>
+    </ApolloProvider>
   );
 };
 
