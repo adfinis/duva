@@ -6,4 +6,10 @@ export default defineConfig({
   html: {
     title: 'DUVA',
   },
+  resolve: {
+    alias: {
+      '@': './src',
+      '@shared': './src/components/shared',
+    },
+  },
 });

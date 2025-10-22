@@ -9,3 +9,14 @@ declare module '*.svg?react' {
   const ReactComponent: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   export default ReactComponent;
 }
+
+interface ImportMetaEnv {
+  readonly KEYCLOAK_URL?: string;
+  readonly KEYCLOAK_REALM?: string;
+  readonly KEYCLOAK_CLIENT_ID?: string;
+  readonly APP_URL?: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}

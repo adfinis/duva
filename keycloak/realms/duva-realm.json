@@ -750,7 +750,8 @@
         "organization",
         "roles",
         "basic",
-        "email"
+        "email",
+        "openid"
       ],
       "optionalClientScopes": [
         "address",
@@ -780,13 +781,13 @@
       "name": "",
       "description": "",
       "rootUrl": "",
-      "adminUrl": "http://localhost:5173/",
+      "adminUrl": "http://localhost:3000/*",
       "baseUrl": "",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
-      "redirectUris": ["http://localhost:5173/"],
+      "redirectUris": ["http://localhost:3000/*"],
       "webOrigins": ["*"],
       "notBefore": 0,
       "bearerOnly": false,
@@ -816,7 +817,8 @@
         "organization",
         "roles",
         "basic",
-        "email"
+        "email",
+        "openid"
       ],
       "optionalClientScopes": [
         "address",
@@ -1123,6 +1125,17 @@
           }
         }
       ]
+    },
+    {
+      "id": "a1b2c3d4-5678-90ab-cdef-1234567890ab",
+      "name": "openid",
+      "description": "OpenID Connect built-in scope: openid",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "false"
+      },
+      "protocolMappers": []
     },
     {
       "id": "892ebdfa-2289-4571-b53f-b44ffb21a2e7",
@@ -1580,7 +1593,8 @@
     "web-origins",
     "acr",
     "basic",
-    "organization"
+    "organization",
+    "openid"
   ],
   "defaultOptionalClientScopes": [
     "offline_access",
