@@ -2,7 +2,7 @@
 
 .forms-container {
   min-height: 100vh;
-  background-color: var(--color-primary-white);
+  background-color: var(--color-white);
   padding: var(--spacing-lg);
   overflow-x: hidden;
   max-width: 100vw;
@@ -10,11 +10,20 @@
 }
 
 .forms-header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-lg);
   margin-bottom: var(--spacing-xl);
+}
+
+.forms-header h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  pointer-events: none;
 }
 
 .forms-content {
@@ -29,7 +38,7 @@
 .forms-count {
   font-size: var(--spacing-lg);
   font-weight: 600;
-  color: var(--color-secondary-black);
+  color: var(--color-black);
   margin: 0;
 }
 

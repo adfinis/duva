@@ -1,4 +1,5 @@
 import { useAuth } from 'react-oidc-context';
+import { Button } from '@/components/shared/Button';
 
 export function RedirectPage() {
   const auth = useAuth();
@@ -13,11 +14,11 @@ export function RedirectPage() {
       }}
     >
       <div style={{ textAlign: 'center' }}>
-        <h1>Welcome to DUVA</h1>
-        <p>Please sign in to continue</p>
-        <button type="button" onClick={() => auth.signinRedirect()}>
+        <h1 style={{ color: 'var(--color-white)' }}>Welcome to DUVA</h1>
+        <p style={{ color: 'var(--color-anthracite-light)' }}>Please sign in to continue</p>
+        <Button tone="success" onClick={() => auth.signinRedirect()}>
           Login
-        </button>
+        </Button>
       </div>
     </div>
   );
