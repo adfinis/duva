@@ -1,130 +1,66 @@
-/* eslint-disable */
+import { gql } from '@apollo/client';
 export type Maybe<T> = T | null;
-export type InputMaybe<T> = T | null | undefined;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
-export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type InputMaybe<T> = Maybe<T>;
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
+export type MakeEmpty<
+  T extends { [key: string]: unknown },
+  K extends keyof T,
+> = { [_ in K]?: never };
+export type Incremental<T> =
+  | T
+  | {
+      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
+    };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
-  /**
-   * The `Date` scalar type represents a Date
-   * value as specified by
-   * [iso8601](https://en.wikipedia.org/wiki/ISO_8601).
-   */
-  Date: { input: any; output: any; }
-  /**
-   * The `DateTime` scalar type represents a DateTime
-   * value as specified by
-   * [iso8601](https://en.wikipedia.org/wiki/ISO_8601).
-   */
-  DateTime: { input: any; output: any; }
-  /**
-   * Flow jexl represents a jexl expression returning task slugs.
-   *
-   * Following transforms can be used:
-   * * task - return single task
-   * * tasks - return multiple tasks
-   *
-   * Examples:
-   * * 'task-slug'|task
-   * * ['task-slug1', 'task-slug2']|tasks
-   */
-  FlowJexl: { input: any; output: any; }
-  /**
-   * The `GenericScalar` scalar type represents a generic
-   * GraphQL scalar value that could be:
-   * String, Boolean, Int, Float, List or Object.
-   */
-  GenericScalar: { input: any; output: any; }
-  /**
-   * Group jexl represents a jexl expression returning group names.
-   *
-   * Following transforms can be used:
-   * * groups - return list of group names
-   *
-   * Examples:
-   * * ['group-name1', 'group-name2']|groups
-   */
-  GroupJexl: { input: any; output: any; }
-  /**
-   * Allows use of a JSON String for input / output from the GraphQL schema.
-   *
-   * Use of this type is *not recommended* as you lose the benefits of having a defined, static
-   * schema (one of the key benefits of GraphQL).
-   */
-  JSONString: { input: any; output: any; }
-  /**
-   * Question jexl expression returning boolean.
-   *
-   * Following transforms can be used:
-   * * `answer`: get answer of document by question slug
-   * * `mapby`: map list by key. Helpful to work with table answers
-   *   whereas an answer is a list of dicts.
-   * * `stringify`: JSON stringify
-   * * `flatten`: flatten list values
-   * * `min`: get min value in a list
-   * * `max`: get max value in a list
-   * * `sum`: sum of a list
-   * * `round`: round the value
-   * * `ceil`: round value up
-   * * `floor`: round value down
-   * * `debug`: debug output
-   *
-   * Following binary operators can be used:
-   * * `intersects`: list intersection operator
-   *
-   * Following context is available:
-   * * `form`: legacy property pointing to the root form (this should not be used anymore)
-   * * `info.form`: slug of the form this question is attached to
-   * * `info.formMeta`: meta property of the form this question is attached to
-   * * `info.parent.form`: parent form slug
-   * * `info.parent.formMeta`: parent form meta property
-   * * `info.root.form`: top level form slug
-   * * `info.root.formMeta`: top level form meta property
-   *
-   * Examples:
-   * * 'answer' == 'question-slug'|answer
-   * * 'answer' in 'list-question-slug'|answer
-   * * 'answer' in 'table-question-slug'|answer|mapby('column-question')
-   * * 'answer' in 'table-question-slug'|answer|mapby('multiple-choice-question')|flatten
-   * * 'form-slug' == info.form
-   */
-  QuestionJexl: { input: any; output: any; }
+  ID: { input: string; output: string };
+  String: { input: string; output: string };
+  Boolean: { input: boolean; output: boolean };
+  Int: { input: number; output: number };
+  Float: { input: number; output: number };
+  Date: { input: any; output: any };
+  DateTime: { input: any; output: any };
+  FlowJexl: { input: any; output: any };
+  GenericScalar: { input: any; output: any };
+  GroupJexl: { input: any; output: any };
+  JSONString: { input: any; output: any };
+  QuestionJexl: { input: any; output: any };
 };
 
-export type ActionButtonQuestion = Node & Question & {
-  __typename?: 'ActionButtonQuestion';
-  action: ButtonAction;
-  color: ButtonColor;
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  forms?: Maybe<FormConnection>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  infoText?: Maybe<Scalars['String']['output']>;
-  isArchived: Scalars['Boolean']['output'];
-  isHidden: Scalars['QuestionJexl']['output'];
-  /** Required expression is only evaluated when question is not hidden. */
-  isRequired: Scalars['QuestionJexl']['output'];
-  label: Scalars['String']['output'];
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  showValidation: Scalars['Boolean']['output'];
-  slug: Scalars['String']['output'];
-  source?: Maybe<Question>;
-  validateOnEnter: Scalars['Boolean']['output'];
-};
-
+export type ActionButtonQuestion = Node &
+  Question & {
+    __typename?: 'ActionButtonQuestion';
+    action: ButtonAction;
+    color: ButtonColor;
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    forms?: Maybe<FormConnection>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    infoText?: Maybe<Scalars['String']['output']>;
+    isArchived: Scalars['Boolean']['output'];
+    isHidden: Scalars['QuestionJexl']['output'];
+    /** Required expression is only evaluated when question is not hidden. */
+    isRequired: Scalars['QuestionJexl']['output'];
+    label: Scalars['String']['output'];
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    showValidation: Scalars['Boolean']['output'];
+    slug: Scalars['String']['output'];
+    source?: Maybe<Question>;
+    validateOnEnter: Scalars['Boolean']['output'];
+  };
 
 export type ActionButtonQuestionFormsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -170,7 +106,7 @@ export enum AggregateFunction {
   Max = 'MAX',
   Min = 'MIN',
   Sum = 'SUM',
-  Value = 'VALUE'
+  Value = 'VALUE',
 }
 
 /** A cell represents one value in the analytics output. */
@@ -248,7 +184,6 @@ export type AnalyticsOutput = {
   summary?: Maybe<AnalyticsRowConnection>;
 };
 
-
 export type AnalyticsOutputRecordsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -294,7 +229,6 @@ export type AnalyticsTable = Node & {
   startingObject?: Maybe<StartingObject>;
 };
 
-
 export type AnalyticsTableAvailableFieldsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -303,7 +237,6 @@ export type AnalyticsTableAvailableFieldsArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
   prefix?: InputMaybe<Scalars['String']['input']>;
 };
-
 
 export type AnalyticsTableFieldsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -423,7 +356,7 @@ export type AnswerFilterSetType = {
 
 export enum AnswerHierarchyMode {
   Direct = 'DIRECT',
-  Family = 'FAMILY'
+  Family = 'FAMILY',
 }
 
 export enum AnswerLookupMode {
@@ -437,7 +370,7 @@ export enum AnswerLookupMode {
   Isnull = 'ISNULL',
   Lt = 'LT',
   Lte = 'LTE',
-  Startswith = 'STARTSWITH'
+  Startswith = 'STARTSWITH',
 }
 
 export type AnswerOrderSetType = {
@@ -448,7 +381,7 @@ export type AnswerOrderSetType = {
 
 export enum AscDesc {
   Asc = 'ASC',
-  Desc = 'DESC'
+  Desc = 'DESC',
 }
 
 /**
@@ -496,40 +429,40 @@ export type AvailableFieldEdge = {
 /** An enumeration. */
 export enum ButtonAction {
   Complete = 'COMPLETE',
-  Skip = 'SKIP'
+  Skip = 'SKIP',
 }
 
 /** An enumeration. */
 export enum ButtonColor {
   Default = 'DEFAULT',
   Primary = 'PRIMARY',
-  Secondary = 'SECONDARY'
+  Secondary = 'SECONDARY',
 }
 
-export type CalculatedFloatQuestion = Node & Question & {
-  __typename?: 'CalculatedFloatQuestion';
-  calcExpression?: Maybe<Scalars['String']['output']>;
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  forms?: Maybe<FormConnection>;
-  hintText?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  infoText?: Maybe<Scalars['String']['output']>;
-  isArchived: Scalars['Boolean']['output'];
-  isHidden: Scalars['QuestionJexl']['output'];
-  /** Required expression is only evaluated when question is not hidden. */
-  isRequired: Scalars['QuestionJexl']['output'];
-  label: Scalars['String']['output'];
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  slug: Scalars['String']['output'];
-  source?: Maybe<Question>;
-};
-
+export type CalculatedFloatQuestion = Node &
+  Question & {
+    __typename?: 'CalculatedFloatQuestion';
+    calcExpression?: Maybe<Scalars['String']['output']>;
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    forms?: Maybe<FormConnection>;
+    hintText?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    infoText?: Maybe<Scalars['String']['output']>;
+    isArchived: Scalars['Boolean']['output'];
+    isHidden: Scalars['QuestionJexl']['output'];
+    /** Required expression is only evaluated when question is not hidden. */
+    isRequired: Scalars['QuestionJexl']['output'];
+    label: Scalars['String']['output'];
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    slug: Scalars['String']['output'];
+    source?: Maybe<Question>;
+  };
 
 export type CalculatedFloatQuestionFormsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -592,7 +525,6 @@ export type Case = Node & {
   workflow: Workflow;
 };
 
-
 export type CaseFamilyWorkItemsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -602,7 +534,6 @@ export type CaseFamilyWorkItemsArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<Array<InputMaybe<WorkItemOrderSetType>>>;
 };
-
 
 export type CaseWorkItemsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -652,7 +583,9 @@ export type CaseFilterSetType = {
   rootCase?: InputMaybe<Scalars['ID']['input']>;
   searchAnswers?: InputMaybe<Array<InputMaybe<SearchAnswersFilterType>>>;
   status?: InputMaybe<Array<InputMaybe<CaseStatusArgument>>>;
-  workItemDocumentHasAnswer?: InputMaybe<Array<InputMaybe<HasAnswerFilterType>>>;
+  workItemDocumentHasAnswer?: InputMaybe<
+    Array<InputMaybe<HasAnswerFilterType>>
+  >;
   workflow?: InputMaybe<Scalars['ID']['input']>;
 };
 
@@ -668,7 +601,7 @@ export enum CaseStatus {
   Canceled = 'CANCELED',
   Completed = 'COMPLETED',
   Running = 'RUNNING',
-  Suspended = 'SUSPENDED'
+  Suspended = 'SUSPENDED',
 }
 
 /** An enumeration. */
@@ -680,35 +613,35 @@ export enum CaseStatusArgument {
   /** Case is running and work items need to be completed. */
   Running = 'RUNNING',
   /** Case is suspended. */
-  Suspended = 'SUSPENDED'
+  Suspended = 'SUSPENDED',
 }
 
-export type ChoiceQuestion = Node & Question & {
-  __typename?: 'ChoiceQuestion';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  defaultAnswer?: Maybe<StringAnswer>;
-  formatValidators?: Maybe<FormatValidatorConnection>;
-  forms?: Maybe<FormConnection>;
-  hintText?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  infoText?: Maybe<Scalars['String']['output']>;
-  isArchived: Scalars['Boolean']['output'];
-  isHidden: Scalars['QuestionJexl']['output'];
-  /** Required expression is only evaluated when question is not hidden. */
-  isRequired: Scalars['QuestionJexl']['output'];
-  label: Scalars['String']['output'];
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  options?: Maybe<OptionConnection>;
-  slug: Scalars['String']['output'];
-  source?: Maybe<Question>;
-};
-
+export type ChoiceQuestion = Node &
+  Question & {
+    __typename?: 'ChoiceQuestion';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    defaultAnswer?: Maybe<StringAnswer>;
+    formatValidators?: Maybe<FormatValidatorConnection>;
+    forms?: Maybe<FormConnection>;
+    hintText?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    infoText?: Maybe<Scalars['String']['output']>;
+    isArchived: Scalars['Boolean']['output'];
+    isHidden: Scalars['QuestionJexl']['output'];
+    /** Required expression is only evaluated when question is not hidden. */
+    isRequired: Scalars['QuestionJexl']['output'];
+    label: Scalars['String']['output'];
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    options?: Maybe<OptionConnection>;
+    slug: Scalars['String']['output'];
+    source?: Maybe<Question>;
+  };
 
 export type ChoiceQuestionFormatValidatorsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -716,7 +649,6 @@ export type ChoiceQuestionFormatValidatorsArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
 };
-
 
 export type ChoiceQuestionFormsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -728,7 +660,6 @@ export type ChoiceQuestionFormsArgs = {
   order?: InputMaybe<Array<InputMaybe<FormOrderSetType>>>;
 };
 
-
 export type ChoiceQuestionOptionsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -739,29 +670,30 @@ export type ChoiceQuestionOptionsArgs = {
   order?: InputMaybe<Array<InputMaybe<OptionOrderSetType>>>;
 };
 
-export type CompleteTaskFormTask = Node & Task & {
-  __typename?: 'CompleteTaskFormTask';
-  addressGroups?: Maybe<Scalars['GroupJexl']['output']>;
-  continueAsync?: Maybe<Scalars['Boolean']['output']>;
-  controlGroups?: Maybe<Scalars['GroupJexl']['output']>;
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  form: Form;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  isArchived: Scalars['Boolean']['output'];
-  isMultipleInstance: Scalars['Boolean']['output'];
-  /** Time in seconds task may take to be processed. */
-  leadTime?: Maybe<Scalars['Int']['output']>;
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  name: Scalars['String']['output'];
-  slug: Scalars['String']['output'];
-};
+export type CompleteTaskFormTask = Node &
+  Task & {
+    __typename?: 'CompleteTaskFormTask';
+    addressGroups?: Maybe<Scalars['GroupJexl']['output']>;
+    continueAsync?: Maybe<Scalars['Boolean']['output']>;
+    controlGroups?: Maybe<Scalars['GroupJexl']['output']>;
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    description?: Maybe<Scalars['String']['output']>;
+    form: Form;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    isArchived: Scalars['Boolean']['output'];
+    isMultipleInstance: Scalars['Boolean']['output'];
+    /** Time in seconds task may take to be processed. */
+    leadTime?: Maybe<Scalars['Int']['output']>;
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    name: Scalars['String']['output'];
+    slug: Scalars['String']['output'];
+  };
 
 export type CompleteWorkItemInput = {
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
@@ -776,28 +708,29 @@ export type CompleteWorkItemPayload = {
   workItem?: Maybe<WorkItem>;
 };
 
-export type CompleteWorkflowFormTask = Node & Task & {
-  __typename?: 'CompleteWorkflowFormTask';
-  addressGroups?: Maybe<Scalars['GroupJexl']['output']>;
-  continueAsync?: Maybe<Scalars['Boolean']['output']>;
-  controlGroups?: Maybe<Scalars['GroupJexl']['output']>;
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  isArchived: Scalars['Boolean']['output'];
-  isMultipleInstance: Scalars['Boolean']['output'];
-  /** Time in seconds task may take to be processed. */
-  leadTime?: Maybe<Scalars['Int']['output']>;
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  name: Scalars['String']['output'];
-  slug: Scalars['String']['output'];
-};
+export type CompleteWorkflowFormTask = Node &
+  Task & {
+    __typename?: 'CompleteWorkflowFormTask';
+    addressGroups?: Maybe<Scalars['GroupJexl']['output']>;
+    continueAsync?: Maybe<Scalars['Boolean']['output']>;
+    controlGroups?: Maybe<Scalars['GroupJexl']['output']>;
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    description?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    isArchived: Scalars['Boolean']['output'];
+    isMultipleInstance: Scalars['Boolean']['output'];
+    /** Time in seconds task may take to be processed. */
+    leadTime?: Maybe<Scalars['Int']['output']>;
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    name: Scalars['String']['output'];
+    slug: Scalars['String']['output'];
+  };
 
 export type CopyDocumentInput = {
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
@@ -923,47 +856,48 @@ export type DataSourceEdge = {
   node?: Maybe<DataSource>;
 };
 
-export type DateAnswer = Answer & Node & {
-  __typename?: 'DateAnswer';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  date?: Maybe<Scalars['Date']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  question: Question;
-  value?: Maybe<Scalars['Date']['output']>;
-};
+export type DateAnswer = Answer &
+  Node & {
+    __typename?: 'DateAnswer';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    date?: Maybe<Scalars['Date']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    question: Question;
+    value?: Maybe<Scalars['Date']['output']>;
+  };
 
-export type DateQuestion = Node & Question & {
-  __typename?: 'DateQuestion';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  defaultAnswer?: Maybe<DateAnswer>;
-  formatValidators?: Maybe<FormatValidatorConnection>;
-  forms?: Maybe<FormConnection>;
-  hintText?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  infoText?: Maybe<Scalars['String']['output']>;
-  isArchived: Scalars['Boolean']['output'];
-  isHidden: Scalars['QuestionJexl']['output'];
-  /** Required expression is only evaluated when question is not hidden. */
-  isRequired: Scalars['QuestionJexl']['output'];
-  label: Scalars['String']['output'];
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  slug: Scalars['String']['output'];
-  source?: Maybe<Question>;
-};
-
+export type DateQuestion = Node &
+  Question & {
+    __typename?: 'DateQuestion';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    defaultAnswer?: Maybe<DateAnswer>;
+    formatValidators?: Maybe<FormatValidatorConnection>;
+    forms?: Maybe<FormConnection>;
+    hintText?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    infoText?: Maybe<Scalars['String']['output']>;
+    isArchived: Scalars['Boolean']['output'];
+    isHidden: Scalars['QuestionJexl']['output'];
+    /** Required expression is only evaluated when question is not hidden. */
+    isRequired: Scalars['QuestionJexl']['output'];
+    label: Scalars['String']['output'];
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    slug: Scalars['String']['output'];
+    source?: Maybe<Question>;
+  };
 
 export type DateQuestionFormatValidatorsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -971,7 +905,6 @@ export type DateQuestionFormatValidatorsArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
 };
-
 
 export type DateQuestionFormsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1060,7 +993,6 @@ export type Document = Node & {
   workItem?: Maybe<WorkItem>;
 };
 
-
 export type DocumentAnswersArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1070,7 +1002,6 @@ export type DocumentAnswersArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<Array<InputMaybe<AnswerOrderSetType>>>;
 };
-
 
 export type DocumentCopiesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1144,32 +1075,33 @@ export type DocumentValidityEdge = {
   node?: Maybe<ValidationResult>;
 };
 
-export type DynamicChoiceQuestion = DynamicQuestion & Node & Question & {
-  __typename?: 'DynamicChoiceQuestion';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  dataSource: Scalars['String']['output'];
-  formatValidators?: Maybe<FormatValidatorConnection>;
-  forms?: Maybe<FormConnection>;
-  hintText?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  infoText?: Maybe<Scalars['String']['output']>;
-  isArchived: Scalars['Boolean']['output'];
-  isHidden: Scalars['QuestionJexl']['output'];
-  /** Required expression is only evaluated when question is not hidden. */
-  isRequired: Scalars['QuestionJexl']['output'];
-  label: Scalars['String']['output'];
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  options?: Maybe<DataSourceDataConnection>;
-  slug: Scalars['String']['output'];
-  source?: Maybe<Question>;
-};
-
+export type DynamicChoiceQuestion = DynamicQuestion &
+  Node &
+  Question & {
+    __typename?: 'DynamicChoiceQuestion';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    dataSource: Scalars['String']['output'];
+    formatValidators?: Maybe<FormatValidatorConnection>;
+    forms?: Maybe<FormConnection>;
+    hintText?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    infoText?: Maybe<Scalars['String']['output']>;
+    isArchived: Scalars['Boolean']['output'];
+    isHidden: Scalars['QuestionJexl']['output'];
+    /** Required expression is only evaluated when question is not hidden. */
+    isRequired: Scalars['QuestionJexl']['output'];
+    label: Scalars['String']['output'];
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    options?: Maybe<DataSourceDataConnection>;
+    slug: Scalars['String']['output'];
+    source?: Maybe<Question>;
+  };
 
 export type DynamicChoiceQuestionFormatValidatorsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1177,7 +1109,6 @@ export type DynamicChoiceQuestionFormatValidatorsArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
 };
-
 
 export type DynamicChoiceQuestionFormsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1189,7 +1120,6 @@ export type DynamicChoiceQuestionFormsArgs = {
   order?: InputMaybe<Array<InputMaybe<FormOrderSetType>>>;
 };
 
-
 export type DynamicChoiceQuestionOptionsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1198,32 +1128,33 @@ export type DynamicChoiceQuestionOptionsArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export type DynamicMultipleChoiceQuestion = DynamicQuestion & Node & Question & {
-  __typename?: 'DynamicMultipleChoiceQuestion';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  dataSource: Scalars['String']['output'];
-  formatValidators?: Maybe<FormatValidatorConnection>;
-  forms?: Maybe<FormConnection>;
-  hintText?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  infoText?: Maybe<Scalars['String']['output']>;
-  isArchived: Scalars['Boolean']['output'];
-  isHidden: Scalars['QuestionJexl']['output'];
-  /** Required expression is only evaluated when question is not hidden. */
-  isRequired: Scalars['QuestionJexl']['output'];
-  label: Scalars['String']['output'];
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  options?: Maybe<DataSourceDataConnection>;
-  slug: Scalars['String']['output'];
-  source?: Maybe<Question>;
-};
-
+export type DynamicMultipleChoiceQuestion = DynamicQuestion &
+  Node &
+  Question & {
+    __typename?: 'DynamicMultipleChoiceQuestion';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    dataSource: Scalars['String']['output'];
+    formatValidators?: Maybe<FormatValidatorConnection>;
+    forms?: Maybe<FormConnection>;
+    hintText?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    infoText?: Maybe<Scalars['String']['output']>;
+    isArchived: Scalars['Boolean']['output'];
+    isHidden: Scalars['QuestionJexl']['output'];
+    /** Required expression is only evaluated when question is not hidden. */
+    isRequired: Scalars['QuestionJexl']['output'];
+    label: Scalars['String']['output'];
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    options?: Maybe<DataSourceDataConnection>;
+    slug: Scalars['String']['output'];
+    source?: Maybe<Question>;
+  };
 
 export type DynamicMultipleChoiceQuestionFormatValidatorsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1231,7 +1162,6 @@ export type DynamicMultipleChoiceQuestionFormatValidatorsArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
 };
-
 
 export type DynamicMultipleChoiceQuestionFormsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1242,7 +1172,6 @@ export type DynamicMultipleChoiceQuestionFormsArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<Array<InputMaybe<FormOrderSetType>>>;
 };
-
 
 export type DynamicMultipleChoiceQuestionOptionsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1304,7 +1233,6 @@ export type DynamicQuestion = {
   options?: Maybe<DataSourceDataConnection>;
 };
 
-
 export type DynamicQuestionOptionsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1330,45 +1258,46 @@ export type File = Node & {
   uploadUrl?: Maybe<Scalars['String']['output']>;
 };
 
-export type FilesAnswer = Answer & Node & {
-  __typename?: 'FilesAnswer';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  question: Question;
-  value: Array<Maybe<File>>;
-};
+export type FilesAnswer = Answer &
+  Node & {
+    __typename?: 'FilesAnswer';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    question: Question;
+    value: Array<Maybe<File>>;
+  };
 
-export type FilesQuestion = Node & Question & {
-  __typename?: 'FilesQuestion';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  formatValidators?: Maybe<FormatValidatorConnection>;
-  forms?: Maybe<FormConnection>;
-  hintText?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  infoText?: Maybe<Scalars['String']['output']>;
-  isArchived: Scalars['Boolean']['output'];
-  isHidden: Scalars['QuestionJexl']['output'];
-  /** Required expression is only evaluated when question is not hidden. */
-  isRequired: Scalars['QuestionJexl']['output'];
-  label: Scalars['String']['output'];
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  slug: Scalars['String']['output'];
-  source?: Maybe<Question>;
-};
-
+export type FilesQuestion = Node &
+  Question & {
+    __typename?: 'FilesQuestion';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    formatValidators?: Maybe<FormatValidatorConnection>;
+    forms?: Maybe<FormConnection>;
+    hintText?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    infoText?: Maybe<Scalars['String']['output']>;
+    isArchived: Scalars['Boolean']['output'];
+    isHidden: Scalars['QuestionJexl']['output'];
+    /** Required expression is only evaluated when question is not hidden. */
+    isRequired: Scalars['QuestionJexl']['output'];
+    label: Scalars['String']['output'];
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    slug: Scalars['String']['output'];
+    source?: Maybe<Question>;
+  };
 
 export type FilesQuestionFormatValidatorsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1376,7 +1305,6 @@ export type FilesQuestionFormatValidatorsArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
 };
-
 
 export type FilesQuestionFormsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1388,50 +1316,51 @@ export type FilesQuestionFormsArgs = {
   order?: InputMaybe<Array<InputMaybe<FormOrderSetType>>>;
 };
 
-export type FloatAnswer = Answer & Node & {
-  __typename?: 'FloatAnswer';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  question: Question;
-  value?: Maybe<Scalars['Float']['output']>;
-};
+export type FloatAnswer = Answer &
+  Node & {
+    __typename?: 'FloatAnswer';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    question: Question;
+    value?: Maybe<Scalars['Float']['output']>;
+  };
 
-export type FloatQuestion = Node & Question & {
-  __typename?: 'FloatQuestion';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  defaultAnswer?: Maybe<FloatAnswer>;
-  formatValidators?: Maybe<FormatValidatorConnection>;
-  forms?: Maybe<FormConnection>;
-  hintText?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  infoText?: Maybe<Scalars['String']['output']>;
-  isArchived: Scalars['Boolean']['output'];
-  isHidden: Scalars['QuestionJexl']['output'];
-  /** Required expression is only evaluated when question is not hidden. */
-  isRequired: Scalars['QuestionJexl']['output'];
-  label: Scalars['String']['output'];
-  maxValue?: Maybe<Scalars['Float']['output']>;
-  meta: Scalars['GenericScalar']['output'];
-  minValue?: Maybe<Scalars['Float']['output']>;
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  placeholder?: Maybe<Scalars['String']['output']>;
-  slug: Scalars['String']['output'];
-  source?: Maybe<Question>;
-  step?: Maybe<Scalars['Float']['output']>;
-};
-
+export type FloatQuestion = Node &
+  Question & {
+    __typename?: 'FloatQuestion';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    defaultAnswer?: Maybe<FloatAnswer>;
+    formatValidators?: Maybe<FormatValidatorConnection>;
+    forms?: Maybe<FormConnection>;
+    hintText?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    infoText?: Maybe<Scalars['String']['output']>;
+    isArchived: Scalars['Boolean']['output'];
+    isHidden: Scalars['QuestionJexl']['output'];
+    /** Required expression is only evaluated when question is not hidden. */
+    isRequired: Scalars['QuestionJexl']['output'];
+    label: Scalars['String']['output'];
+    maxValue?: Maybe<Scalars['Float']['output']>;
+    meta: Scalars['GenericScalar']['output'];
+    minValue?: Maybe<Scalars['Float']['output']>;
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    placeholder?: Maybe<Scalars['String']['output']>;
+    slug: Scalars['String']['output'];
+    source?: Maybe<Question>;
+    step?: Maybe<Scalars['Float']['output']>;
+  };
 
 export type FloatQuestionFormatValidatorsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1439,7 +1368,6 @@ export type FloatQuestionFormatValidatorsArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
 };
-
 
 export type FloatQuestionFormsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1524,7 +1452,6 @@ export type Form = Node & {
   source?: Maybe<Form>;
 };
 
-
 export type FormDocumentsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1532,7 +1459,6 @@ export type FormDocumentsArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
 };
-
 
 export type FormQuestionsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1589,30 +1515,30 @@ export type FormOrderSetType = {
   meta?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type FormQuestion = Node & Question & {
-  __typename?: 'FormQuestion';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  forms?: Maybe<FormConnection>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  infoText?: Maybe<Scalars['String']['output']>;
-  isArchived: Scalars['Boolean']['output'];
-  isHidden: Scalars['QuestionJexl']['output'];
-  /** Required expression is only evaluated when question is not hidden. */
-  isRequired: Scalars['QuestionJexl']['output'];
-  label: Scalars['String']['output'];
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  slug: Scalars['String']['output'];
-  source?: Maybe<Question>;
-  /** Form referenced in a FormQuestion */
-  subForm?: Maybe<Form>;
-};
-
+export type FormQuestion = Node &
+  Question & {
+    __typename?: 'FormQuestion';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    forms?: Maybe<FormConnection>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    infoText?: Maybe<Scalars['String']['output']>;
+    isArchived: Scalars['Boolean']['output'];
+    isHidden: Scalars['QuestionJexl']['output'];
+    /** Required expression is only evaluated when question is not hidden. */
+    isRequired: Scalars['QuestionJexl']['output'];
+    label: Scalars['String']['output'];
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    slug: Scalars['String']['output'];
+    source?: Maybe<Question>;
+    /** Form referenced in a FormQuestion */
+    subForm?: Maybe<Form>;
+  };
 
 export type FormQuestionFormsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1662,49 +1588,50 @@ export type HasAnswerFilterType = {
   value?: InputMaybe<Scalars['GenericScalar']['input']>;
 };
 
-export type IntegerAnswer = Answer & Node & {
-  __typename?: 'IntegerAnswer';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  question: Question;
-  value?: Maybe<Scalars['Int']['output']>;
-};
+export type IntegerAnswer = Answer &
+  Node & {
+    __typename?: 'IntegerAnswer';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    question: Question;
+    value?: Maybe<Scalars['Int']['output']>;
+  };
 
-export type IntegerQuestion = Node & Question & {
-  __typename?: 'IntegerQuestion';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  defaultAnswer?: Maybe<IntegerAnswer>;
-  formatValidators?: Maybe<FormatValidatorConnection>;
-  forms?: Maybe<FormConnection>;
-  hintText?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  infoText?: Maybe<Scalars['String']['output']>;
-  isArchived: Scalars['Boolean']['output'];
-  isHidden: Scalars['QuestionJexl']['output'];
-  /** Required expression is only evaluated when question is not hidden. */
-  isRequired: Scalars['QuestionJexl']['output'];
-  label: Scalars['String']['output'];
-  maxValue?: Maybe<Scalars['Int']['output']>;
-  meta: Scalars['GenericScalar']['output'];
-  minValue?: Maybe<Scalars['Int']['output']>;
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  placeholder?: Maybe<Scalars['String']['output']>;
-  slug: Scalars['String']['output'];
-  source?: Maybe<Question>;
-};
-
+export type IntegerQuestion = Node &
+  Question & {
+    __typename?: 'IntegerQuestion';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    defaultAnswer?: Maybe<IntegerAnswer>;
+    formatValidators?: Maybe<FormatValidatorConnection>;
+    forms?: Maybe<FormConnection>;
+    hintText?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    infoText?: Maybe<Scalars['String']['output']>;
+    isArchived: Scalars['Boolean']['output'];
+    isHidden: Scalars['QuestionJexl']['output'];
+    /** Required expression is only evaluated when question is not hidden. */
+    isRequired: Scalars['QuestionJexl']['output'];
+    label: Scalars['String']['output'];
+    maxValue?: Maybe<Scalars['Int']['output']>;
+    meta: Scalars['GenericScalar']['output'];
+    minValue?: Maybe<Scalars['Int']['output']>;
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    placeholder?: Maybe<Scalars['String']['output']>;
+    slug: Scalars['String']['output'];
+    source?: Maybe<Question>;
+  };
 
 export type IntegerQuestionFormatValidatorsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1712,7 +1639,6 @@ export type IntegerQuestionFormatValidatorsArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
 };
-
 
 export type IntegerQuestionFormsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1734,7 +1660,7 @@ export enum JsonLookupMode {
   Intersects = 'INTERSECTS',
   Lt = 'LT',
   Lte = 'LTE',
-  Startswith = 'STARTSWITH'
+  Startswith = 'STARTSWITH',
 }
 
 export type JsonValueFilterType = {
@@ -1743,22 +1669,22 @@ export type JsonValueFilterType = {
   value: Scalars['GenericScalar']['input'];
 };
 
-export type ListAnswer = Answer & Node & {
-  __typename?: 'ListAnswer';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  question: Question;
-  selectedOptions?: Maybe<SelectedOptionConnection>;
-  value?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
+export type ListAnswer = Answer &
+  Node & {
+    __typename?: 'ListAnswer';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    question: Question;
+    selectedOptions?: Maybe<SelectedOptionConnection>;
+    value?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  };
 
 export type ListAnswerSelectedOptionsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1767,33 +1693,33 @@ export type ListAnswerSelectedOptionsArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export type MultipleChoiceQuestion = Node & Question & {
-  __typename?: 'MultipleChoiceQuestion';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  defaultAnswer?: Maybe<ListAnswer>;
-  formatValidators?: Maybe<FormatValidatorConnection>;
-  forms?: Maybe<FormConnection>;
-  hintText?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  infoText?: Maybe<Scalars['String']['output']>;
-  isArchived: Scalars['Boolean']['output'];
-  isHidden: Scalars['QuestionJexl']['output'];
-  /** Required expression is only evaluated when question is not hidden. */
-  isRequired: Scalars['QuestionJexl']['output'];
-  label: Scalars['String']['output'];
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  options?: Maybe<OptionConnection>;
-  slug: Scalars['String']['output'];
-  source?: Maybe<Question>;
-  staticContent?: Maybe<Scalars['String']['output']>;
-};
-
+export type MultipleChoiceQuestion = Node &
+  Question & {
+    __typename?: 'MultipleChoiceQuestion';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    defaultAnswer?: Maybe<ListAnswer>;
+    formatValidators?: Maybe<FormatValidatorConnection>;
+    forms?: Maybe<FormConnection>;
+    hintText?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    infoText?: Maybe<Scalars['String']['output']>;
+    isArchived: Scalars['Boolean']['output'];
+    isHidden: Scalars['QuestionJexl']['output'];
+    /** Required expression is only evaluated when question is not hidden. */
+    isRequired: Scalars['QuestionJexl']['output'];
+    label: Scalars['String']['output'];
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    options?: Maybe<OptionConnection>;
+    slug: Scalars['String']['output'];
+    source?: Maybe<Question>;
+    staticContent?: Maybe<Scalars['String']['output']>;
+  };
 
 export type MultipleChoiceQuestionFormatValidatorsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1801,7 +1727,6 @@ export type MultipleChoiceQuestionFormatValidatorsArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
 };
-
 
 export type MultipleChoiceQuestionFormsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1812,7 +1737,6 @@ export type MultipleChoiceQuestionFormsArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<Array<InputMaybe<FormOrderSetType>>>;
 };
-
 
 export type MultipleChoiceQuestionOptionsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1894,326 +1818,261 @@ export type Mutation = {
   suspendWorkItem?: Maybe<SuspendWorkItemPayload>;
 };
 
-
 export type MutationAddFormQuestionArgs = {
   input: AddFormQuestionInput;
 };
-
 
 export type MutationAddWorkflowFlowArgs = {
   input: AddWorkflowFlowInput;
 };
 
-
 export type MutationCancelCaseArgs = {
   input: CancelCaseInput;
 };
-
 
 export type MutationCancelWorkItemArgs = {
   input: CancelWorkItemInput;
 };
 
-
 export type MutationCompleteWorkItemArgs = {
   input: CompleteWorkItemInput;
 };
-
 
 export type MutationCopyDocumentArgs = {
   input: CopyDocumentInput;
 };
 
-
 export type MutationCopyFormArgs = {
   input: CopyFormInput;
 };
-
 
 export type MutationCopyOptionArgs = {
   input: CopyOptionInput;
 };
 
-
 export type MutationCopyQuestionArgs = {
   input: CopyQuestionInput;
 };
-
 
 export type MutationCreateWorkItemArgs = {
   input: CreateWorkItemInput;
 };
 
-
 export type MutationRedoWorkItemArgs = {
   input: RedoWorkItemInput;
 };
-
 
 export type MutationRemoveAnalyticsFieldArgs = {
   input: RemoveAnalyticsFieldInput;
 };
 
-
 export type MutationRemoveAnalyticsTableArgs = {
   input: RemoveAnalyticsTableInput;
 };
-
 
 export type MutationRemoveAnswerArgs = {
   input: RemoveAnswerInput;
 };
 
-
 export type MutationRemoveDefaultAnswerArgs = {
   input: RemoveDefaultAnswerInput;
 };
-
 
 export type MutationRemoveDocumentArgs = {
   input: RemoveDocumentInput;
 };
 
-
 export type MutationRemoveFlowArgs = {
   input: RemoveFlowInput;
 };
-
 
 export type MutationRemoveFormQuestionArgs = {
   input: RemoveFormQuestionInput;
 };
 
-
 export type MutationReopenCaseArgs = {
   input: ReopenCaseInput;
 };
-
 
 export type MutationReorderAnalyticsFieldsArgs = {
   input: ReorderAnalyticsFieldsInput;
 };
 
-
 export type MutationReorderFormQuestionsArgs = {
   input: ReorderFormQuestionsInput;
 };
-
 
 export type MutationResumeCaseArgs = {
   input: ResumeCaseInput;
 };
 
-
 export type MutationResumeWorkItemArgs = {
   input: ResumeWorkItemInput;
 };
-
 
 export type MutationSaveActionButtonQuestionArgs = {
   input: SaveActionButtonQuestionInput;
 };
 
-
 export type MutationSaveAnalyticsFieldArgs = {
   input: SaveAnalyticsFieldInput;
 };
-
 
 export type MutationSaveAnalyticsTableArgs = {
   input: SaveAnalyticsTableInput;
 };
 
-
 export type MutationSaveCalculatedFloatQuestionArgs = {
   input: SaveCalculatedFloatQuestionInput;
 };
-
 
 export type MutationSaveCaseArgs = {
   input: SaveCaseInput;
 };
 
-
 export type MutationSaveChoiceQuestionArgs = {
   input: SaveChoiceQuestionInput;
 };
-
 
 export type MutationSaveCompleteTaskFormTaskArgs = {
   input: SaveCompleteTaskFormTaskInput;
 };
 
-
 export type MutationSaveCompleteWorkflowFormTaskArgs = {
   input: SaveCompleteWorkflowFormTaskInput;
 };
-
 
 export type MutationSaveDateQuestionArgs = {
   input: SaveDateQuestionInput;
 };
 
-
 export type MutationSaveDefaultDateAnswerArgs = {
   input: SaveDefaultDateAnswerInput;
 };
-
 
 export type MutationSaveDefaultFloatAnswerArgs = {
   input: SaveDefaultFloatAnswerInput;
 };
 
-
 export type MutationSaveDefaultIntegerAnswerArgs = {
   input: SaveDefaultIntegerAnswerInput;
 };
-
 
 export type MutationSaveDefaultListAnswerArgs = {
   input: SaveDefaultListAnswerInput;
 };
 
-
 export type MutationSaveDefaultStringAnswerArgs = {
   input: SaveDefaultStringAnswerInput;
 };
-
 
 export type MutationSaveDefaultTableAnswerArgs = {
   input: SaveDefaultTableAnswerInput;
 };
 
-
 export type MutationSaveDocumentArgs = {
   input: SaveDocumentInput;
 };
-
 
 export type MutationSaveDocumentDateAnswerArgs = {
   input: SaveDocumentDateAnswerInput;
 };
 
-
 export type MutationSaveDocumentFilesAnswerArgs = {
   input: SaveDocumentFilesAnswerInput;
 };
-
 
 export type MutationSaveDocumentFloatAnswerArgs = {
   input: SaveDocumentFloatAnswerInput;
 };
 
-
 export type MutationSaveDocumentIntegerAnswerArgs = {
   input: SaveDocumentIntegerAnswerInput;
 };
-
 
 export type MutationSaveDocumentListAnswerArgs = {
   input: SaveDocumentListAnswerInput;
 };
 
-
 export type MutationSaveDocumentStringAnswerArgs = {
   input: SaveDocumentStringAnswerInput;
 };
-
 
 export type MutationSaveDocumentTableAnswerArgs = {
   input: SaveDocumentTableAnswerInput;
 };
 
-
 export type MutationSaveDynamicChoiceQuestionArgs = {
   input: SaveDynamicChoiceQuestionInput;
 };
-
 
 export type MutationSaveDynamicMultipleChoiceQuestionArgs = {
   input: SaveDynamicMultipleChoiceQuestionInput;
 };
 
-
 export type MutationSaveFilesQuestionArgs = {
   input: SaveFilesQuestionInput;
 };
-
 
 export type MutationSaveFloatQuestionArgs = {
   input: SaveFloatQuestionInput;
 };
 
-
 export type MutationSaveFormArgs = {
   input: SaveFormInput;
 };
-
 
 export type MutationSaveFormQuestionArgs = {
   input: SaveFormQuestionInput;
 };
 
-
 export type MutationSaveIntegerQuestionArgs = {
   input: SaveIntegerQuestionInput;
 };
-
 
 export type MutationSaveMultipleChoiceQuestionArgs = {
   input: SaveMultipleChoiceQuestionInput;
 };
 
-
 export type MutationSaveOptionArgs = {
   input: SaveOptionInput;
 };
-
 
 export type MutationSaveSimpleTaskArgs = {
   input: SaveSimpleTaskInput;
 };
 
-
 export type MutationSaveStaticQuestionArgs = {
   input: SaveStaticQuestionInput;
 };
-
 
 export type MutationSaveTableQuestionArgs = {
   input: SaveTableQuestionInput;
 };
 
-
 export type MutationSaveTextQuestionArgs = {
   input: SaveTextQuestionInput;
 };
-
 
 export type MutationSaveTextareaQuestionArgs = {
   input: SaveTextareaQuestionInput;
 };
 
-
 export type MutationSaveWorkItemArgs = {
   input: SaveWorkItemInput;
 };
-
 
 export type MutationSaveWorkflowArgs = {
   input: SaveWorkflowInput;
 };
 
-
 export type MutationSkipWorkItemArgs = {
   input: SkipWorkItemInput;
 };
 
-
 export type MutationSuspendCaseArgs = {
   input: SuspendCaseInput;
 };
-
 
 export type MutationSuspendWorkItemArgs = {
   input: SuspendWorkItemInput;
@@ -2321,7 +2180,6 @@ export type Query = {
   node?: Maybe<Node>;
 };
 
-
 export type QueryAllAnalyticsFieldsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -2331,7 +2189,6 @@ export type QueryAllAnalyticsFieldsArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<Array<InputMaybe<AnalyticsFieldOrderSetType>>>;
 };
-
 
 export type QueryAllAnalyticsTablesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -2343,7 +2200,6 @@ export type QueryAllAnalyticsTablesArgs = {
   order?: InputMaybe<Array<InputMaybe<AnalyticsTableOrderSetType>>>;
 };
 
-
 export type QueryAllCasesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -2354,14 +2210,12 @@ export type QueryAllCasesArgs = {
   order?: InputMaybe<Array<InputMaybe<CaseOrderSetType>>>;
 };
 
-
 export type QueryAllDataSourcesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
 };
-
 
 export type QueryAllDocumentsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -2373,14 +2227,12 @@ export type QueryAllDocumentsArgs = {
   order?: InputMaybe<Array<InputMaybe<DocumentOrderSetType>>>;
 };
 
-
 export type QueryAllFormatValidatorsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
 };
-
 
 export type QueryAllFormsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -2392,7 +2244,6 @@ export type QueryAllFormsArgs = {
   order?: InputMaybe<Array<InputMaybe<FormOrderSetType>>>;
 };
 
-
 export type QueryAllQuestionsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -2402,7 +2253,6 @@ export type QueryAllQuestionsArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<Array<InputMaybe<QuestionOrderSetType>>>;
 };
-
 
 export type QueryAllTasksArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -2414,7 +2264,6 @@ export type QueryAllTasksArgs = {
   order?: InputMaybe<Array<InputMaybe<TaskOrderSetType>>>;
 };
 
-
 export type QueryAllUsedDynamicOptionsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -2424,7 +2273,6 @@ export type QueryAllUsedDynamicOptionsArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<Array<InputMaybe<DynamicOptionOrderSetType>>>;
 };
-
 
 export type QueryAllWorkItemsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -2436,7 +2284,6 @@ export type QueryAllWorkItemsArgs = {
   order?: InputMaybe<Array<InputMaybe<WorkItemOrderSetType>>>;
 };
 
-
 export type QueryAllWorkflowsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -2447,11 +2294,9 @@ export type QueryAllWorkflowsArgs = {
   order?: InputMaybe<Array<InputMaybe<WorkflowOrderSetType>>>;
 };
 
-
 export type QueryAnalyticsTableArgs = {
   slug: Scalars['String']['input'];
 };
-
 
 export type QueryDataSourceArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -2463,7 +2308,6 @@ export type QueryDataSourceArgs = {
   question?: InputMaybe<Scalars['String']['input']>;
 };
 
-
 export type QueryDocumentValidityArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -2472,7 +2316,6 @@ export type QueryDocumentValidityArgs = {
   id: Scalars['ID']['input'];
   last?: InputMaybe<Scalars['Int']['input']>;
 };
-
 
 export type QueryNodeArgs = {
   id: Scalars['ID']['input'];
@@ -2497,7 +2340,6 @@ export type Question = {
   slug: Scalars['String']['output'];
   source?: Maybe<Question>;
 };
-
 
 export type QuestionFormsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -3460,7 +3302,7 @@ export enum SearchLookupMode {
   Contains = 'CONTAINS',
   ExactWord = 'EXACT_WORD',
   Startswith = 'STARTSWITH',
-  Text = 'TEXT'
+  Text = 'TEXT',
 }
 
 export type SelectedOption = {
@@ -3487,28 +3329,29 @@ export type SelectedOptionEdge = {
   node?: Maybe<SelectedOption>;
 };
 
-export type SimpleTask = Node & Task & {
-  __typename?: 'SimpleTask';
-  addressGroups?: Maybe<Scalars['GroupJexl']['output']>;
-  continueAsync?: Maybe<Scalars['Boolean']['output']>;
-  controlGroups?: Maybe<Scalars['GroupJexl']['output']>;
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  isArchived: Scalars['Boolean']['output'];
-  isMultipleInstance: Scalars['Boolean']['output'];
-  /** Time in seconds task may take to be processed. */
-  leadTime?: Maybe<Scalars['Int']['output']>;
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  name: Scalars['String']['output'];
-  slug: Scalars['String']['output'];
-};
+export type SimpleTask = Node &
+  Task & {
+    __typename?: 'SimpleTask';
+    addressGroups?: Maybe<Scalars['GroupJexl']['output']>;
+    continueAsync?: Maybe<Scalars['Boolean']['output']>;
+    controlGroups?: Maybe<Scalars['GroupJexl']['output']>;
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    description?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    isArchived: Scalars['Boolean']['output'];
+    isMultipleInstance: Scalars['Boolean']['output'];
+    /** Time in seconds task may take to be processed. */
+    leadTime?: Maybe<Scalars['Int']['output']>;
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    name: Scalars['String']['output'];
+    slug: Scalars['String']['output'];
+  };
 
 export type SkipWorkItemInput = {
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
@@ -3526,7 +3369,7 @@ export type SkipWorkItemPayload = {
 export enum SortableAnalyticsFieldAttributes {
   Alias = 'ALIAS',
   CreatedAt = 'CREATED_AT',
-  ModifiedAt = 'MODIFIED_AT'
+  ModifiedAt = 'MODIFIED_AT',
 }
 
 export enum SortableAnalyticsTableAttributes {
@@ -3534,7 +3377,7 @@ export enum SortableAnalyticsTableAttributes {
   Description = 'DESCRIPTION',
   ModifiedAt = 'MODIFIED_AT',
   Name = 'NAME',
-  Slug = 'SLUG'
+  Slug = 'SLUG',
 }
 
 export enum SortableAnswerAttributes {
@@ -3542,20 +3385,20 @@ export enum SortableAnswerAttributes {
   Date = 'DATE',
   ModifiedAt = 'MODIFIED_AT',
   Question = 'QUESTION',
-  Value = 'VALUE'
+  Value = 'VALUE',
 }
 
 export enum SortableCaseAttributes {
   CreatedAt = 'CREATED_AT',
   DocumentFormName = 'DOCUMENT__FORM__NAME',
   ModifiedAt = 'MODIFIED_AT',
-  Status = 'STATUS'
+  Status = 'STATUS',
 }
 
 export enum SortableDocumentAttributes {
   CreatedAt = 'CREATED_AT',
   Form = 'FORM',
-  ModifiedAt = 'MODIFIED_AT'
+  ModifiedAt = 'MODIFIED_AT',
 }
 
 export enum SortableDynamicOptionAttributes {
@@ -3563,13 +3406,13 @@ export enum SortableDynamicOptionAttributes {
   Label = 'LABEL',
   ModifiedAt = 'MODIFIED_AT',
   Question = 'QUESTION',
-  Slug = 'SLUG'
+  Slug = 'SLUG',
 }
 
 export enum SortableFlowAttributes {
   CreatedAt = 'CREATED_AT',
   ModifiedAt = 'MODIFIED_AT',
-  Task = 'TASK'
+  Task = 'TASK',
 }
 
 export enum SortableFormAttributes {
@@ -3579,7 +3422,7 @@ export enum SortableFormAttributes {
   IsPublished = 'IS_PUBLISHED',
   ModifiedAt = 'MODIFIED_AT',
   Name = 'NAME',
-  Slug = 'SLUG'
+  Slug = 'SLUG',
 }
 
 export enum SortableOptionAttributes {
@@ -3587,7 +3430,7 @@ export enum SortableOptionAttributes {
   IsArchived = 'IS_ARCHIVED',
   Label = 'LABEL',
   ModifiedAt = 'MODIFIED_AT',
-  Slug = 'SLUG'
+  Slug = 'SLUG',
 }
 
 export enum SortableQuestionAttributes {
@@ -3602,7 +3445,7 @@ export enum SortableQuestionAttributes {
   ModifiedAt = 'MODIFIED_AT',
   Placeholder = 'PLACEHOLDER',
   Slug = 'SLUG',
-  Type = 'TYPE'
+  Type = 'TYPE',
 }
 
 export enum SortableTaskAttributes {
@@ -3613,7 +3456,7 @@ export enum SortableTaskAttributes {
   ModifiedAt = 'MODIFIED_AT',
   Name = 'NAME',
   Slug = 'SLUG',
-  Type = 'TYPE'
+  Type = 'TYPE',
 }
 
 export enum SortableWorkItemAttributes {
@@ -3625,7 +3468,7 @@ export enum SortableWorkItemAttributes {
   ModifiedAt = 'MODIFIED_AT',
   Name = 'NAME',
   Slug = 'SLUG',
-  Status = 'STATUS'
+  Status = 'STATUS',
 }
 
 export enum SortableWorkflowAttributes {
@@ -3636,40 +3479,40 @@ export enum SortableWorkflowAttributes {
   IsPublished = 'IS_PUBLISHED',
   ModifiedAt = 'MODIFIED_AT',
   Name = 'NAME',
-  Slug = 'SLUG'
+  Slug = 'SLUG',
 }
 
 /** An enumeration. */
 export enum StartingObject {
   Cases = 'CASES',
   Documents = 'DOCUMENTS',
-  WorkItems = 'WORK_ITEMS'
+  WorkItems = 'WORK_ITEMS',
 }
 
-export type StaticQuestion = Node & Question & {
-  __typename?: 'StaticQuestion';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  dataSource?: Maybe<Scalars['String']['output']>;
-  forms?: Maybe<FormConnection>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  infoText?: Maybe<Scalars['String']['output']>;
-  isArchived: Scalars['Boolean']['output'];
-  isHidden: Scalars['QuestionJexl']['output'];
-  /** Required expression is only evaluated when question is not hidden. This should not be used for `StaticQuestion`, because it can never be satisfied. */
-  isRequired: Scalars['QuestionJexl']['output'];
-  label: Scalars['String']['output'];
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  slug: Scalars['String']['output'];
-  source?: Maybe<Question>;
-  staticContent?: Maybe<Scalars['String']['output']>;
-};
-
+export type StaticQuestion = Node &
+  Question & {
+    __typename?: 'StaticQuestion';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    dataSource?: Maybe<Scalars['String']['output']>;
+    forms?: Maybe<FormConnection>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    infoText?: Maybe<Scalars['String']['output']>;
+    isArchived: Scalars['Boolean']['output'];
+    isHidden: Scalars['QuestionJexl']['output'];
+    /** Required expression is only evaluated when question is not hidden. This should not be used for `StaticQuestion`, because it can never be satisfied. */
+    isRequired: Scalars['QuestionJexl']['output'];
+    label: Scalars['String']['output'];
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    slug: Scalars['String']['output'];
+    source?: Maybe<Question>;
+    staticContent?: Maybe<Scalars['String']['output']>;
+  };
 
 export type StaticQuestionFormsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -3694,24 +3537,25 @@ export enum Status {
   /** Work item is skipped. */
   Skipped = 'SKIPPED',
   /** Work item is suspended. */
-  Suspended = 'SUSPENDED'
+  Suspended = 'SUSPENDED',
 }
 
-export type StringAnswer = Answer & Node & {
-  __typename?: 'StringAnswer';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  question: Question;
-  selectedOption?: Maybe<SelectedOption>;
-  value?: Maybe<Scalars['String']['output']>;
-};
+export type StringAnswer = Answer &
+  Node & {
+    __typename?: 'StringAnswer';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    question: Question;
+    selectedOption?: Maybe<SelectedOption>;
+    value?: Maybe<Scalars['String']['output']>;
+  };
 
 export type SuspendCaseInput = {
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
@@ -3739,49 +3583,50 @@ export type SuspendWorkItemPayload = {
   workItem?: Maybe<WorkItem>;
 };
 
-export type TableAnswer = Answer & Node & {
-  __typename?: 'TableAnswer';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  document?: Maybe<Document>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  question: Question;
-  value?: Maybe<Array<Maybe<Document>>>;
-};
+export type TableAnswer = Answer &
+  Node & {
+    __typename?: 'TableAnswer';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    document?: Maybe<Document>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    question: Question;
+    value?: Maybe<Array<Maybe<Document>>>;
+  };
 
-export type TableQuestion = Node & Question & {
-  __typename?: 'TableQuestion';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  defaultAnswer?: Maybe<TableAnswer>;
-  formatValidators?: Maybe<FormatValidatorConnection>;
-  forms?: Maybe<FormConnection>;
-  hintText?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  infoText?: Maybe<Scalars['String']['output']>;
-  isArchived: Scalars['Boolean']['output'];
-  isHidden: Scalars['QuestionJexl']['output'];
-  /** Required expression is only evaluated when question is not hidden. */
-  isRequired: Scalars['QuestionJexl']['output'];
-  label: Scalars['String']['output'];
-  meta: Scalars['GenericScalar']['output'];
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  /** Form that represents rows of a TableQuestion */
-  rowForm?: Maybe<Form>;
-  slug: Scalars['String']['output'];
-  source?: Maybe<Question>;
-};
-
+export type TableQuestion = Node &
+  Question & {
+    __typename?: 'TableQuestion';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    defaultAnswer?: Maybe<TableAnswer>;
+    formatValidators?: Maybe<FormatValidatorConnection>;
+    forms?: Maybe<FormConnection>;
+    hintText?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    infoText?: Maybe<Scalars['String']['output']>;
+    isArchived: Scalars['Boolean']['output'];
+    isHidden: Scalars['QuestionJexl']['output'];
+    /** Required expression is only evaluated when question is not hidden. */
+    isRequired: Scalars['QuestionJexl']['output'];
+    label: Scalars['String']['output'];
+    meta: Scalars['GenericScalar']['output'];
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    /** Form that represents rows of a TableQuestion */
+    rowForm?: Maybe<Form>;
+    slug: Scalars['String']['output'];
+    source?: Maybe<Question>;
+  };
 
 export type TableQuestionFormatValidatorsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -3789,7 +3634,6 @@ export type TableQuestionFormatValidatorsArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
 };
-
 
 export type TableQuestionFormsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -3863,34 +3707,34 @@ export type TaskOrderSetType = {
   meta?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type TextQuestion = Node & Question & {
-  __typename?: 'TextQuestion';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  defaultAnswer?: Maybe<StringAnswer>;
-  formatValidators?: Maybe<FormatValidatorConnection>;
-  forms?: Maybe<FormConnection>;
-  hintText?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  infoText?: Maybe<Scalars['String']['output']>;
-  isArchived: Scalars['Boolean']['output'];
-  isHidden: Scalars['QuestionJexl']['output'];
-  /** Required expression is only evaluated when question is not hidden. */
-  isRequired: Scalars['QuestionJexl']['output'];
-  label: Scalars['String']['output'];
-  maxLength?: Maybe<Scalars['Int']['output']>;
-  meta: Scalars['GenericScalar']['output'];
-  minLength?: Maybe<Scalars['Int']['output']>;
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  placeholder?: Maybe<Scalars['String']['output']>;
-  slug: Scalars['String']['output'];
-  source?: Maybe<Question>;
-};
-
+export type TextQuestion = Node &
+  Question & {
+    __typename?: 'TextQuestion';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    defaultAnswer?: Maybe<StringAnswer>;
+    formatValidators?: Maybe<FormatValidatorConnection>;
+    forms?: Maybe<FormConnection>;
+    hintText?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    infoText?: Maybe<Scalars['String']['output']>;
+    isArchived: Scalars['Boolean']['output'];
+    isHidden: Scalars['QuestionJexl']['output'];
+    /** Required expression is only evaluated when question is not hidden. */
+    isRequired: Scalars['QuestionJexl']['output'];
+    label: Scalars['String']['output'];
+    maxLength?: Maybe<Scalars['Int']['output']>;
+    meta: Scalars['GenericScalar']['output'];
+    minLength?: Maybe<Scalars['Int']['output']>;
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    placeholder?: Maybe<Scalars['String']['output']>;
+    slug: Scalars['String']['output'];
+    source?: Maybe<Question>;
+  };
 
 export type TextQuestionFormatValidatorsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -3898,7 +3742,6 @@ export type TextQuestionFormatValidatorsArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
 };
-
 
 export type TextQuestionFormsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -3910,34 +3753,34 @@ export type TextQuestionFormsArgs = {
   order?: InputMaybe<Array<InputMaybe<FormOrderSetType>>>;
 };
 
-export type TextareaQuestion = Node & Question & {
-  __typename?: 'TextareaQuestion';
-  createdAt: Scalars['DateTime']['output'];
-  createdByGroup?: Maybe<Scalars['String']['output']>;
-  createdByUser?: Maybe<Scalars['String']['output']>;
-  defaultAnswer?: Maybe<StringAnswer>;
-  formatValidators?: Maybe<FormatValidatorConnection>;
-  forms?: Maybe<FormConnection>;
-  hintText?: Maybe<Scalars['String']['output']>;
-  /** The ID of the object */
-  id: Scalars['ID']['output'];
-  infoText?: Maybe<Scalars['String']['output']>;
-  isArchived: Scalars['Boolean']['output'];
-  isHidden: Scalars['QuestionJexl']['output'];
-  /** Required expression is only evaluated when question is not hidden. */
-  isRequired: Scalars['QuestionJexl']['output'];
-  label: Scalars['String']['output'];
-  maxLength?: Maybe<Scalars['Int']['output']>;
-  meta: Scalars['GenericScalar']['output'];
-  minLength?: Maybe<Scalars['Int']['output']>;
-  modifiedAt: Scalars['DateTime']['output'];
-  modifiedByGroup?: Maybe<Scalars['String']['output']>;
-  modifiedByUser?: Maybe<Scalars['String']['output']>;
-  placeholder?: Maybe<Scalars['String']['output']>;
-  slug: Scalars['String']['output'];
-  source?: Maybe<Question>;
-};
-
+export type TextareaQuestion = Node &
+  Question & {
+    __typename?: 'TextareaQuestion';
+    createdAt: Scalars['DateTime']['output'];
+    createdByGroup?: Maybe<Scalars['String']['output']>;
+    createdByUser?: Maybe<Scalars['String']['output']>;
+    defaultAnswer?: Maybe<StringAnswer>;
+    formatValidators?: Maybe<FormatValidatorConnection>;
+    forms?: Maybe<FormConnection>;
+    hintText?: Maybe<Scalars['String']['output']>;
+    /** The ID of the object */
+    id: Scalars['ID']['output'];
+    infoText?: Maybe<Scalars['String']['output']>;
+    isArchived: Scalars['Boolean']['output'];
+    isHidden: Scalars['QuestionJexl']['output'];
+    /** Required expression is only evaluated when question is not hidden. */
+    isRequired: Scalars['QuestionJexl']['output'];
+    label: Scalars['String']['output'];
+    maxLength?: Maybe<Scalars['Int']['output']>;
+    meta: Scalars['GenericScalar']['output'];
+    minLength?: Maybe<Scalars['Int']['output']>;
+    modifiedAt: Scalars['DateTime']['output'];
+    modifiedByGroup?: Maybe<Scalars['String']['output']>;
+    modifiedByUser?: Maybe<Scalars['String']['output']>;
+    placeholder?: Maybe<Scalars['String']['output']>;
+    slug: Scalars['String']['output'];
+    source?: Maybe<Question>;
+  };
 
 export type TextareaQuestionFormatValidatorsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -3945,7 +3788,6 @@ export type TextareaQuestionFormatValidatorsArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
 };
-
 
 export type TextareaQuestionFormsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -3964,7 +3806,7 @@ export enum Type {
   /** Task to complete a defined workflow form. */
   CompleteWorkflowForm = 'COMPLETE_WORKFLOW_FORM',
   /** Task which can simply be marked as completed. */
-  Simple = 'SIMPLE'
+  Simple = 'SIMPLE',
 }
 
 export type ValidationEntry = {
@@ -4014,7 +3856,6 @@ export type WorkItem = Node & {
   succeedingWorkItems: WorkItemConnection;
   task: Task;
 };
-
 
 export type WorkItemSucceedingWorkItemsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -4095,7 +3936,7 @@ export enum WorkItemStatus {
   Ready = 'READY',
   Redo = 'REDO',
   Skipped = 'SKIPPED',
-  Suspended = 'SUSPENDED'
+  Suspended = 'SUSPENDED',
 }
 
 export type Workflow = Node & {
@@ -4124,7 +3965,6 @@ export type Workflow = Node & {
   tasks: Array<Maybe<Task>>;
 };
 
-
 export type WorkflowAllowFormsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -4132,7 +3972,6 @@ export type WorkflowAllowFormsArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
 };
-
 
 export type WorkflowFlowsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;

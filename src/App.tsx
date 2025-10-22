@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { useAuth } from 'react-oidc-context';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Header from './components/shared/Header';
-import { createApolloClient } from './graphql/client';
+import { createApolloClient } from './gql/client';
 import Dashboard from './pages/Dashboard';
 import Forms from './pages/Forms';
 import { RedirectPage } from './pages/Redirect';

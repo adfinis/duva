@@ -10,6 +10,6 @@ export default defineConfig({
     alias: {
       '@': './src',
       '@shared': './src/components/shared',
-    }
-  }
+    },
+  },
 });

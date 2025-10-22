@@ -15,7 +15,7 @@
     "allowImportingTsExtensions": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@shared/*": ["./src/components/shared/*"],
+      "@shared/*": ["./src/components/shared/*"]
     },
 
     /* type checking */

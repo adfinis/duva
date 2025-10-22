@@ -5,13 +5,13 @@ const config: CodegenConfig = {
   schema: BASE_URL,
   documents: ['./src/**/*.{graphql,tsx,ts}'],
   generates: {
-    './src/graphql/__generated__/': {
+    './src/gql/__generated__/': {
       preset: 'client',
       presetConfig: {
         gqlTagName: 'gql',
       },
     },
-    './src/graphql/__generated__/types.ts': {
+    './src/gql/__generated__/types.ts': {
       plugins: [
         'typescript',
         'typescript-operations',
