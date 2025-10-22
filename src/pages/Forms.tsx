@@ -1,4 +1,4 @@
-import Button from '@shared/Button';
+import { Button } from '@shared/Button';
 import type React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Forms.css';
@@ -92,19 +92,9 @@ const Forms: React.FC = () => {
   return (
     <div className="forms-container">
       <div className="forms-header">
-        <Button
-          text="← Back to Dashboard"
-          backgroundColor="var(--color-primary-red)"
-          textColor="var(--color-primary-white)"
-          onClick={handleBackClick}
-        />
+        <Button onClick={handleBackClick}>← Back to Dashboard</Button>
         <h1 className="forms-title">Forms</h1>
-        <Button
-          text="+ Add New Form"
-          backgroundColor="var(--color-secondary-green)"
-          textColor="var(--color-primary-white)"
-          onClick={handleAddFormClick}
-        />
+        <Button onClick={handleAddFormClick}>+ Add New Form</Button>
       </div>
       <div className="forms-content">
         <div className="forms-summary">

@@ -40,4 +40,10 @@
   --transition-base: 300ms ease-in-out;
   --transition-slow: 450ms ease-in-out;
   --transition-very-slow: 600ms ease-in-out;
+
+  /* Buttons */
+  --btn-padding-y: 0.75rem;
+  --btn-padding-x: 1.5rem;
+  --btn-font-size: 1rem;
+  --btn-font-weight: 500;
 }
