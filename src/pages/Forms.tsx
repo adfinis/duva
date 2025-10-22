@@ -87,9 +87,9 @@ export function Forms() {
   return (
     <div className="forms-container">
       <div className="forms-header">
-         <Button onClick={handleBackClick}>Back to Dashboard</Button>
+        <Button onClick={handleBackClick}>Back to Dashboard</Button>
         <h1>Forms</h1>
-        <Button>Add New Form</Button>
+        <Button variant="outline">Add New Form</Button>
       </div>
       <div className="forms-content">
         <div className="forms-summary">
@@ -103,9 +103,7 @@ export function Forms() {
                 <p className="form-card-description">{form.description}</p>
               </div>
               <div className="form-card-status">
-                <span
-                  className={`status-badge ${getStatusClass(form.status)}`}
-                >
+                <span className={`status-badge ${getStatusClass(form.status)}`}>
                   {form.status}
                 </span>
               </div>
