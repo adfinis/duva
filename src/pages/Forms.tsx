@@ -1,6 +1,6 @@
 import Button from '@shared/Button';
-import type React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Card } from '../components/shared/Card';
 import './Forms.css';
 
 interface Form {
@@ -12,7 +12,7 @@ interface Form {
   submissions: number;
 }
 
-const Forms: React.FC = () => {
+export function Forms() {
   const navigate = useNavigate();
 
   // Mock data for forms
@@ -71,11 +71,6 @@ const Forms: React.FC = () => {
     navigate('/');
   };
 
-  const handleAddFormClick = () => {
-    // Navigate to add form page when implemented
-    console.log('Navigate to Add New Form');
-  };
-
   const getStatusClass = (status: string) => {
     switch (status) {
       case 'Published':
@@ -93,52 +88,42 @@ const Forms: React.FC = () => {
     <div className="forms-container">
       <div className="forms-header">
         <Button
-          text="← Back to Dashboard"
+          text="Back to Dashboard"
           backgroundColor="var(--color-primary-red)"
           textColor="var(--color-primary-white)"
+          hoverBackgroundColor="var(--color-secondary-orange)"
           onClick={handleBackClick}
         />
-        <h1 className="forms-title">Forms</h1>
+        <h1>Forms</h1>
         <Button
-          text="+ Add New Form"
+          text="Add New Form"
           backgroundColor="var(--color-secondary-green)"
           textColor="var(--color-primary-white)"
-          onClick={handleAddFormClick}
+          hoverBackgroundColor="var(--color-secondary-anthracite)"
         />
       </div>
       <div className="forms-content">
         <div className="forms-summary">
           <p className="forms-count">Total Forms: {mockForms.length}</p>
         </div>
-        <div className="table-container">
-          <table className="forms-table">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {mockForms.map((form) => (
-                <tr key={form.id}>
-                  <td className="form-title">{form.title}</td>
-                  <td className="form-description">{form.description}</td>
-                  <td>
-                    <span
-                      className={`status-badge ${getStatusClass(form.status)}`}
-                    >
-                      {form.status}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="forms-cards-container">
+          {mockForms.map((form) => (
+            <Card key={form.id} className="form-card">
+              <div className="form-card-content">
+                <h3>{form.title}</h3>
+                <p className="form-card-description">{form.description}</p>
+              </div>
+              <div className="form-card-status">
+                <span
+                  className={`status-badge ${getStatusClass(form.status)}`}
+                >
+                  {form.status}
+                </span>
+              </div>
+            </Card>
+          ))}
         </div>
       </div>
     </div>
   );
-};
-
-export default Forms;
+}
