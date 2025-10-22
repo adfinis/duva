@@ -72,11 +72,6 @@ const Forms: React.FC = () => {
     navigate('/');
   };
 
-  const handleAddFormClick = () => {
-    // Navigate to add form page when implemented
-    console.log('Navigate to Add New Form');
-  };
-
   const getStatusClass = (status: string) => {
     switch (status) {
       case 'Published':
@@ -94,17 +89,18 @@ const Forms: React.FC = () => {
     <div className="forms-container">
       <div className="forms-header">
         <Button
-          text="← Back to Dashboard"
+          text="Back to Dashboard"
           backgroundColor="var(--color-primary-red)"
           textColor="var(--color-primary-white)"
+          hoverBackgroundColor="var(--color-secondary-orange)"
           onClick={handleBackClick}
         />
         <h1 className="forms-title">Forms</h1>
         <Button
-          text="+ Add New Form"
+          text="Add New Form"
           backgroundColor="var(--color-secondary-green)"
           textColor="var(--color-primary-white)"
-          onClick={handleAddFormClick}
+          hoverBackgroundColor="var(--color-secondary-anthracite)"
         />
       </div>
       <div className="forms-content">
