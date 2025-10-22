@@ -1,4 +1,4 @@
-import Button from '@shared/Button';
+import { Button } from '@shared/Button';
 import { useNavigate } from 'react-router-dom';
 import { Card } from '../components/shared/Card';
 import './Forms.css';
@@ -87,20 +87,9 @@ export function Forms() {
   return (
     <div className="forms-container">
       <div className="forms-header">
-        <Button
-          text="Back to Dashboard"
-          backgroundColor="var(--color-primary-red)"
-          textColor="var(--color-primary-white)"
-          hoverBackgroundColor="var(--color-secondary-orange)"
-          onClick={handleBackClick}
-        />
+         <Button onClick={handleBackClick}>Back to Dashboard</Button>
         <h1>Forms</h1>
-        <Button
-          text="Add New Form"
-          backgroundColor="var(--color-secondary-green)"
-          textColor="var(--color-primary-white)"
-          hoverBackgroundColor="var(--color-secondary-anthracite)"
-        />
+        <Button>Add New Form</Button>
       </div>
       <div className="forms-content">
         <div className="forms-summary">
