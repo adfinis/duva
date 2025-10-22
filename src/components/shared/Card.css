@@ -1,26 +1,14 @@
-@import "../../styles/themes.css";
+@import "@/styles/themes.css";
 
 .card {
   background-color: var(--color-primary-white);
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  transition: all 0.2s ease-in-out;
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-anthracite-light);
+  transition: var(--transition-fast);
   width: 100%;
   text-align: left;
-}
-
-.card button {
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  text-align: left;
-  font: inherit;
-  color: inherit;
-  cursor: inherit;
 }
 
 .card-hoverable {
@@ -29,7 +17,7 @@
 
 .card-hoverable:hover {
   background-color: var(--color-secondary-beige);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-1px);
 }
 

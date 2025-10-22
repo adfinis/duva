@@ -1,8 +1,7 @@
-import type React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
-const Dashboard: React.FC = () => {
+export function Dashboard() {
   const navigate = useNavigate();
 
   const handleFormsClick = () => {
@@ -32,6 +31,4 @@ const Dashboard: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default Dashboard;
+}

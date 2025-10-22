@@ -1,7 +1,6 @@
 import Button from '@shared/Button';
-import type React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Card from '../components/shared/Card';
+import { Card } from '../components/shared/Card';
 import './Forms.css';
 
 interface Form {
@@ -13,7 +12,7 @@ interface Form {
   submissions: number;
 }
 
-const Forms: React.FC = () => {
+export function Forms() {
   const navigate = useNavigate();
 
   // Mock data for forms
@@ -127,6 +126,4 @@ const Forms: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default Forms;
+}
