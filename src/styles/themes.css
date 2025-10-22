@@ -17,6 +17,14 @@
   --color-middle-blue: #a8bfcd;
   --color-middle-blue-light: #d5e0e6;
 
+  /* Status Colors */
+  --status-green-bg: #d4edda;
+  --status-green-text: #155724;
+  --status-orange-bg: #fff3cd;
+  --status-orange-text: #856404;
+  --status-red-bg: #f8d7da;
+  --status-red-text: #721c24;
+
   /* Spacing */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
