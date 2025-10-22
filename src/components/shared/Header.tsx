@@ -1,5 +1,6 @@
 import type React from 'react';
 import './Header.css';
+import Button from './Button';
 
 interface HeaderProps {
   title: string;
@@ -18,14 +19,11 @@ const Header: React.FC<HeaderProps> = ({
     <header className="header">
       <div className="header-content">
         {showBackButton && (
-          <button
-            type="button"
+          <Button
             className="header-back-button"
             onClick={onBackClick}
-            aria-label="Go back"
-          >
-            ←
-          </button>
+            text="←"
+          />
         )}
 
         <h1 className="header-title">{title}</h1>
