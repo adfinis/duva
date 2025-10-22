@@ -94,7 +94,7 @@ export function Forms() {
           hoverBackgroundColor="var(--color-secondary-orange)"
           onClick={handleBackClick}
         />
-        <h1 className="forms-title">Forms</h1>
+        <h1>Forms</h1>
         <Button
           text="Add New Form"
           backgroundColor="var(--color-secondary-green)"
@@ -110,7 +110,7 @@ export function Forms() {
           {mockForms.map((form) => (
             <Card key={form.id} className="form-card">
               <div className="form-card-content">
-                <h3 className="form-card-title">{form.title}</h3>
+                <h3>{form.title}</h3>
                 <p className="form-card-description">{form.description}</p>
               </div>
               <div className="form-card-status">

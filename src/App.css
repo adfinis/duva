@@ -1,10 +1,12 @@
 body {
   margin: 0;
-  color: #fff;
+  color: var(--color-primary-black);
   font-family: "Nunito Sans", sans-serif;
   font-size: 0.75rem;
   line-height: 1.4;
   background-image: linear-gradient(to bottom, #020917, #101725);
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* Headings */
