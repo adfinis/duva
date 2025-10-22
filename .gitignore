@@ -17,3 +17,7 @@ volumes/
 !.vscode/extensions.json
 .idea
 .zed
+
+# Claude code
+.claude
+CLAUDE.md
