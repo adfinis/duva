@@ -1,8 +1,14 @@
-import { useState } from 'react';
-import { Input } from './shared/Input';
+import { useMemo, useState } from 'react';
 import { Button } from './shared/Button';
-import './FormDetails.css';
+import { Input } from './shared/Input';
 import { TextArea } from './shared/TextArea';
+import './FormDetails.css';
+
+interface FormValues {
+  name: string;
+  slug: string;
+  description: string;
+}
 
 interface FormDetailsProps {
   initialName?: string;
@@ -11,60 +17,86 @@ interface FormDetailsProps {
   onSave?: (data: { name: string; slug: string; description: string }) => void;
 }
 
+function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[^\w\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
+
 export function FormDetails({
   initialName = '',
   initialSlug = '',
   initialDescription = '',
   onSave,
 }: FormDetailsProps) {
-  const [name, setName] = useState(initialName);
-  const [slug, setSlug] = useState(initialSlug);
-  const [description, setDescription] = useState(initialDescription);
+  const [values, setValues] = useState<FormValues>({
+    name: initialName,
+    slug: initialSlug,
+    description: initialDescription,
+  });
+  const [slugTouched, setSlugTouched] = useState(false);
 
-  const handleSave = () => {
-    if (onSave) {
-      onSave({ name, slug, description });
+  const suggestedSlug = useMemo(() => slugify(values.name), [values.name]);
+  const displaySlug = slugTouched ? values.slug : suggestedSlug;
+  const isValid = values.name.trim().length > 0 && (values.slug || suggestedSlug);
+
+  function handleNameChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setValues({ ...values, name: e.target.value });
+  }
+
+  function handleSlugChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setSlugTouched(true);
+    setValues({ ...values, slug: e.target.value });
+  }
+
+  function handleDescriptionChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    setValues({ ...values, description: e.target.value });
+  }
+
+  function handleSave() {
+    if (onSave && isValid) {
+      const finalSlug = slugTouched ? values.slug : suggestedSlug;
+      onSave({ 
+        name: values.name, 
+        slug: finalSlug, 
+        description: values.description 
+      });
     }
-  };
+  }
 
   return (
     <div className="form-details">
-      <div className="form-field">
-        <label htmlFor="name" className="form-label">
-          Name <span className="required">*</span>
-        </label>
-        <Input
-          id="name"
-          name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder=""
-        />
-      </div>
+      <Input
+        id="name"
+        name="name"
+        label="Name *"
+        value={values.name}
+        onChange={handleNameChange}
+      />
 
-      <div className="form-field">
-        <label htmlFor="slug" className="form-label">
-          Slug <span className="required">*</span>
-        </label>
-        <Input
-          id="slug"
-          name="slug"
-          value={slug}
-          onChange={(e) => setSlug(e.target.value)}
-          placeholder=""
-        />
-      </div>
+      <Input
+        id="slug"
+        name="slug"
+        label="Slug *"
+        value={displaySlug}
+        onChange={handleSlugChange}
+        placeholder={suggestedSlug}
+      />
 
       <TextArea 
         label="Description" 
-        value={description} 
-        onChange={(e) => setDescription(e.target.value)} 
+        value={values.description} 
+        onChange={handleDescriptionChange} 
         placeholder="Enter your description here..." 
         rows={5}
       />
 
       <div className="form-actions">
-        <Button tone="success" onClick={handleSave}>
+        <Button variant="success" onClick={handleSave} disabled={!isValid}>
           SAVE
         </Button>
       </div>

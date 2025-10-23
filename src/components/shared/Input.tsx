@@ -1,16 +1,10 @@
 import type React from 'react';
 import './Input.css';
 
-export type InputVariant = 'solid' | 'outline';
-export type InputTone = 'neutral' | 'success' | 'danger' | 'warning';
-export type InputSize = 'sm' | 'md' | 'lg';
-
 interface InputProps {
+  label?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  variant?: InputVariant;
-  tone?: InputTone;
-  size?: InputSize;
   type?: string;
   placeholder?: string;
   disabled?: boolean;
@@ -20,11 +14,9 @@ interface InputProps {
 }
 
 export function Input({
+  label,
   value,
   onChange,
-  variant = 'outline',
-  tone = 'neutral',
-  size = 'md',
   type = 'text',
   placeholder,
   disabled = false,
@@ -32,28 +24,24 @@ export function Input({
   name,
   id,
 }: InputProps) {
-  const inputClasses = [
-    `input`,
-    `input--${variant}`,
-    `input--${tone}`,
-    size !== 'md' && `input--${size}`,
-    disabled && 'input--disabled',
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
-
   return (
-    <input
-      type={type}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      disabled={disabled}
-      className={inputClasses}
-      name={name}
-      id={id}
-    />
+    <div className="input-container">
+      {label && (
+        <label htmlFor={id} className="input-label">
+          {label}
+        </label>
+      )}
+      <input
+        type={type}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        disabled={disabled}
+        className={`input ${disabled ? 'input--disabled' : ''} ${className}`}
+        name={name}
+        id={id}
+      />
+    </div>
   );
 }
 

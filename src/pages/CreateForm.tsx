@@ -14,10 +14,14 @@ export function CreateForm() {
   return (
     <div className="create-form-container">
       <div className="create-form-header">
-        <Button onClick={handleBackClick}>Back to Dashboard</Button>
-        <h1>Create Form</h1>
-        <FormDetails />
+        <Button onClick={handleBackClick}>
+          Back to Forms
+        </Button>
+        <h1>
+          Create Form
+        </h1>
       </div>
+      <FormDetails />
     </div>
   );
 }

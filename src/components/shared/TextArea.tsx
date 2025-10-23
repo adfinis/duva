@@ -25,7 +25,7 @@ export function TextArea({
   return (
     <div className="text-area">
       {label && (
-        <label htmlFor={id}>
+        <label htmlFor={id} className="text-area-label">
           {label}
         </label>
       )}
