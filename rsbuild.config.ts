@@ -1,8 +1,9 @@
 import { defineConfig } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
+import { pluginSvgr } from '@rsbuild/plugin-svgr';
 
 export default defineConfig({
-  plugins: [pluginReact()],
+  plugins: [pluginReact(), pluginSvgr()],
   html: {
     title: 'DUVA',
     favicon: './public/favicon.svg',
@@ -20,6 +21,8 @@ export default defineConfig({
     alias: {
       '@': './src',
       '@shared': './src/components/shared',
+      '@icons': './src/assets/icons',
+      '@public': './public',
     },
   },
 });

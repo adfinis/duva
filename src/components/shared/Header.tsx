@@ -1,5 +1,6 @@
 import type React from 'react';
 import './Header.css';
+import { FreiburgLogo } from '@icons';
 import { Button } from './Button';
 
 interface HeaderProps {
@@ -18,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <header className="header">
       <div className="header-content">
-        <img src="/freiburg.png" alt="Freiburg" className="header-logo-stamp" />
+        <FreiburgLogo className="header-logo-stamp" aria-label="Freiburg" />
 
         {showBackButton && <Button onClick={onBackClick}>←</Button>}
 
