@@ -5,6 +5,7 @@ export default defineConfig({
   plugins: [pluginReact()],
   html: {
     title: 'DUVA',
+    favicon: './public/favicon.svg',
     tags: [
       {
         tag: 'link',
