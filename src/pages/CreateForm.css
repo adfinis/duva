@@ -1,14 +1,5 @@
 @import "../styles/themes.css";
 
-.create-form-container {
-  min-height: 100vh;
-  padding: var(--spacing-lg);
-  overflow-x: hidden;
-  max-width: 100vw;
-  box-sizing: border-box;
-  margin-top: var(--spacing-xl);
-}
-
 .create-form-header {
   position: relative;
   display: flex;
