@@ -1,12 +1,10 @@
-@import "../styles/themes.css";
-
 .forms-container {
   min-height: 100vh;
-  background-color: var(--color-white);
   padding: var(--spacing-lg);
   overflow-x: hidden;
   max-width: 100vw;
   box-sizing: border-box;
+  margin-top: var(--spacing-3xl);
 }
 
 .forms-header {

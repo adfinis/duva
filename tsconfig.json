@@ -15,7 +15,9 @@
     "allowImportingTsExtensions": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@shared/*": ["./src/components/shared/*"]
+      "@shared/*": ["./src/components/shared/*"],
+      "@icons": ["./src/assets/icons/index.ts"],
+      "@public/*": ["./public/*"]
     },
 
     /* type checking */
