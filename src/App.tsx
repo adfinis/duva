@@ -3,6 +3,7 @@ import { ApolloProvider } from '@apollo/client/react';
 import { useMemo } from 'react';
 import { useAuth } from 'react-oidc-context';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Button } from './components/shared/Button';
 import Header from './components/shared/Header';
 import { createApolloClient } from './gql/client';
 import { Dashboard } from './pages/Dashboard';
@@ -39,9 +40,9 @@ const App = () => {
         <Header
           title="DUVA"
           rightElement={
-            <button type="button" onClick={() => auth.signoutRedirect()}>
+            <Button tone="danger" onClick={() => auth.signoutRedirect()}>
               Logout
-            </button>
+            </Button>
           }
         />
         <Routes>
