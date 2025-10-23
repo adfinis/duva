@@ -4,7 +4,7 @@ body {
   font-family: "Nunito Sans", sans-serif;
   font-size: 0.75rem;
   line-height: 1.4;
-  background-image: linear-gradient(to bottom, #020917, #101725);
+  background-color: var(--color-middle-blue-light);
   overflow-x: hidden;
   max-width: 100vw;
 }

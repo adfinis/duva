@@ -93,7 +93,7 @@ export function Forms() {
       <div className="forms-header">
         <Button onClick={handleBackClick}>Back to Dashboard</Button>
         <h1>Forms</h1>
-        <Button variant="outline" onClick={handleAddFormClick}>Add New Form</Button>
+        <Button variant="success" onClick={handleAddFormClick}>Add New Form</Button>
       </div>
       <div className="forms-content">
         <div className="forms-summary">
