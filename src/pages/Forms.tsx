@@ -71,6 +71,10 @@ export function Forms() {
     navigate('/');
   };
 
+  const handleAddFormClick = () => {
+    navigate('/forms/create');
+  };
+
   const getStatusClass = (status: string) => {
     switch (status) {
       case 'Published':
@@ -89,7 +93,7 @@ export function Forms() {
       <div className="forms-header">
         <Button onClick={handleBackClick}>Back to Dashboard</Button>
         <h1>Forms</h1>
-        <Button variant="outline">Add New Form</Button>
+        <Button variant="outline" onClick={handleAddFormClick}>Add New Form</Button>
       </div>
       <div className="forms-content">
         <div className="forms-summary">

@@ -1,0 +1,88 @@
+@import "../styles/themes.css";
+
+.create-form-container {
+  min-height: 100vh;
+  background-color: var(--color-white);
+  padding: var(--spacing-lg);
+  overflow-x: hidden;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+.create-form-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+}
+
+.breadcrumb-link {
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.breadcrumb-link:hover {
+  color: var(--color-primary);
+}
+
+.breadcrumb-separator {
+  color: var(--color-text-secondary);
+}
+
+.breadcrumb-current {
+  color: var(--color-text-primary);
+}
+
+.create-form-content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.form-field {
+  margin-bottom: var(--spacing-lg);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.required {
+  color: var(--color-danger);
+}
+
+.form-textarea {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  background-color: var(--color-white);
+  resize: vertical;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-alpha-10);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+}
