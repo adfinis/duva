@@ -19,7 +19,7 @@ export function Forms() {
   const navigate = useNavigate();
   const { data, loading, error } = useQuery(GetAllFormsDocument);
 
-    // Mock data for forms
+  // Mock data for forms
   const mockForms: Form[] = [
     {
       id: 1,
@@ -134,8 +134,13 @@ export function Forms() {
               <p className="form-card-description">{form.description}</p>
             </div>
             <div className="form-card-status">
-              <span className={`status-badge ${getStatusClass(form.isPublished || false, form.isArchived || false)}`}>
-                {getStatusText(form.isPublished || false, form.isArchived || false)}
+              <span
+                className={`status-badge ${getStatusClass(form.isPublished || false, form.isArchived || false)}`}
+              >
+                {getStatusText(
+                  form.isPublished || false,
+                  form.isArchived || false,
+                )}
               </span>
             </div>
           </Card>

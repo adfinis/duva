@@ -7,7 +7,7 @@ export default defineConfig({
   source: {
     define: {
       'import.meta.env.GRAPHQL_URL': JSON.stringify(
-        process.env.GRAPHQL_URL || 'http://localhost:8000/graphql'
+        process.env.GRAPHQL_URL || 'http://localhost:8000/graphql',
       ),
     },
   },
