@@ -8,11 +8,12 @@
   position: absolute;
   top: 0;
   left: 2rem;
-  height: 5rem;
-  width: 5rem;
+  height: 6rem;
+  width: 6rem;
   z-index: 1000;
   rotate: -25deg;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+  translate: 0 -0.5rem;
 }
 
 .header-content {

@@ -8,6 +8,7 @@ import Header from './components/shared/Header';
 import { createApolloClient } from './gql/client';
 import { Dashboard } from './pages/Dashboard';
 import { Forms } from './pages/Forms';
+import { PageContainer } from './pages/PageContainer';
 import { CreateForm } from './pages/CreateForm';
 import { RedirectPage } from './pages/Redirect';
 
@@ -46,12 +47,14 @@ const App = () => {
             </Button>
           }
         />
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/forms" element={<Forms />} />
-          <Route path="/forms/create" element={<CreateForm />} />
+        <PageContainer>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/forms" element={<Forms />} />
+            <Route path="/forms/create" element={<CreateForm />} />
         </Routes>
+        </PageContainer>
       </>
     );
   };
