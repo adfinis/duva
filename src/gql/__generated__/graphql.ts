@@ -1,4 +1,5 @@
 /* eslint-disable */
+import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = T | null | undefined;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -4187,3 +4188,11 @@ export type WorkflowOrderSetType = {
   direction?: InputMaybe<AscDesc>;
   meta?: InputMaybe<Scalars['String']['input']>;
 };
+
+export type GetAllFormsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllFormsQuery = { __typename?: 'Query', allForms?: { __typename?: 'FormConnection', totalCount?: number | null, edges: Array<{ __typename?: 'FormEdge', node?: { __typename?: 'Form', id: string, slug: string, name: string, description?: string | null, isPublished: boolean, isArchived: boolean, meta?: any | null, createdByUser?: string | null, createdByGroup?: string | null } | null } | null> } | null };
+
+
+export const GetAllFormsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAllForms"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allForms"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalCount"}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"isPublished"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"createdByUser"}},{"kind":"Field","name":{"kind":"Name","value":"createdByGroup"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetAllFormsQuery, GetAllFormsQueryVariables>;

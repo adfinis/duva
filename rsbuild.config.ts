@@ -4,6 +4,13 @@ import { pluginSvgr } from '@rsbuild/plugin-svgr';
 
 export default defineConfig({
   plugins: [pluginReact(), pluginSvgr()],
+  source: {
+    define: {
+      'import.meta.env.GRAPHQL_URL': JSON.stringify(
+        process.env.GRAPHQL_URL || 'http://localhost:8000/graphql'
+      ),
+    },
+  },
   html: {
     title: 'DUVA',
     favicon: './public/favicon.svg',
