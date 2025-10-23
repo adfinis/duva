@@ -85,32 +85,30 @@ export function Forms() {
   };
 
   return (
-    <div className="forms-container">
+    <>
       <div className="forms-header">
         <Button onClick={handleBackClick}>Back to Dashboard</Button>
         <h1>Forms</h1>
         <Button variant="success">Add New Form</Button>
       </div>
-      <div className="forms-content">
-        <div className="forms-summary">
-          <p className="forms-count">Total Forms: {mockForms.length}</p>
-        </div>
-        <div className="forms-cards-container">
-          {mockForms.map((form) => (
-            <Card key={form.id} className="form-card">
-              <div className="form-card-content">
-                <h3>{form.title}</h3>
-                <p className="form-card-description">{form.description}</p>
-              </div>
-              <div className="form-card-status">
-                <span className={`status-badge ${getStatusClass(form.status)}`}>
-                  {form.status}
-                </span>
-              </div>
-            </Card>
-          ))}
-        </div>
+      <div className="forms-summary">
+        <p className="forms-count">Total Forms: {mockForms.length}</p>
       </div>
-    </div>
+      <div className="forms-cards-container">
+        {mockForms.map((form) => (
+          <Card key={form.id} className="form-card">
+            <div className="form-card-content">
+              <h3>{form.title}</h3>
+              <p className="form-card-description">{form.description}</p>
+            </div>
+            <div className="form-card-status">
+              <span className={`status-badge ${getStatusClass(form.status)}`}>
+                {form.status}
+              </span>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </>
   );
 }
