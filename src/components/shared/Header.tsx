@@ -1,6 +1,6 @@
 import type React from 'react';
 import './Header.css';
-import { FreiburgLogo } from '@icons';
+import { DuvaLogoSimple, FreiburgLogo } from '@icons';
 import { Button } from './Button';
 
 interface HeaderProps {
@@ -23,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({
 
         {showBackButton && <Button onClick={onBackClick}>←</Button>}
 
-        <h1 className="header-title">{title}</h1>
+        <DuvaLogoSimple className="header-logo" aria-label={title} />
 
         {rightElement && <div className="header-right">{rightElement}</div>}
       </div>

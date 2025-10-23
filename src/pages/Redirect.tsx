@@ -1,3 +1,4 @@
+import { DuvaLogo } from '@icons';
 import { useAuth } from 'react-oidc-context';
 import { Button } from '@/components/shared/Button';
 
@@ -14,8 +15,8 @@ export function RedirectPage() {
       }}
     >
       <div style={{ textAlign: 'center' }}>
-        <h1>Welcome to DUVA</h1>
-        <p>Please sign in to continue</p>
+        <DuvaLogo style={{ height: '8rem', width: 'auto' }} aria-label="DUVA" />
+        <h5>Please sign in to continue</h5>
         <Button variant="success" onClick={() => auth.signinRedirect()}>
           Login
         </Button>
