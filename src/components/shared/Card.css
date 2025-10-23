@@ -5,7 +5,6 @@
   border-radius: var(--radius-xl);
   padding: var(--spacing-lg);
   box-shadow: var(--shadow-md);
-  border: 1px solid var(--color-anthracite-dark);
   transition: var(--transition-fast);
   width: 100%;
   text-align: left;
