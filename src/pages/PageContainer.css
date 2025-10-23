@@ -1,0 +1,13 @@
+.page-container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-lg);
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+}
