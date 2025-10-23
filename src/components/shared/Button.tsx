@@ -1,14 +1,12 @@
 import type React from 'react';
 import './Button.css';
 
-export type ButtonVariant = 'solid' | 'outline';
-export type ButtonTone = 'neutral' | 'success' | 'danger' | 'warning';
+export type ButtonVariant = 'neutral' | 'outline' | 'danger' | 'success';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 interface ButtonProps {
   children?: React.ReactNode;
   variant?: ButtonVariant;
-  tone?: ButtonTone;
   size?: ButtonSize;
   onClick?: () => void;
   className?: string;
@@ -16,8 +14,7 @@ interface ButtonProps {
 
 export function Button({
   children,
-  variant = 'solid',
-  tone = 'neutral',
+  variant = 'neutral',
   size = 'md',
   onClick,
   className = '',
@@ -25,7 +22,6 @@ export function Button({
   const buttonClasses = [
     `btn`,
     `btn--${variant}`,
-    `btn--${tone}`,
     size !== 'md' && `btn--${size}`,
     className,
   ]

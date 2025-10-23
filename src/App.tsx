@@ -40,7 +40,7 @@ const App = () => {
         <Header
           title="DUVA"
           rightElement={
-            <Button tone="danger" onClick={() => auth.signoutRedirect()}>
+            <Button variant="danger" onClick={() => auth.signoutRedirect()}>
               Logout
             </Button>
           }

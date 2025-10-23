@@ -18,6 +18,8 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <header className="header">
       <div className="header-content">
+        <img src="/freiburg.png" alt="Freiburg" className="header-logo-stamp" />
+
         {showBackButton && <Button onClick={onBackClick}>←</Button>}
 
         <h1 className="header-title">{title}</h1>

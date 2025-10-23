@@ -1,20 +1,25 @@
 .header {
   background-color: var(--color-white);
-  border-bottom: 0.0625rem solid var(--color-sand);
+  border-bottom: 1px solid var(--color-anthracite-dark);
   padding: 1rem 0;
-  position: sticky;
+}
+
+.header-logo-stamp {
+  position: absolute;
   top: 0;
-  z-index: 100;
+  left: 2rem;
+  height: 5rem;
+  width: 5rem;
+  z-index: 1000;
+  rotate: -25deg;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
 }
 
 .header-content {
-  display: grid;
-  grid-template-columns: minmax(auto, 1fr) auto minmax(auto, 1fr);
+  display: flex;
   align-items: center;
-  max-width: 75rem;
-  margin: 0 auto;
-  padding: 0 1.25rem;
-  gap: 1.25rem;
+  width: 100%;
+  position: relative;
 }
 
 .header-back-button:hover {
@@ -27,14 +32,14 @@
   color: var(--color-black);
   margin: 0;
   text-align: center;
-  grid-column: 2;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .header-right {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  justify-self: end;
+  margin-left: auto;
+  margin-right: 2rem;
 }
 
 /* Responsive design */
