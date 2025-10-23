@@ -11,6 +11,7 @@ export type Icon = FC<SVGProps<SVGSVGElement>>;
 
 // Logos from public/
 export { default as DuvaLogo } from '@public/DUVA_Logo_RGB.svg?react';
+export { default as DuvaLogoSimple } from '@public/DUVA_Logo_Simple.svg?react';
 export { default as FreiburgLogo } from '@public/FR_Logo_Rot-1.svg?react';
 // Icons from public/icons/
 export { default as Barrierefreiheit } from '@public/icons/barrierefreiheit.svg?react';
