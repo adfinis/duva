@@ -3,13 +3,12 @@ import { ApolloProvider } from '@apollo/client/react';
 import { useMemo } from 'react';
 import { useAuth } from 'react-oidc-context';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import { Button } from './components/shared/Button';
-import Header from './components/shared/Header';
+import { Header } from '@/components/layout/Header';
+import { PageContainer } from '@/components/layout/PageContainer';
 import { createApolloClient } from './gql/client';
 import { CreateForm } from './pages/CreateForm';
 import { Dashboard } from './pages/Dashboard';
 import { Forms } from './pages/Forms';
-import { PageContainer } from './pages/PageContainer';
 import { RedirectPage } from './pages/Redirect';
 
 const App = () => {
@@ -39,14 +38,7 @@ const App = () => {
   const ProtectedApp = () => {
     return (
       <>
-        <Header
-          title="DUVA"
-          rightElement={
-            <Button variant="danger" onClick={() => auth.signoutRedirect()}>
-              Logout
-            </Button>
-          }
-        />
+        <Header />
         <PageContainer>
           <Routes>
             <Route path="/" element={<Dashboard />} />

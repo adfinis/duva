@@ -1,0 +1,53 @@
+/* TODO - add font to styles */
+.nav-item {
+  position: relative;
+  padding: var(--spacing-md) var(--spacing-lg);
+  color: var(--color-anthracite-dark);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  transition: color var(--transition-fast);
+  display: inline-block;
+}
+
+/* Animated underline effect */
+.nav-item::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: var(--spacing-lg);
+  right: var(--spacing-lg);
+  height: 2px;
+  background-color: var(--color-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-item:hover {
+  color: var(--color-black);
+}
+
+.nav-item:hover::after {
+  transform: scaleX(1);
+}
+
+.nav-item.active {
+  color: var(--color-red);
+}
+
+.nav-item.active::after {
+  transform: scaleX(1);
+}
+
+/* Focus state for accessibility */
+.nav-item:focus {
+  outline: none;
+}
+
+.nav-item:focus-visible {
+  outline: 2px solid var(--color-red);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}

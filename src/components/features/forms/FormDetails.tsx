@@ -1,7 +1,7 @@
-import { useMemo, useState } from 'react';
 import { Button } from '@shared/Button';
 import { Input } from '@shared/Input';
 import { TextArea } from '@shared/TextArea';
+import { useMemo, useState } from 'react';
 import './FormDetails.css';
 import { useMutation } from '@apollo/client/react';
 import { SaveFormDocument } from '@/gql/__generated__/graphql';
@@ -35,7 +35,7 @@ export function FormDetails({
   initialDescription = '',
   onSave,
 }: FormDetailsProps) {
-  const [saveForm, { loading, error }] = useMutation(SaveFormDocument);
+  const [saveForm] = useMutation(SaveFormDocument);
 
   const [values, setValues] = useState<FormValues>({
     name: initialName,
