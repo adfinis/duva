@@ -1,14 +1,6 @@
-@import "../styles/themes.css";
-
-.form-details {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
 .form-actions {
   display: flex;
   justify-content: flex-end;
   margin-top: var(--spacing-xl);
   padding-top: var(--spacing-lg);
 }
-

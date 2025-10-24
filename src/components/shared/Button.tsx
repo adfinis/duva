@@ -32,7 +32,12 @@ export function Button({
     .join(' ');
 
   return (
-    <button type="button" onClick={onClick} className={buttonClasses} disabled={disabled}>
+    <button
+      type="button"
+      onClick={onClick}
+      className={buttonClasses}
+      disabled={disabled}
+    >
       <span className="btn__text">{children}</span>
     </button>
   );

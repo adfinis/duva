@@ -23,7 +23,7 @@
   box-sizing: border-box;
 }
 
-.text-area-input:hover{
+.text-area-input:hover {
   box-shadow: var(--shadow-md);
 }
 

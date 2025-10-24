@@ -6,10 +6,10 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Button } from './components/shared/Button';
 import Header from './components/shared/Header';
 import { createApolloClient } from './gql/client';
+import { CreateForm } from './pages/CreateForm';
 import { Dashboard } from './pages/Dashboard';
 import { Forms } from './pages/Forms';
 import { PageContainer } from './pages/PageContainer';
-import { CreateForm } from './pages/CreateForm';
 import { RedirectPage } from './pages/Redirect';
 
 const App = () => {
@@ -53,7 +53,7 @@ const App = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/forms" element={<Forms />} />
             <Route path="/forms/create" element={<CreateForm />} />
-        </Routes>
+          </Routes>
         </PageContainer>
       </>
     );

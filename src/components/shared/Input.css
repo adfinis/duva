@@ -22,7 +22,7 @@
   box-sizing: border-box;
 }
 
-.input:hover{
+.input:hover {
   box-shadow: var(--shadow-md);
 }
 
@@ -35,5 +35,3 @@
   cursor: not-allowed;
   opacity: 0.6;
 }
-
-

@@ -1,8 +1,7 @@
 import './CreateForm.css';
-import { Button } from '../components/shared/Button';
+import { Button } from '@shared/Button';
 import { useNavigate } from 'react-router-dom';
-import { FormDetails } from '../components/FormDetails';
-
+import { FormDetails } from '@/components/FormDetails';
 
 export function CreateForm() {
   const navigate = useNavigate();
@@ -14,12 +13,8 @@ export function CreateForm() {
   return (
     <div className="create-form-container">
       <div className="create-form-header">
-        <Button onClick={handleBackClick}>
-          Back to Forms
-        </Button>
-        <h1>
-          Create Form
-        </h1>
+        <Button onClick={handleBackClick}>Back to Forms</Button>
+        <h1>Create Form</h1>
       </div>
       <FormDetails />
     </div>

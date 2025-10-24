@@ -20,11 +20,11 @@ interface FormDetailsProps {
 function slugify(text: string) {
   return text
     .toLowerCase()
-    .normalize("NFKD")
-    .replace(/[^\w\s-]/g, "")
+    .normalize('NFKD')
+    .replace(/[^\w\s-]/g, '')
     .trim()
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-");
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
 }
 
 export function FormDetails({
@@ -42,7 +42,8 @@ export function FormDetails({
 
   const suggestedSlug = useMemo(() => slugify(values.name), [values.name]);
   const displaySlug = slugTouched ? values.slug : suggestedSlug;
-  const isValid = values.name.trim().length > 0 && (values.slug || suggestedSlug);
+  const isValid =
+    values.name.trim().length > 0 && (values.slug || suggestedSlug);
 
   function handleNameChange(e: React.ChangeEvent<HTMLInputElement>) {
     setValues({ ...values, name: e.target.value });
@@ -60,10 +61,10 @@ export function FormDetails({
   function handleSave() {
     if (onSave && isValid) {
       const finalSlug = slugTouched ? values.slug : suggestedSlug;
-      onSave({ 
-        name: values.name, 
-        slug: finalSlug, 
-        description: values.description 
+      onSave({
+        name: values.name,
+        slug: finalSlug,
+        description: values.description,
       });
     }
   }
@@ -87,11 +88,11 @@ export function FormDetails({
         placeholder={suggestedSlug}
       />
 
-      <TextArea 
-        label="Description" 
-        value={values.description} 
-        onChange={handleDescriptionChange} 
-        placeholder="Enter your description here..." 
+      <TextArea
+        label="Description"
+        value={values.description}
+        onChange={handleDescriptionChange}
+        placeholder="Enter your description here..."
         rows={5}
       />
 
@@ -103,4 +104,3 @@ export function FormDetails({
     </div>
   );
 }
-
