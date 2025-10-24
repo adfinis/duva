@@ -1,7 +1,7 @@
 .header {
   background-color: var(--color-white);
-  border-bottom: 1px solid var(--color-anthracite-dark);
   padding: 1rem 0;
+  box-shadow: var(--shadow-md);
 }
 
 .header-logo-stamp {
@@ -12,7 +12,7 @@
   width: 6rem;
   z-index: 1000;
   rotate: -25deg;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(var(--shadow-lg));
   translate: 0 -0.5rem;
 }
 
