@@ -19,5 +19,5 @@ export const OidcConfig = {
 };
 
 /* API CONFIG */
-export const BASE_URL =
-  import.meta.env.BASE_URL || 'http://localhost:8000/graphql';
+export const GRAPHQL_URL =
+  import.meta.env.GRAPHQL_URL || 'http://localhost:8000/graphql';
