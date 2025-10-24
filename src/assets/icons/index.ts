@@ -19,3 +19,4 @@ export { default as ChevronRight } from '@public/icons/chevron-right.svg?react';
 export { default as Gebaerdesprache } from '@public/icons/gebaerdesprache.svg?react';
 export { default as LeichteSprache } from '@public/icons/leichte-sprache.svg?react';
 export { default as Suche } from '@public/icons/suche.svg?react';
+export { default as Person } from '@public/icons/person-outline.svg?react';
