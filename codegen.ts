@@ -1,26 +1,14 @@
 import type { CodegenConfig } from '@graphql-codegen/cli';
-import { BASE_URL } from './src/config';
+import { GRAPHQL_URL } from './src/config';
 
 const config: CodegenConfig = {
-  schema: BASE_URL,
-  documents: ['./src/**/*.{graphql,tsx,ts}'],
+  schema: GRAPHQL_URL,
+  documents: ['./src/gql/**/*.graphql'],
   generates: {
     './src/gql/__generated__/': {
       preset: 'client',
-      presetConfig: {
-        gqlTagName: 'gql',
-      },
-    },
-    './src/gql/__generated__/types.ts': {
-      plugins: [
-        'typescript',
-        'typescript-operations',
-        'typescript-react-apollo',
-      ],
       config: {
-        withHooks: true,
-        withHOC: false,
-        withComponent: false,
+        useTypeImports: true,
       },
     },
   },

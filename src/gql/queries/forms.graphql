@@ -1,0 +1,18 @@
+query GetAllForms {
+  allForms {
+    totalCount
+    edges {
+      node {
+        id
+        slug
+        name
+        description
+        isPublished
+        isArchived
+        meta
+        createdByUser
+        createdByGroup
+      }
+    }
+  }
+}

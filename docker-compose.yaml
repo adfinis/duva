@@ -93,6 +93,8 @@ services:
       # Permission & Visibility Classes (scope-based)
       - VISIBILITY_CLASSES=caluma.caluma_core.visibilities.Any
       - PERMISSION_CLASSES=caluma.caluma_user.permissions.IsAuthenticated
+      # CORS Configuration
+      - CORS_ORIGIN_ALLOW_ALL=true
     networks:
       - keycloak-network
 
