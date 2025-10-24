@@ -1,7 +1,7 @@
 import './CreateForm.css';
 import { Button } from '@shared/Button';
 import { useNavigate } from 'react-router-dom';
-import { FormDetails } from '@/components/FormDetails';
+import { FormDetails } from '@/components/features/forms/FormDetails';
 
 export function CreateForm() {
   const navigate = useNavigate();

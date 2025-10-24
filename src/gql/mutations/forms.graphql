@@ -1,0 +1,16 @@
+mutation SaveForm($input: SaveFormInput!) {
+  saveForm(input: $input) {
+    form {
+      id
+      slug
+      name
+      description
+      isPublished
+      isArchived
+      meta
+      createdByUser
+      createdByGroup
+    }
+    clientMutationId
+  }
+}

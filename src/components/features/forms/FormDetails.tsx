@@ -1,8 +1,10 @@
 import { useMemo, useState } from 'react';
-import { Button } from './shared/Button';
-import { Input } from './shared/Input';
-import { TextArea } from './shared/TextArea';
+import { Button } from '@shared/Button';
+import { Input } from '@shared/Input';
+import { TextArea } from '@shared/TextArea';
 import './FormDetails.css';
+import { useMutation } from '@apollo/client/react';
+import { SaveFormDocument } from '@/gql/__generated__/graphql';
 
 interface FormValues {
   name: string;
@@ -33,6 +35,8 @@ export function FormDetails({
   initialDescription = '',
   onSave,
 }: FormDetailsProps) {
+  const [saveForm, { loading, error }] = useMutation(SaveFormDocument);
+
   const [values, setValues] = useState<FormValues>({
     name: initialName,
     slug: initialSlug,
@@ -58,14 +62,27 @@ export function FormDetails({
     setValues({ ...values, description: e.target.value });
   }
 
-  function handleSave() {
-    if (onSave && isValid) {
-      const finalSlug = slugTouched ? values.slug : suggestedSlug;
-      onSave({
-        name: values.name,
-        slug: finalSlug,
-        description: values.description,
+  async function handleSave() {
+    if (!isValid) return;
+
+    const finalSlug = slugTouched ? values.slug : suggestedSlug;
+
+    const formData = {
+      name: values.name,
+      slug: finalSlug,
+      description: values.description,
+    };
+
+    try {
+      const response = await saveForm({
+        variables: { input: formData },
       });
+
+      if (onSave && response.data?.saveForm?.form) {
+        onSave(formData);
+      }
+    } catch (err) {
+      console.error('Error saving form:', err);
     }
   }
 

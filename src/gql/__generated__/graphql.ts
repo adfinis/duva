@@ -4189,10 +4189,18 @@ export type WorkflowOrderSetType = {
   meta?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type SaveFormMutationVariables = Exact<{
+  input: SaveFormInput;
+}>;
+
+
+export type SaveFormMutation = { __typename?: 'Mutation', saveForm?: { __typename?: 'SaveFormPayload', clientMutationId?: string | null, form?: { __typename?: 'Form', id: string, slug: string, name: string, description?: string | null, isPublished: boolean, isArchived: boolean, meta?: any | null, createdByUser?: string | null, createdByGroup?: string | null } | null } | null };
+
 export type GetAllFormsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetAllFormsQuery = { __typename?: 'Query', allForms?: { __typename?: 'FormConnection', totalCount?: number | null, edges: Array<{ __typename?: 'FormEdge', node?: { __typename?: 'Form', id: string, slug: string, name: string, description?: string | null, isPublished: boolean, isArchived: boolean, meta?: any | null, createdByUser?: string | null, createdByGroup?: string | null } | null } | null> } | null };
 
 
+export const SaveFormDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveForm"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveFormInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveForm"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"form"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"isPublished"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"createdByUser"}},{"kind":"Field","name":{"kind":"Name","value":"createdByGroup"}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveFormMutation, SaveFormMutationVariables>;
 export const GetAllFormsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAllForms"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allForms"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalCount"}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"isPublished"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"createdByUser"}},{"kind":"Field","name":{"kind":"Name","value":"createdByGroup"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetAllFormsQuery, GetAllFormsQueryVariables>;

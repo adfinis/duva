@@ -14,9 +14,11 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
+    "mutation SaveForm($input: SaveFormInput!) {\n  saveForm(input: $input) {\n    form {\n      id\n      slug\n      name\n      description\n      isPublished\n      isArchived\n      meta\n      createdByUser\n      createdByGroup\n    }\n    clientMutationId\n  }\n}": typeof types.SaveFormDocument,
     "query GetAllForms {\n  allForms {\n    totalCount\n    edges {\n      node {\n        id\n        slug\n        name\n        description\n        isPublished\n        isArchived\n        meta\n        createdByUser\n        createdByGroup\n      }\n    }\n  }\n}": typeof types.GetAllFormsDocument,
 };
 const documents: Documents = {
+    "mutation SaveForm($input: SaveFormInput!) {\n  saveForm(input: $input) {\n    form {\n      id\n      slug\n      name\n      description\n      isPublished\n      isArchived\n      meta\n      createdByUser\n      createdByGroup\n    }\n    clientMutationId\n  }\n}": types.SaveFormDocument,
     "query GetAllForms {\n  allForms {\n    totalCount\n    edges {\n      node {\n        id\n        slug\n        name\n        description\n        isPublished\n        isArchived\n        meta\n        createdByUser\n        createdByGroup\n      }\n    }\n  }\n}": types.GetAllFormsDocument,
 };
 
@@ -34,6 +36,10 @@ const documents: Documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation SaveForm($input: SaveFormInput!) {\n  saveForm(input: $input) {\n    form {\n      id\n      slug\n      name\n      description\n      isPublished\n      isArchived\n      meta\n      createdByUser\n      createdByGroup\n    }\n    clientMutationId\n  }\n}"): (typeof documents)["mutation SaveForm($input: SaveFormInput!) {\n  saveForm(input: $input) {\n    form {\n      id\n      slug\n      name\n      description\n      isPublished\n      isArchived\n      meta\n      createdByUser\n      createdByGroup\n    }\n    clientMutationId\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

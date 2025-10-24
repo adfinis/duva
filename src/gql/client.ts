@@ -3,13 +3,12 @@ import { SetContextLink } from '@apollo/client/link/context';
 import { GRAPHQL_URL } from '@/config';
 
 export function createApolloClient(getAccessToken: () => string | undefined) {
-  const authLink = new SetContextLink((prevContext) => {
+  const authLink = new SetContextLink(({ headers }) => {
     const token = getAccessToken();
     return {
-      ...prevContext,
       headers: {
-        ...prevContext.headers,
-        Authorization: token ? `Bearer ${token}` : '',
+        ...headers,
+        authorization: token ? `Bearer ${token}` : '',
       },
     };
   });
