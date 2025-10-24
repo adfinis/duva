@@ -10,6 +10,7 @@ interface ButtonProps {
   size?: ButtonSize;
   onClick?: () => void;
   className?: string;
+  disabled?: boolean;
 }
 
 export function Button({
@@ -18,18 +19,25 @@ export function Button({
   size = 'md',
   onClick,
   className = '',
+  disabled = false,
 }: ButtonProps) {
   const buttonClasses = [
     `btn`,
     `btn--${variant}`,
     size !== 'md' && `btn--${size}`,
+    disabled && 'btn--disabled',
     className,
   ]
     .filter(Boolean)
     .join(' ');
 
   return (
-    <button type="button" onClick={onClick} className={buttonClasses}>
+    <button
+      type="button"
+      onClick={onClick}
+      className={buttonClasses}
+      disabled={disabled}
+    >
       <span className="btn__text">{children}</span>
     </button>
   );

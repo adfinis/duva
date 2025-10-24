@@ -74,6 +74,10 @@ export function Forms() {
     navigate('/');
   };
 
+  const handleAddFormClick = () => {
+    navigate('/forms/create');
+  };
+
   const getStatusClass = (isPublished: boolean, isArchived: boolean) => {
     if (isArchived) return 'status-archived';
     if (isPublished) return 'status-published';
@@ -119,7 +123,9 @@ export function Forms() {
       <div className="forms-header">
         <Button onClick={handleBackClick}>Back to Dashboard</Button>
         <h1>Forms</h1>
-        <Button variant="success">Add New Form</Button>
+        <Button variant="success" onClick={handleAddFormClick}>
+          Add New Form
+        </Button>
       </div>
       <div className="forms-summary">
         <p className="forms-count">
