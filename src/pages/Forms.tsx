@@ -17,7 +17,9 @@ interface Form {
 
 export function Forms() {
   const navigate = useNavigate();
-  const { data, loading, error } = useQuery(GetAllFormsDocument);
+  const { data, loading, error } = useQuery(GetAllFormsDocument, {
+    fetchPolicy: 'cache-and-network',
+  });
 
   // Mock data for forms
   const mockForms: Form[] = [

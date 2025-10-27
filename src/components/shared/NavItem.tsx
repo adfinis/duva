@@ -7,7 +7,7 @@ interface NavItemProps {
 }
 export function NavItem({ text, to }: NavItemProps) {
   return (
-    <NavLink to={to} className="nav-item">
+    <NavLink to={to} className="nav-item text-md">
       {text}
     </NavLink>
   );

@@ -37,24 +37,24 @@ export function Header() {
           >
             <div className="profile-info">
               {userProfile?.given_name && userProfile?.family_name && (
-                <div className="profile-field">
+                <div className="profile-field text-sm-bold">
                   <span>{userProfile.given_name} </span>
                   <span>{userProfile.family_name}</span>
                 </div>
               )}
               {userProfile?.preferred_username && (
-                <div className="profile-field">
+                <div className="profile-field text-sm">
                   <span>{userProfile.preferred_username}</span>
                 </div>
               )}
             </div>
 
             <div className="profile-actions">
-              <button className="action-button" type="button">
+              <button className="action-button text-sm" type="button">
                 Settings
               </button>
               <button
-                className="action-button danger"
+                className="action-button danger text-sm-bold"
                 type="button"
                 onClick={() => auth.signoutRedirect()}
               >

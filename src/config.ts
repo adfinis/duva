@@ -12,8 +12,8 @@ export const OidcConfig = {
   response_type: 'code',
   scope: 'openid profile email',
   automaticSilentRenew: true,
-  laodUserInfo: true,
-  onSigningCallback: () => {
+  loadUserInfo: true,
+  onSigninCallback: () => {
     window.history.replaceState({}, document.title, window.location.pathname);
   },
 };
