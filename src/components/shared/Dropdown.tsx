@@ -1,8 +1,16 @@
-import { type ReactNode, useEffect, useRef, useState } from 'react';
+import {
+  cloneElement,
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import './Dropdown.css';
 
 interface DropdownProps {
-  trigger: ReactNode;
+  trigger: ReactElement<HTMLAttributes<HTMLElement>>;
   children: ReactNode;
 }
 
@@ -29,9 +37,13 @@ export function Dropdown({ trigger, children }: DropdownProps) {
     };
   }, [isOpen]);
 
+  const triggerElement = cloneElement(trigger, {
+    onClick: () => setIsOpen(!isOpen),
+  });
+
   return (
     <div className="dropdown" ref={dropdownRef}>
-      <div onClick={() => setIsOpen(!isOpen)}>{trigger}</div>
+      {triggerElement}
 
       {isOpen && <div className="dropdown-menu">{children}</div>}
     </div>

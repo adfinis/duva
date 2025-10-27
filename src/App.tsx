@@ -11,14 +11,8 @@ import { Forms } from './pages/Forms';
 import { HomePage } from './pages/HomePage';
 import { RedirectPage } from './pages/Redirect';
 
-const App = () => {
+export function App() {
   const auth = useAuth();
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: Client created once, token fetched per-request
-  const graphqlClient = useMemo(
-    () => createApolloClient(() => auth.user?.access_token),
-    [],
-  );
 
   if (auth.isLoading) {
     return <div>Loading...</div>;
@@ -35,9 +29,27 @@ const App = () => {
     );
   }
 
-  const ProtectedApp = () => {
+  if (!auth.isAuthenticated) {
     return (
-      <>
+      <Router>
+        <RedirectPage />
+      </Router>
+    );
+  }
+
+  return <AuthenticatedApp auth={auth} />;
+}
+
+function AuthenticatedApp({ auth }: { auth: ReturnType<typeof useAuth> }) {
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Client created once, token fetched per-request
+  const graphqlClient = useMemo(
+    () => createApolloClient(() => auth.user?.access_token),
+    [],
+  );
+
+  return (
+    <ApolloProvider client={graphqlClient}>
+      <Router>
         <Header />
         <PageContainer>
           <Routes>
@@ -46,17 +58,7 @@ const App = () => {
             <Route path="/forms/create" element={<CreateForm />} />
           </Routes>
         </PageContainer>
-      </>
-    );
-  };
-
-  return (
-    <ApolloProvider client={graphqlClient}>
-      <Router>
-        {auth.isAuthenticated ? <ProtectedApp /> : <RedirectPage />}
       </Router>
     </ApolloProvider>
   );
-};
-
-export default App;
+}
