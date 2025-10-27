@@ -1,22 +1,34 @@
 import { Button } from '@shared/Button';
 import { Input } from '@shared/Input';
 import { TextArea } from '@shared/TextArea';
+import { Toggle } from '@shared/Toggle';
 import { useMemo, useState } from 'react';
 import './FormDetails.css';
 import { useMutation } from '@apollo/client/react';
+import { useNotifications } from '@/components/shared/Notification';
 import { SaveFormDocument } from '@/gql/__generated__/graphql';
 
 interface FormValues {
   name: string;
   slug: string;
   description: string;
+  isArchived: boolean;
+  isPublished: boolean;
 }
 
 interface FormDetailsProps {
   initialName?: string;
   initialSlug?: string;
   initialDescription?: string;
-  onSave?: (data: { name: string; slug: string; description: string }) => void;
+  initialIsArchived?: boolean;
+  initialIsPublished?: boolean;
+  onSave?: (data: {
+    name: string;
+    slug: string;
+    description: string;
+    isArchived: boolean;
+    isPublished: boolean;
+  }) => void;
 }
 
 function slugify(text: string) {
@@ -33,14 +45,19 @@ export function FormDetails({
   initialName = '',
   initialSlug = '',
   initialDescription = '',
+  initialIsArchived = false,
+  initialIsPublished = false,
   onSave,
 }: FormDetailsProps) {
   const [saveForm] = useMutation(SaveFormDocument);
+  const { addNotification } = useNotifications();
 
   const [values, setValues] = useState<FormValues>({
     name: initialName,
     slug: initialSlug,
     description: initialDescription,
+    isArchived: initialIsArchived,
+    isPublished: initialIsPublished,
   });
   const [slugTouched, setSlugTouched] = useState(false);
 
@@ -62,6 +79,14 @@ export function FormDetails({
     setValues({ ...values, description: e.target.value });
   }
 
+  function handleIsArchivedChange(checked: boolean) {
+    setValues({ ...values, isArchived: checked });
+  }
+
+  function handleIsPublishedChange(checked: boolean) {
+    setValues({ ...values, isPublished: checked });
+  }
+
   async function handleSave() {
     if (!isValid) return;
 
@@ -71,6 +96,8 @@ export function FormDetails({
       name: values.name,
       slug: finalSlug,
       description: values.description,
+      isArchived: values.isArchived,
+      isPublished: values.isPublished,
     };
 
     try {
@@ -78,10 +105,25 @@ export function FormDetails({
         variables: { input: formData },
       });
 
-      if (onSave && response.data?.saveForm?.form) {
-        onSave(formData);
+      if (response.data?.saveForm?.form) {
+        addNotification({
+          type: 'success',
+          title: 'Form created successfully',
+          message: `Form "${formData.name}" has been created`,
+        });
+
+        if (onSave) {
+          onSave(formData);
+        }
       }
     } catch (err) {
+      const errorMessage =
+        err instanceof Error ? err.message : 'Unknown error occurred';
+      addNotification({
+        type: 'error',
+        title: 'Failed to create form',
+        message: errorMessage,
+      });
       console.error('Error saving form:', err);
     }
   }
@@ -112,6 +154,23 @@ export function FormDetails({
         placeholder="Enter your description here..."
         rows={5}
       />
+
+      <div className="form-toggles">
+        <Toggle
+          checked={values.isArchived}
+          onChange={handleIsArchivedChange}
+          label="Archived"
+          size="sm"
+          name="isArchived"
+        />
+        <Toggle
+          checked={values.isPublished}
+          onChange={handleIsPublishedChange}
+          label="Published"
+          size="sm"
+          name="isPublished"
+        />
+      </div>
 
       <div className="form-actions">
         <Button variant="success" onClick={handleSave} disabled={!isValid}>

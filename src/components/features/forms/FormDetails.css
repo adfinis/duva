@@ -1,3 +1,9 @@
+.form-toggles {
+  display: flex;
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-lg);
+}
+
 .form-actions {
   display: flex;
   justify-content: flex-end;

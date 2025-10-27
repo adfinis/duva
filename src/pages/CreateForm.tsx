@@ -10,13 +10,17 @@ export function CreateForm() {
     navigate('/forms');
   };
 
+  const handleSave = () => {
+    navigate('/forms');
+  };
+
   return (
     <div className="create-form-container">
       <div className="create-form-header">
         <Button onClick={handleBackClick}>Back to Forms</Button>
         <h1>Create Form</h1>
       </div>
-      <FormDetails />
+      <FormDetails onSave={handleSave} />
     </div>
   );
 }
