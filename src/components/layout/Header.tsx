@@ -3,6 +3,7 @@ import { DuvaLogoSimple, FreiburgLogo, Person } from '@icons';
 import { Dropdown } from '@shared/Dropdown';
 import { NavItem } from '@shared/NavItem';
 import { useAuth } from 'react-oidc-context';
+import { Link } from 'react-router-dom';
 
 export function Header() {
   const auth = useAuth();
@@ -12,11 +13,13 @@ export function Header() {
     <header className="header">
       <div className="header-content">
         <FreiburgLogo className="header-logo-stamp" aria-label="Freiburg" />
-        <DuvaLogoSimple className="header-logo" aria-label="duva-logo" />
+        <Link to="/" className="header-logo-link" aria-label="Go to home page">
+          <DuvaLogoSimple className="header-logo" aria-label="duva-logo" />
+        </Link>
 
         <nav className="header-nav">
-          <NavItem to="/" text="Home" />
           <NavItem to="/forms" text="Forms" />
+          <NavItem to="/data" text="Data" />
           <NavItem to="/shared" text="Shared" />
         </nav>
 

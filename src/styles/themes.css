@@ -57,10 +57,4 @@
   --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.15);
   --shadow-xl: 0 6px 16px rgba(0, 0, 0, 0.3);
-
-  /* Buttons */
-  --btn-padding-y: 0.75rem;
-  --btn-padding-x: 1.5rem;
-  --btn-font-size: 1rem;
-  --btn-font-weight: 500;
 }

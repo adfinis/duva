@@ -21,10 +21,18 @@ export function Button({
   className = '',
   disabled = false,
 }: ButtonProps) {
+  // Map button size to typography class
+  const textClass = {
+    sm: 'text-xs-bold',
+    md: 'text-sm-bold',
+    lg: 'text-md-bold',
+  }[size];
+
   const buttonClasses = [
-    `btn`,
+    'btn',
     `btn--${variant}`,
-    size !== 'md' && `btn--${size}`,
+    `btn--${size}`,
+    textClass,
     disabled && 'btn--disabled',
     className,
   ]

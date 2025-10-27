@@ -71,3 +71,197 @@ figcaption {
   flex-direction: column;
   justify-content: center;
 }
+
+/* Typography utility classes - based on design document */
+/* Apply to any element (button, span, p, div, etc.) for standardized text styling */
+
+/* text-xs: Caption/Breadcrumb style - 16pt / 22pt */
+.text-xs {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.375;
+  letter-spacing: 0;
+}
+
+.text-xs-bold {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.375;
+  letter-spacing: 0.05em;
+}
+
+/* text-sm: Body text - 18pt / 24pt */
+.text-sm {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.33;
+  letter-spacing: 0;
+}
+
+.text-sm-bold {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.33;
+  letter-spacing: 0.05em;
+}
+
+/* text-md: Medium text - 21pt / 26pt */
+.text-md {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1.3125rem;
+  font-weight: 400;
+  line-height: 1.24;
+  letter-spacing: 0;
+}
+
+.text-md-bold {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1.3125rem;
+  font-weight: 700;
+  line-height: 1.24;
+  letter-spacing: 0.05em;
+}
+
+/* text-lg: Large text - 26pt / 32pt */
+.text-lg {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1.625rem;
+  font-weight: 400;
+  line-height: 1.23;
+  letter-spacing: 0;
+}
+
+.text-lg-bold {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1.625rem;
+  font-weight: 700;
+  line-height: 1.23;
+  letter-spacing: 0.05em;
+}
+
+/* text-xl: Extra large text - 40pt / 50pt */
+.text-xl {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.text-xl-bold {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.05em;
+}
+
+/* Mobile responsive typography - scales down for smaller screens */
+@media (max-width: 768px) {
+  .text-xs {
+    font-size: 0.875rem; /* 14pt */
+    line-height: 1.4;
+  }
+
+  .text-xs-bold {
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  .text-sm {
+    font-size: 1rem; /* 16pt */
+    line-height: 1.375;
+  }
+
+  .text-sm-bold {
+    font-size: 1rem;
+    line-height: 1.375;
+  }
+
+  .text-md {
+    font-size: 1.125rem; /* 18pt */
+    line-height: 1.33;
+  }
+
+  .text-md-bold {
+    font-size: 1.125rem;
+    line-height: 1.33;
+  }
+
+  .text-lg {
+    font-size: 1.375rem; /* 22pt */
+    line-height: 1.27;
+  }
+
+  .text-lg-bold {
+    font-size: 1.375rem;
+    line-height: 1.27;
+  }
+
+  .text-xl {
+    font-size: 2rem; /* 32pt */
+    line-height: 1.25;
+  }
+
+  .text-xl-bold {
+    font-size: 2rem;
+    line-height: 1.25;
+  }
+}
+
+/* Extra small mobile screens */
+@media (max-width: 480px) {
+  .text-xs {
+    font-size: 0.75rem; /* 12pt */
+    line-height: 1.5;
+  }
+
+  .text-xs-bold {
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .text-sm {
+    font-size: 0.875rem; /* 14pt */
+    line-height: 1.4;
+  }
+
+  .text-sm-bold {
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  .text-md {
+    font-size: 1rem; /* 16pt */
+    line-height: 1.375;
+  }
+
+  .text-md-bold {
+    font-size: 1rem;
+    line-height: 1.375;
+  }
+
+  .text-lg {
+    font-size: 1.25rem; /* 20pt */
+    line-height: 1.3;
+  }
+
+  .text-lg-bold {
+    font-size: 1.25rem;
+    line-height: 1.3;
+  }
+
+  .text-xl {
+    font-size: 1.75rem; /* 28pt */
+    line-height: 1.28;
+  }
+
+  .text-xl-bold {
+    font-size: 1.75rem;
+    line-height: 1.28;
+  }
+}

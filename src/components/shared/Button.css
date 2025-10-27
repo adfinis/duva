@@ -3,14 +3,12 @@
   align-items: center;
   justify-content: center;
   border: 1px solid transparent;
-  padding: var(--btn-padding-y) var(--btn-padding-x);
+  padding: var(--spacing-sm) var(--spacing-lg);
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all var(--transition-base);
   position: relative;
   gap: var(--spacing-sm);
-  font-size: var(--btn-font-size);
-  font-weight: var(--btn-font-weight);
   background-color: transparent;
   overflow: visible;
 }
@@ -21,21 +19,25 @@
   pointer-events: none;
 }
 
+/* Button sizes - padding only, use text-* classes for typography */
 .btn--sm {
-  --btn-padding-y: 0.5rem;
-  --btn-padding-x: 1rem;
-  --btn-font-size: 0.875rem;
+  padding: var(--spacing-xs) var(--spacing-md);
+  gap: var(--spacing-xs);
+}
+
+.btn--md {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  gap: var(--spacing-sm);
 }
 
 .btn--lg {
-  --btn-padding-y: 1rem;
-  --btn-padding-x: 2rem;
-  --btn-font-size: 1.125rem;
+  padding: var(--spacing-md) var(--spacing-xl);
+  gap: var(--spacing-sm);
 }
 
 .btn__text {
   position: relative;
-  transition: all var(--transition-base);
+  transition: all var(--transition-fast);
 }
 
 .btn:hover .btn__text {
