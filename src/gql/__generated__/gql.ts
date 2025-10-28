@@ -15,11 +15,11 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  */
 type Documents = {
     "mutation SaveForm($input: SaveFormInput!) {\n  saveForm(input: $input) {\n    form {\n      id\n      slug\n      name\n      description\n      isPublished\n      isArchived\n      meta\n      createdByUser\n      createdByGroup\n    }\n    clientMutationId\n  }\n}": typeof types.SaveFormDocument,
-    "query GetAllForms {\n  allForms {\n    totalCount\n    edges {\n      node {\n        id\n        slug\n        name\n        description\n        isPublished\n        isArchived\n        meta\n        createdByUser\n        createdByGroup\n      }\n    }\n  }\n}": typeof types.GetAllFormsDocument,
+    "query GetAllForms($filter: [FormFilterSetType], $order: [FormOrderSetType], $first: Int, $after: String, $offset: Int) {\n  allForms(\n    filter: $filter\n    order: $order\n    first: $first\n    after: $after\n    offset: $offset\n  ) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    totalCount\n    edges {\n      node {\n        id\n        slug\n        name\n        description\n        isPublished\n        isArchived\n        meta\n        createdByUser\n        createdByGroup\n      }\n    }\n  }\n}": typeof types.GetAllFormsDocument,
 };
 const documents: Documents = {
     "mutation SaveForm($input: SaveFormInput!) {\n  saveForm(input: $input) {\n    form {\n      id\n      slug\n      name\n      description\n      isPublished\n      isArchived\n      meta\n      createdByUser\n      createdByGroup\n    }\n    clientMutationId\n  }\n}": types.SaveFormDocument,
-    "query GetAllForms {\n  allForms {\n    totalCount\n    edges {\n      node {\n        id\n        slug\n        name\n        description\n        isPublished\n        isArchived\n        meta\n        createdByUser\n        createdByGroup\n      }\n    }\n  }\n}": types.GetAllFormsDocument,
+    "query GetAllForms($filter: [FormFilterSetType], $order: [FormOrderSetType], $first: Int, $after: String, $offset: Int) {\n  allForms(\n    filter: $filter\n    order: $order\n    first: $first\n    after: $after\n    offset: $offset\n  ) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    totalCount\n    edges {\n      node {\n        id\n        slug\n        name\n        description\n        isPublished\n        isArchived\n        meta\n        createdByUser\n        createdByGroup\n      }\n    }\n  }\n}": types.GetAllFormsDocument,
 };
 
 /**
@@ -43,7 +43,7 @@ export function graphql(source: "mutation SaveForm($input: SaveFormInput!) {\n  
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query GetAllForms {\n  allForms {\n    totalCount\n    edges {\n      node {\n        id\n        slug\n        name\n        description\n        isPublished\n        isArchived\n        meta\n        createdByUser\n        createdByGroup\n      }\n    }\n  }\n}"): (typeof documents)["query GetAllForms {\n  allForms {\n    totalCount\n    edges {\n      node {\n        id\n        slug\n        name\n        description\n        isPublished\n        isArchived\n        meta\n        createdByUser\n        createdByGroup\n      }\n    }\n  }\n}"];
+export function graphql(source: "query GetAllForms($filter: [FormFilterSetType], $order: [FormOrderSetType], $first: Int, $after: String, $offset: Int) {\n  allForms(\n    filter: $filter\n    order: $order\n    first: $first\n    after: $after\n    offset: $offset\n  ) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    totalCount\n    edges {\n      node {\n        id\n        slug\n        name\n        description\n        isPublished\n        isArchived\n        meta\n        createdByUser\n        createdByGroup\n      }\n    }\n  }\n}"): (typeof documents)["query GetAllForms($filter: [FormFilterSetType], $order: [FormOrderSetType], $first: Int, $after: String, $offset: Int) {\n  allForms(\n    filter: $filter\n    order: $order\n    first: $first\n    after: $after\n    offset: $offset\n  ) {\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n    totalCount\n    edges {\n      node {\n        id\n        slug\n        name\n        description\n        isPublished\n        isArchived\n        meta\n        createdByUser\n        createdByGroup\n      }\n    }\n  }\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

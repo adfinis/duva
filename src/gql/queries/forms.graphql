@@ -1,5 +1,21 @@
-query GetAllForms {
-  allForms {
+query GetAllForms(
+  $filter: [FormFilterSetType]
+  $order: [FormOrderSetType]
+  $first: Int
+  $after: String
+  $offset: Int
+) {
+  allForms(
+    filter: $filter
+    order: $order
+    first: $first
+    after: $after
+    offset: $offset
+  ) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
     totalCount
     edges {
       node {

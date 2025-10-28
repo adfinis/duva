@@ -14,6 +14,37 @@
   pointer-events: none;
 }
 
+/* Filters Section */
+.forms-filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  margin: var(--spacing-xl) 0;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.filter-buttons button {
+  min-width: 16rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--color-middle-blue);
+}
+
 .forms-summary {
   margin-bottom: var(--spacing-lg);
 }
@@ -82,6 +113,54 @@
   color: var(--status-red-text);
 }
 
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: var(--spacing-3xl) var(--spacing-lg);
+  color: var(--color-red);
+}
+
+/* Pagination Container */
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin: var(--spacing-2xl) 0;
+  flex-wrap: wrap;
+}
+
+.pagination-numbers {
+  display: flex;
+  gap: var(--spacing-xs);
+  align-items: center;
+}
+
+.pagination-button {
+  min-width: 6rem;
+}
+
+.pagination-number {
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  padding: var(--spacing-xs);
+  font-weight: 500;
+}
+
+.pagination-number.active {
+  background-color: var(--color-middle-blue);
+  color: white;
+  font-weight: 700;
+  border-color: var(--color-middle-blue);
+}
+
+.pagination-ellipsis {
+  padding: 0 var(--spacing-xs);
+  color: var(--color-gray);
+  font-weight: 600;
+  user-select: none;
+}
+
 /* Responsive design */
 @media (max-width: 48rem) {
   .forms-container {
@@ -106,5 +185,21 @@
 
   .form-card-description {
     font-size: 0.8rem;
+  }
+
+  .pagination-container {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .pagination-numbers {
+    order: -1;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .pagination-button {
+    width: 100%;
+    max-width: 10rem;
   }
 }
