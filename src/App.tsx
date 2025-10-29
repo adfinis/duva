@@ -1,7 +1,7 @@
 import './App.css';
 import { ApolloProvider } from '@apollo/client/react';
-import { useMemo } from 'react';
-import { useAuth } from 'react-oidc-context';
+import { useEffect, useRef } from 'react';
+import { type AuthContextProps, useAuth } from 'react-oidc-context';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Header } from '@/components/layout/Header';
 import { PageContainer } from '@/components/layout/PageContainer';
@@ -41,14 +41,18 @@ export function App() {
 }
 
 function AuthenticatedApp({ auth }: { auth: ReturnType<typeof useAuth> }) {
-  // biome-ignore lint/correctness/useExhaustiveDependencies: Client created once, token fetched per-request
-  const graphqlClient = useMemo(
-    () => createApolloClient(() => auth.user?.access_token),
-    [],
+  const authRef = useRef<AuthContextProps>(auth);
+
+  useEffect(() => {
+    authRef.current = auth;
+  }, [auth]);
+
+  const clientRef = useRef(
+    createApolloClient(() => authRef.current.user?.access_token),
   );
 
   return (
-    <ApolloProvider client={graphqlClient}>
+    <ApolloProvider client={clientRef.current}>
       <Router>
         <Header />
         <PageContainer>
