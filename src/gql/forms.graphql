@@ -1,0 +1,136 @@
+# ============================================
+# FORMS - Queries and Mutations
+# ============================================
+
+# == QUERIES ==
+
+query GetForm($slug: String!) {
+  allForms(filter: [{ slugs: [$slug] }]) {
+    edges {
+      node {
+        id
+        name
+        slug
+        description
+        isPublished
+        isArchived
+        meta
+        createdByUser
+        createdByGroup
+      }
+    }
+  }
+}
+
+query GetAllForms(
+  $filter: [FormFilterSetType]
+  $order: [FormOrderSetType]
+  $first: Int
+  $after: String
+  $offset: Int
+) {
+  allForms(
+    filter: $filter
+    order: $order
+    first: $first
+    after: $after
+    offset: $offset
+  ) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    totalCount
+    edges {
+      node {
+        id
+        slug
+        name
+        description
+        isPublished
+        isArchived
+        meta
+        createdByUser
+        createdByGroup
+      }
+    }
+  }
+}
+
+query CheckFormSlug($slug: String!) {
+  allForms(filter: [{ slugs: [$slug] }]) {
+    edges {
+      node {
+        id
+        slug
+      }
+    }
+  }
+}
+
+# == MUTATIONS ==
+
+mutation SaveForm($input: SaveFormInput!) {
+  saveForm(input: $input) {
+    form {
+      id
+      slug
+      name
+      description
+      isPublished
+      isArchived
+      meta
+      createdByUser
+      createdByGroup
+    }
+    clientMutationId
+  }
+}
+
+mutation CopyForm($input: CopyFormInput!) {
+  copyForm(input: $input) {
+    form {
+      id
+      slug
+      name
+      description
+      isPublished
+      isArchived
+      meta
+    }
+    clientMutationId
+  }
+}
+
+mutation AddFormQuestion($input: AddFormQuestionInput!) {
+  addFormQuestion(input: $input) {
+    form {
+      id
+      slug
+      name
+    }
+    clientMutationId
+  }
+}
+
+mutation RemoveFormQuestion($input: RemoveFormQuestionInput!) {
+  removeFormQuestion(input: $input) {
+    form {
+      id
+      slug
+      name
+    }
+    clientMutationId
+  }
+}
+
+mutation ReorderFormQuestions($input: ReorderFormQuestionsInput!) {
+  reorderFormQuestions(input: $input) {
+    form {
+      id
+      slug
+      name
+    }
+    clientMutationId
+  }
+}

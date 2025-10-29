@@ -1,0 +1,62 @@
+# ============================================
+# OPTIONS - Queries and Mutations
+# ============================================
+
+# == QUERIES ==
+
+query CheckOptionSlug($slug: String!) {
+  allQuestions {
+    edges {
+      node {
+        ... on ChoiceQuestion {
+          options(filter: [{ slug: $slug }]) {
+            edges {
+              node {
+                id
+                slug
+              }
+            }
+          }
+        }
+        ... on MultipleChoiceQuestion {
+          options(filter: [{ slug: $slug }]) {
+            edges {
+              node {
+                id
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+# == MUTATIONS ==
+
+mutation SaveOption($input: SaveOptionInput!) {
+  saveOption(input: $input) {
+    option {
+      id
+      slug
+      label
+      isHidden
+      meta
+    }
+    clientMutationId
+  }
+}
+
+mutation CopyOption($input: CopyOptionInput!) {
+  copyOption(input: $input) {
+    option {
+      id
+      slug
+      label
+      isHidden
+      meta
+    }
+    clientMutationId
+  }
+}

@@ -1,0 +1,89 @@
+# ============================================
+# WORKFLOW - Work Items Queries and Mutations
+# ============================================
+
+# == QUERIES ==
+
+query GetAllWorkItems(
+  $filter: [WorkItemFilterSetType]
+  $order: [WorkItemOrderSetType]
+  $first: Int
+  $after: String
+) {
+  allWorkItems(filter: $filter, order: $order, first: $first, after: $after) {
+    edges {
+      node {
+        id
+        status
+        createdAt
+        closedAt
+        meta
+        addressedGroups
+        assignedUsers
+        case {
+          id
+          document {
+            id
+            form {
+              id
+              slug
+              name
+            }
+          }
+        }
+        task {
+          id
+          slug
+          name
+        }
+      }
+    }
+  }
+}
+
+query GetWorkItemStatus($id: ID!) {
+  allWorkItems(filter: [{ id: $id }]) {
+    edges {
+      node {
+        id
+        status
+        meta
+      }
+    }
+  }
+}
+
+# == MUTATIONS ==
+
+mutation CompleteWorkItem($input: CompleteWorkItemInput!) {
+  completeWorkItem(input: $input) {
+    workItem {
+      id
+      status
+      closedAt
+    }
+    clientMutationId
+  }
+}
+
+mutation CancelWorkItem($input: CancelWorkItemInput!) {
+  cancelWorkItem(input: $input) {
+    workItem {
+      id
+      status
+      closedAt
+    }
+    clientMutationId
+  }
+}
+
+mutation SkipWorkItem($input: SkipWorkItemInput!) {
+  skipWorkItem(input: $input) {
+    workItem {
+      id
+      status
+      closedAt
+    }
+    clientMutationId
+  }
+}

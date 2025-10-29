@@ -3,7 +3,7 @@ import { GRAPHQL_URL } from './src/config';
 
 const config: CodegenConfig = {
   schema: GRAPHQL_URL,
-  documents: ['./src/gql/**/*.graphql'],
+  documents: ['./src/gql/*.graphql'],
   generates: {
     './src/gql/__generated__/': {
       preset: 'client',

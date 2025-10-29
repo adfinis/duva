@@ -1,0 +1,409 @@
+# ============================================
+# QUESTIONS - Queries and Mutations
+# ============================================
+
+# == QUERIES ==
+
+query GetAllQuestions(
+  $filter: [QuestionFilterSetType]
+  $order: [QuestionOrderSetType]
+  $first: Int
+  $after: String
+) {
+  allQuestions(filter: $filter, order: $order, first: $first, after: $after) {
+    edges {
+      node {
+        id
+        slug
+        label
+        isRequired
+        isHidden
+        isArchived
+        meta
+        infoText
+      }
+    }
+  }
+}
+
+query SearchQuestions($search: String!) {
+  allQuestions(filter: [{ search: $search }]) {
+    edges {
+      node {
+        id
+        slug
+        label
+        isArchived
+      }
+    }
+  }
+}
+
+query CheckQuestionSlug($slug: String!) {
+  allQuestions(filter: [{ slugs: [$slug] }]) {
+    edges {
+      node {
+        id
+        slug
+      }
+    }
+  }
+}
+
+# == MUTATIONS ==
+
+# Text Question
+mutation SaveTextQuestion($input: SaveTextQuestionInput!) {
+  saveTextQuestion(input: $input) {
+    question {
+      id
+      slug
+      label
+      isRequired
+      isHidden
+      isArchived
+      meta
+      infoText
+      ... on TextQuestion {
+        minLength
+        maxLength
+        placeholder
+        hintText
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Textarea Question
+mutation SaveTextareaQuestion($input: SaveTextareaQuestionInput!) {
+  saveTextareaQuestion(input: $input) {
+    question {
+      id
+      slug
+      label
+      isRequired
+      isHidden
+      isArchived
+      meta
+      infoText
+      ... on TextareaQuestion {
+        minLength
+        maxLength
+        placeholder
+        hintText
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Integer Question
+mutation SaveIntegerQuestion($input: SaveIntegerQuestionInput!) {
+  saveIntegerQuestion(input: $input) {
+    question {
+      id
+      slug
+      label
+      isRequired
+      isHidden
+      isArchived
+      meta
+      infoText
+      ... on IntegerQuestion {
+        minValue
+        maxValue
+        placeholder
+        hintText
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Float Question
+mutation SaveFloatQuestion($input: SaveFloatQuestionInput!) {
+  saveFloatQuestion(input: $input) {
+    question {
+      id
+      slug
+      label
+      isRequired
+      isHidden
+      isArchived
+      meta
+      infoText
+      ... on FloatQuestion {
+        minValue
+        maxValue
+        placeholder
+        hintText
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Date Question
+mutation SaveDateQuestion($input: SaveDateQuestionInput!) {
+  saveDateQuestion(input: $input) {
+    question {
+      id
+      slug
+      label
+      isRequired
+      isHidden
+      isArchived
+      meta
+      infoText
+      ... on DateQuestion {
+        hintText
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Choice Question (Single Select)
+mutation SaveChoiceQuestion($input: SaveChoiceQuestionInput!) {
+  saveChoiceQuestion(input: $input) {
+    question {
+      id
+      slug
+      label
+      isRequired
+      isHidden
+      isArchived
+      meta
+      infoText
+      ... on ChoiceQuestion {
+        hintText
+        options {
+          edges {
+            node {
+              id
+              slug
+              label
+              isHidden
+            }
+          }
+        }
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Multiple Choice Question
+mutation SaveMultipleChoiceQuestion($input: SaveMultipleChoiceQuestionInput!) {
+  saveMultipleChoiceQuestion(input: $input) {
+    question {
+      id
+      slug
+      label
+      isRequired
+      isHidden
+      isArchived
+      meta
+      infoText
+      ... on MultipleChoiceQuestion {
+        hintText
+        options {
+          edges {
+            node {
+              id
+              slug
+              label
+              isHidden
+            }
+          }
+        }
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Dynamic Choice Question
+mutation SaveDynamicChoiceQuestion($input: SaveDynamicChoiceQuestionInput!) {
+  saveDynamicChoiceQuestion(input: $input) {
+    question {
+      id
+      slug
+      label
+      isRequired
+      isHidden
+      isArchived
+      meta
+      infoText
+      ... on DynamicChoiceQuestion {
+        hintText
+        dataSource
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Dynamic Multiple Choice Question
+mutation SaveDynamicMultipleChoiceQuestion(
+  $input: SaveDynamicMultipleChoiceQuestionInput!
+) {
+  saveDynamicMultipleChoiceQuestion(input: $input) {
+    question {
+      id
+      slug
+      label
+      isRequired
+      isHidden
+      isArchived
+      meta
+      infoText
+      ... on DynamicMultipleChoiceQuestion {
+        hintText
+        dataSource
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Table Question
+mutation SaveTableQuestion($input: SaveTableQuestionInput!) {
+  saveTableQuestion(input: $input) {
+    question {
+      id
+      slug
+      label
+      isRequired
+      isHidden
+      isArchived
+      meta
+      infoText
+      ... on TableQuestion {
+        hintText
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Form Question
+mutation SaveFormQuestion($input: SaveFormQuestionInput!) {
+  saveFormQuestion(input: $input) {
+    question {
+      id
+      slug
+      label
+      isRequired
+      isHidden
+      isArchived
+      meta
+      infoText
+      ... on FormQuestion {
+        subForm {
+          id
+          slug
+          name
+        }
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Files Question
+mutation SaveFilesQuestion($input: SaveFilesQuestionInput!) {
+  saveFilesQuestion(input: $input) {
+    question {
+      id
+      slug
+      label
+      isRequired
+      isHidden
+      isArchived
+      meta
+      infoText
+      ... on FilesQuestion {
+        hintText
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Static Question
+mutation SaveStaticQuestion($input: SaveStaticQuestionInput!) {
+  saveStaticQuestion(input: $input) {
+    question {
+      id
+      slug
+      label
+      isRequired
+      isHidden
+      isArchived
+      meta
+      infoText
+      ... on StaticQuestion {
+        staticContent
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Calculated Float Question
+mutation SaveCalculatedFloatQuestion($input: SaveCalculatedFloatQuestionInput!) {
+  saveCalculatedFloatQuestion(input: $input) {
+    question {
+      id
+      slug
+      label
+      isRequired
+      isHidden
+      isArchived
+      meta
+      infoText
+      ... on CalculatedFloatQuestion {
+        calcExpression
+        hintText
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Action Button Question
+mutation SaveActionButtonQuestion($input: SaveActionButtonQuestionInput!) {
+  saveActionButtonQuestion(input: $input) {
+    question {
+      id
+      slug
+      label
+      isRequired
+      isHidden
+      isArchived
+      meta
+      infoText
+      ... on ActionButtonQuestion {
+        action
+        color
+        validateOnEnter
+        showValidation
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Copy Question
+mutation CopyQuestion($input: CopyQuestionInput!) {
+  copyQuestion(input: $input) {
+    question {
+      id
+      slug
+      label
+    }
+    clientMutationId
+  }
+}

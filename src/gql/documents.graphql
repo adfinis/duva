@@ -1,0 +1,406 @@
+# ============================================
+# DOCUMENTS & ANSWERS - Queries and Mutations
+# ============================================
+
+# == QUERIES ==
+
+query GetAllDocuments(
+  $filter: [DocumentFilterSetType]
+  $order: [DocumentOrderSetType]
+  $first: Int
+  $after: String
+) {
+  allDocuments(filter: $filter, order: $order, first: $first, after: $after) {
+    edges {
+      node {
+        id
+        createdAt
+        modifiedAt
+        createdByUser
+        createdByGroup
+        meta
+        form {
+          id
+          slug
+          name
+        }
+      }
+    }
+  }
+}
+
+query GetDocument($id: ID!) {
+  allDocuments(filter: [{ id: $id }]) {
+    edges {
+      node {
+        id
+        createdAt
+        modifiedAt
+        createdByUser
+        createdByGroup
+        meta
+        form {
+          id
+          slug
+          name
+          questions {
+            edges {
+              node {
+                id
+                slug
+                label
+              }
+            }
+          }
+        }
+        answers {
+          edges {
+            node {
+              id
+              meta
+              question {
+                id
+                slug
+              }
+              ... on StringAnswer {
+                stringValue: value
+              }
+              ... on IntegerAnswer {
+                integerValue: value
+              }
+              ... on FloatAnswer {
+                floatValue: value
+              }
+              ... on ListAnswer {
+                listValue: value
+              }
+              ... on DateAnswer {
+                dateValue: value
+              }
+              ... on FilesAnswer {
+                filesValue: value {
+                  id
+                  name
+                  downloadUrl
+                  uploadUrl
+                  metadata
+                }
+              }
+              ... on TableAnswer {
+                tableValue: value {
+                  id
+                  form {
+                    id
+                    slug
+                  }
+                  answers {
+                    edges {
+                      node {
+                        id
+                        question {
+                          id
+                          slug
+                        }
+                        ... on StringAnswer {
+                          stringValue: value
+                        }
+                        ... on IntegerAnswer {
+                          integerValue: value
+                        }
+                        ... on FloatAnswer {
+                          floatValue: value
+                        }
+                        ... on ListAnswer {
+                          listValue: value
+                        }
+                        ... on DateAnswer {
+                          dateValue: value
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+# == MUTATIONS ==
+
+# Document Operations
+mutation SaveDocument($input: SaveDocumentInput!) {
+  saveDocument(input: $input) {
+    document {
+      id
+      createdAt
+      modifiedAt
+      meta
+      form {
+        id
+        slug
+        name
+      }
+    }
+    clientMutationId
+  }
+}
+
+mutation CopyDocument($input: CopyDocumentInput!) {
+  copyDocument(input: $input) {
+    document {
+      id
+      createdAt
+      modifiedAt
+      meta
+      form {
+        id
+        slug
+        name
+      }
+    }
+    clientMutationId
+  }
+}
+
+mutation RemoveDocument($input: RemoveDocumentInput!) {
+  removeDocument(input: $input) {
+    clientMutationId
+  }
+}
+
+# Answer Mutations - String
+mutation SaveDocumentStringAnswer($input: SaveDocumentStringAnswerInput!) {
+  saveDocumentStringAnswer(input: $input) {
+    answer {
+      id
+      meta
+      question {
+        id
+        slug
+      }
+      ... on StringAnswer {
+        value
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Answer Mutations - Integer
+mutation SaveDocumentIntegerAnswer($input: SaveDocumentIntegerAnswerInput!) {
+  saveDocumentIntegerAnswer(input: $input) {
+    answer {
+      id
+      meta
+      question {
+        id
+        slug
+      }
+      ... on IntegerAnswer {
+        value
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Answer Mutations - Float
+mutation SaveDocumentFloatAnswer($input: SaveDocumentFloatAnswerInput!) {
+  saveDocumentFloatAnswer(input: $input) {
+    answer {
+      id
+      meta
+      question {
+        id
+        slug
+      }
+      ... on FloatAnswer {
+        value
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Answer Mutations - Date
+mutation SaveDocumentDateAnswer($input: SaveDocumentDateAnswerInput!) {
+  saveDocumentDateAnswer(input: $input) {
+    answer {
+      id
+      meta
+      question {
+        id
+        slug
+      }
+      ... on DateAnswer {
+        value
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Answer Mutations - List (Multiple Choice)
+mutation SaveDocumentListAnswer($input: SaveDocumentListAnswerInput!) {
+  saveDocumentListAnswer(input: $input) {
+    answer {
+      id
+      meta
+      question {
+        id
+        slug
+      }
+      ... on ListAnswer {
+        value
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Answer Mutations - Table
+mutation SaveDocumentTableAnswer($input: SaveDocumentTableAnswerInput!) {
+  saveDocumentTableAnswer(input: $input) {
+    answer {
+      id
+      meta
+      question {
+        id
+        slug
+      }
+      ... on TableAnswer {
+        value {
+          id
+          form {
+            id
+            slug
+          }
+        }
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Answer Mutations - Files
+mutation SaveDocumentFilesAnswer($input: SaveDocumentFilesAnswerInput!) {
+  saveDocumentFilesAnswer(input: $input) {
+    answer {
+      id
+      meta
+      question {
+        id
+        slug
+      }
+      ... on FilesAnswer {
+        value {
+          id
+          name
+          downloadUrl
+          uploadUrl
+          metadata
+        }
+      }
+    }
+    clientMutationId
+  }
+}
+
+# Remove Answer
+mutation RemoveAnswer($input: RemoveAnswerInput!) {
+  removeAnswer(input: $input) {
+    answer {
+      id
+    }
+    clientMutationId
+  }
+}
+
+# Default Answer Mutations
+mutation SaveDefaultStringAnswer($input: SaveDefaultStringAnswerInput!) {
+  saveDefaultStringAnswer(input: $input) {
+    answer {
+      id
+      ... on StringAnswer {
+        value
+      }
+    }
+    clientMutationId
+  }
+}
+
+mutation SaveDefaultIntegerAnswer($input: SaveDefaultIntegerAnswerInput!) {
+  saveDefaultIntegerAnswer(input: $input) {
+    answer {
+      id
+      ... on IntegerAnswer {
+        value
+      }
+    }
+    clientMutationId
+  }
+}
+
+mutation SaveDefaultFloatAnswer($input: SaveDefaultFloatAnswerInput!) {
+  saveDefaultFloatAnswer(input: $input) {
+    answer {
+      id
+      ... on FloatAnswer {
+        value
+      }
+    }
+    clientMutationId
+  }
+}
+
+mutation SaveDefaultDateAnswer($input: SaveDefaultDateAnswerInput!) {
+  saveDefaultDateAnswer(input: $input) {
+    answer {
+      id
+      ... on DateAnswer {
+        value
+      }
+    }
+    clientMutationId
+  }
+}
+
+mutation SaveDefaultListAnswer($input: SaveDefaultListAnswerInput!) {
+  saveDefaultListAnswer(input: $input) {
+    answer {
+      id
+      ... on ListAnswer {
+        value
+      }
+    }
+    clientMutationId
+  }
+}
+
+mutation SaveDefaultTableAnswer($input: SaveDefaultTableAnswerInput!) {
+  saveDefaultTableAnswer(input: $input) {
+    answer {
+      id
+      ... on TableAnswer {
+        value {
+          id
+        }
+      }
+    }
+    clientMutationId
+  }
+}
+
+mutation RemoveDefaultAnswer($input: RemoveDefaultAnswerInput!) {
+  removeDefaultAnswer(input: $input) {
+    question {
+      id
+      slug
+    }
+    clientMutationId
+  }
+}

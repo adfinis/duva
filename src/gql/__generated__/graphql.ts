@@ -4189,12 +4189,1431 @@ export type WorkflowOrderSetType = {
   meta?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type SaveFormMutationVariables = Exact<{
-  input: SaveFormInput;
+/**
+ * The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.
+ *
+ * Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.
+ */
+export type __Type = {
+  __typename?: '__Type';
+  kind: __TypeKind;
+  name?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  specifiedByURL?: Maybe<Scalars['String']['output']>;
+  fields?: Maybe<Array<__Field>>;
+  interfaces?: Maybe<Array<__Type>>;
+  possibleTypes?: Maybe<Array<__Type>>;
+  enumValues?: Maybe<Array<__EnumValue>>;
+  inputFields?: Maybe<Array<__InputValue>>;
+  ofType?: Maybe<__Type>;
+  isOneOf?: Maybe<Scalars['Boolean']['output']>;
+};
+
+
+/**
+ * The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.
+ *
+ * Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.
+ */
+export type __TypeFieldsArgs = {
+  includeDeprecated?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/**
+ * The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.
+ *
+ * Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.
+ */
+export type __TypeEnumValuesArgs = {
+  includeDeprecated?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/**
+ * The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.
+ *
+ * Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.
+ */
+export type __TypeInputFieldsArgs = {
+  includeDeprecated?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** An enum describing what kind of type a given `__Type` is. */
+export enum __TypeKind {
+  /** Indicates this type is a scalar. */
+  Scalar = 'SCALAR',
+  /** Indicates this type is an object. `fields` and `interfaces` are valid fields. */
+  Object = 'OBJECT',
+  /** Indicates this type is an interface. `fields`, `interfaces`, and `possibleTypes` are valid fields. */
+  Interface = 'INTERFACE',
+  /** Indicates this type is a union. `possibleTypes` is a valid field. */
+  Union = 'UNION',
+  /** Indicates this type is an enum. `enumValues` is a valid field. */
+  Enum = 'ENUM',
+  /** Indicates this type is an input object. `inputFields` is a valid field. */
+  InputObject = 'INPUT_OBJECT',
+  /** Indicates this type is a list. `ofType` is a valid field. */
+  List = 'LIST',
+  /** Indicates this type is a non-null. `ofType` is a valid field. */
+  NonNull = 'NON_NULL'
+}
+
+/** Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type. */
+export type __Field = {
+  __typename?: '__Field';
+  name: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  args: Array<__InputValue>;
+  type: __Type;
+  isDeprecated: Scalars['Boolean']['output'];
+  deprecationReason?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type. */
+export type __FieldArgsArgs = {
+  includeDeprecated?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Arguments provided to Fields or Directives and the input fields of an InputObject are represented as Input Values which describe their type and optionally a default value. */
+export type __InputValue = {
+  __typename?: '__InputValue';
+  name: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  type: __Type;
+  /** A GraphQL-formatted string representing the default value for this input value. */
+  defaultValue?: Maybe<Scalars['String']['output']>;
+  isDeprecated: Scalars['Boolean']['output'];
+  deprecationReason?: Maybe<Scalars['String']['output']>;
+};
+
+/** One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string. */
+export type __EnumValue = {
+  __typename?: '__EnumValue';
+  name: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  isDeprecated: Scalars['Boolean']['output'];
+  deprecationReason?: Maybe<Scalars['String']['output']>;
+};
+
+export type GetAllDocumentsQueryVariables = Exact<{
+  filter?: InputMaybe<Array<InputMaybe<DocumentFilterSetType>> | InputMaybe<DocumentFilterSetType>>;
+  order?: InputMaybe<Array<InputMaybe<DocumentOrderSetType>> | InputMaybe<DocumentOrderSetType>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type SaveFormMutation = { __typename?: 'Mutation', saveForm?: { __typename?: 'SaveFormPayload', clientMutationId?: string | null, form?: { __typename?: 'Form', id: string, slug: string, name: string, description?: string | null, isPublished: boolean, isArchived: boolean, meta?: any | null, createdByUser?: string | null, createdByGroup?: string | null } | null } | null };
+export type GetAllDocumentsQuery = { __typename?: 'Query', allDocuments?: { __typename?: 'DocumentConnection', edges: Array<{ __typename?: 'DocumentEdge', node?: { __typename?: 'Document', id: string, createdAt: any, modifiedAt: any, createdByUser?: string | null, createdByGroup?: string | null, meta?: any | null, form: { __typename?: 'Form', id: string, slug: string, name: string } } | null } | null> } | null };
+
+export type GetDocumentQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type GetDocumentQuery = { __typename?: 'Query', allDocuments?: { __typename?: 'DocumentConnection', edges: Array<{ __typename?: 'DocumentEdge', node?: { __typename?: 'Document', id: string, createdAt: any, modifiedAt: any, createdByUser?: string | null, createdByGroup?: string | null, meta?: any | null, form: { __typename?: 'Form', id: string, slug: string, name: string, questions?: { __typename?: 'QuestionConnection', edges: Array<{ __typename?: 'QuestionEdge', node?:
+                | { __typename?: 'ActionButtonQuestion', id: string, slug: string, label: string }
+                | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string, label: string }
+                | { __typename?: 'ChoiceQuestion', id: string, slug: string, label: string }
+                | { __typename?: 'DateQuestion', id: string, slug: string, label: string }
+                | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string, label: string }
+                | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string, label: string }
+                | { __typename?: 'FilesQuestion', id: string, slug: string, label: string }
+                | { __typename?: 'FloatQuestion', id: string, slug: string, label: string }
+                | { __typename?: 'FormQuestion', id: string, slug: string, label: string }
+                | { __typename?: 'IntegerQuestion', id: string, slug: string, label: string }
+                | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string, label: string }
+                | { __typename?: 'StaticQuestion', id: string, slug: string, label: string }
+                | { __typename?: 'TableQuestion', id: string, slug: string, label: string }
+                | { __typename?: 'TextQuestion', id: string, slug: string, label: string }
+                | { __typename?: 'TextareaQuestion', id: string, slug: string, label: string }
+               | null } | null> } | null }, answers?: { __typename?: 'AnswerConnection', edges: Array<{ __typename?: 'AnswerEdge', node?:
+              | { __typename?: 'DateAnswer', id: string, meta: any, dateValue?: any | null, question:
+                  | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+                  | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+                  | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'DateQuestion', id: string, slug: string }
+                  | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'FilesQuestion', id: string, slug: string }
+                  | { __typename?: 'FloatQuestion', id: string, slug: string }
+                  | { __typename?: 'FormQuestion', id: string, slug: string }
+                  | { __typename?: 'IntegerQuestion', id: string, slug: string }
+                  | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'StaticQuestion', id: string, slug: string }
+                  | { __typename?: 'TableQuestion', id: string, slug: string }
+                  | { __typename?: 'TextQuestion', id: string, slug: string }
+                  | { __typename?: 'TextareaQuestion', id: string, slug: string }
+                 }
+              | { __typename?: 'FilesAnswer', id: string, meta: any, filesValue: Array<{ __typename?: 'File', id: string, name: string, downloadUrl?: string | null, uploadUrl?: string | null, metadata?: any | null } | null>, question:
+                  | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+                  | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+                  | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'DateQuestion', id: string, slug: string }
+                  | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'FilesQuestion', id: string, slug: string }
+                  | { __typename?: 'FloatQuestion', id: string, slug: string }
+                  | { __typename?: 'FormQuestion', id: string, slug: string }
+                  | { __typename?: 'IntegerQuestion', id: string, slug: string }
+                  | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'StaticQuestion', id: string, slug: string }
+                  | { __typename?: 'TableQuestion', id: string, slug: string }
+                  | { __typename?: 'TextQuestion', id: string, slug: string }
+                  | { __typename?: 'TextareaQuestion', id: string, slug: string }
+                 }
+              | { __typename?: 'FloatAnswer', id: string, meta: any, floatValue?: number | null, question:
+                  | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+                  | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+                  | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'DateQuestion', id: string, slug: string }
+                  | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'FilesQuestion', id: string, slug: string }
+                  | { __typename?: 'FloatQuestion', id: string, slug: string }
+                  | { __typename?: 'FormQuestion', id: string, slug: string }
+                  | { __typename?: 'IntegerQuestion', id: string, slug: string }
+                  | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'StaticQuestion', id: string, slug: string }
+                  | { __typename?: 'TableQuestion', id: string, slug: string }
+                  | { __typename?: 'TextQuestion', id: string, slug: string }
+                  | { __typename?: 'TextareaQuestion', id: string, slug: string }
+                 }
+              | { __typename?: 'IntegerAnswer', id: string, meta: any, integerValue?: number | null, question:
+                  | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+                  | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+                  | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'DateQuestion', id: string, slug: string }
+                  | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'FilesQuestion', id: string, slug: string }
+                  | { __typename?: 'FloatQuestion', id: string, slug: string }
+                  | { __typename?: 'FormQuestion', id: string, slug: string }
+                  | { __typename?: 'IntegerQuestion', id: string, slug: string }
+                  | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'StaticQuestion', id: string, slug: string }
+                  | { __typename?: 'TableQuestion', id: string, slug: string }
+                  | { __typename?: 'TextQuestion', id: string, slug: string }
+                  | { __typename?: 'TextareaQuestion', id: string, slug: string }
+                 }
+              | { __typename?: 'ListAnswer', id: string, meta: any, listValue?: Array<string | null> | null, question:
+                  | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+                  | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+                  | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'DateQuestion', id: string, slug: string }
+                  | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'FilesQuestion', id: string, slug: string }
+                  | { __typename?: 'FloatQuestion', id: string, slug: string }
+                  | { __typename?: 'FormQuestion', id: string, slug: string }
+                  | { __typename?: 'IntegerQuestion', id: string, slug: string }
+                  | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'StaticQuestion', id: string, slug: string }
+                  | { __typename?: 'TableQuestion', id: string, slug: string }
+                  | { __typename?: 'TextQuestion', id: string, slug: string }
+                  | { __typename?: 'TextareaQuestion', id: string, slug: string }
+                 }
+              | { __typename?: 'StringAnswer', id: string, meta: any, stringValue?: string | null, question:
+                  | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+                  | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+                  | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'DateQuestion', id: string, slug: string }
+                  | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'FilesQuestion', id: string, slug: string }
+                  | { __typename?: 'FloatQuestion', id: string, slug: string }
+                  | { __typename?: 'FormQuestion', id: string, slug: string }
+                  | { __typename?: 'IntegerQuestion', id: string, slug: string }
+                  | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'StaticQuestion', id: string, slug: string }
+                  | { __typename?: 'TableQuestion', id: string, slug: string }
+                  | { __typename?: 'TextQuestion', id: string, slug: string }
+                  | { __typename?: 'TextareaQuestion', id: string, slug: string }
+                 }
+              | { __typename?: 'TableAnswer', id: string, meta: any, tableValue?: Array<{ __typename?: 'Document', id: string, form: { __typename?: 'Form', id: string, slug: string }, answers?: { __typename?: 'AnswerConnection', edges: Array<{ __typename?: 'AnswerEdge', node?:
+                        | { __typename?: 'DateAnswer', id: string, dateValue?: any | null, question:
+                            | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+                            | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+                            | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'DateQuestion', id: string, slug: string }
+                            | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'FilesQuestion', id: string, slug: string }
+                            | { __typename?: 'FloatQuestion', id: string, slug: string }
+                            | { __typename?: 'FormQuestion', id: string, slug: string }
+                            | { __typename?: 'IntegerQuestion', id: string, slug: string }
+                            | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'StaticQuestion', id: string, slug: string }
+                            | { __typename?: 'TableQuestion', id: string, slug: string }
+                            | { __typename?: 'TextQuestion', id: string, slug: string }
+                            | { __typename?: 'TextareaQuestion', id: string, slug: string }
+                           }
+                        | { __typename?: 'FilesAnswer', id: string, question:
+                            | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+                            | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+                            | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'DateQuestion', id: string, slug: string }
+                            | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'FilesQuestion', id: string, slug: string }
+                            | { __typename?: 'FloatQuestion', id: string, slug: string }
+                            | { __typename?: 'FormQuestion', id: string, slug: string }
+                            | { __typename?: 'IntegerQuestion', id: string, slug: string }
+                            | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'StaticQuestion', id: string, slug: string }
+                            | { __typename?: 'TableQuestion', id: string, slug: string }
+                            | { __typename?: 'TextQuestion', id: string, slug: string }
+                            | { __typename?: 'TextareaQuestion', id: string, slug: string }
+                           }
+                        | { __typename?: 'FloatAnswer', id: string, floatValue?: number | null, question:
+                            | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+                            | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+                            | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'DateQuestion', id: string, slug: string }
+                            | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'FilesQuestion', id: string, slug: string }
+                            | { __typename?: 'FloatQuestion', id: string, slug: string }
+                            | { __typename?: 'FormQuestion', id: string, slug: string }
+                            | { __typename?: 'IntegerQuestion', id: string, slug: string }
+                            | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'StaticQuestion', id: string, slug: string }
+                            | { __typename?: 'TableQuestion', id: string, slug: string }
+                            | { __typename?: 'TextQuestion', id: string, slug: string }
+                            | { __typename?: 'TextareaQuestion', id: string, slug: string }
+                           }
+                        | { __typename?: 'IntegerAnswer', id: string, integerValue?: number | null, question:
+                            | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+                            | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+                            | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'DateQuestion', id: string, slug: string }
+                            | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'FilesQuestion', id: string, slug: string }
+                            | { __typename?: 'FloatQuestion', id: string, slug: string }
+                            | { __typename?: 'FormQuestion', id: string, slug: string }
+                            | { __typename?: 'IntegerQuestion', id: string, slug: string }
+                            | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'StaticQuestion', id: string, slug: string }
+                            | { __typename?: 'TableQuestion', id: string, slug: string }
+                            | { __typename?: 'TextQuestion', id: string, slug: string }
+                            | { __typename?: 'TextareaQuestion', id: string, slug: string }
+                           }
+                        | { __typename?: 'ListAnswer', id: string, listValue?: Array<string | null> | null, question:
+                            | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+                            | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+                            | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'DateQuestion', id: string, slug: string }
+                            | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'FilesQuestion', id: string, slug: string }
+                            | { __typename?: 'FloatQuestion', id: string, slug: string }
+                            | { __typename?: 'FormQuestion', id: string, slug: string }
+                            | { __typename?: 'IntegerQuestion', id: string, slug: string }
+                            | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'StaticQuestion', id: string, slug: string }
+                            | { __typename?: 'TableQuestion', id: string, slug: string }
+                            | { __typename?: 'TextQuestion', id: string, slug: string }
+                            | { __typename?: 'TextareaQuestion', id: string, slug: string }
+                           }
+                        | { __typename?: 'StringAnswer', id: string, stringValue?: string | null, question:
+                            | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+                            | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+                            | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'DateQuestion', id: string, slug: string }
+                            | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'FilesQuestion', id: string, slug: string }
+                            | { __typename?: 'FloatQuestion', id: string, slug: string }
+                            | { __typename?: 'FormQuestion', id: string, slug: string }
+                            | { __typename?: 'IntegerQuestion', id: string, slug: string }
+                            | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'StaticQuestion', id: string, slug: string }
+                            | { __typename?: 'TableQuestion', id: string, slug: string }
+                            | { __typename?: 'TextQuestion', id: string, slug: string }
+                            | { __typename?: 'TextareaQuestion', id: string, slug: string }
+                           }
+                        | { __typename?: 'TableAnswer', id: string, question:
+                            | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+                            | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+                            | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'DateQuestion', id: string, slug: string }
+                            | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'FilesQuestion', id: string, slug: string }
+                            | { __typename?: 'FloatQuestion', id: string, slug: string }
+                            | { __typename?: 'FormQuestion', id: string, slug: string }
+                            | { __typename?: 'IntegerQuestion', id: string, slug: string }
+                            | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+                            | { __typename?: 'StaticQuestion', id: string, slug: string }
+                            | { __typename?: 'TableQuestion', id: string, slug: string }
+                            | { __typename?: 'TextQuestion', id: string, slug: string }
+                            | { __typename?: 'TextareaQuestion', id: string, slug: string }
+                           }
+                       | null } | null> } | null } | null> | null, question:
+                  | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+                  | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+                  | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'DateQuestion', id: string, slug: string }
+                  | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'FilesQuestion', id: string, slug: string }
+                  | { __typename?: 'FloatQuestion', id: string, slug: string }
+                  | { __typename?: 'FormQuestion', id: string, slug: string }
+                  | { __typename?: 'IntegerQuestion', id: string, slug: string }
+                  | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+                  | { __typename?: 'StaticQuestion', id: string, slug: string }
+                  | { __typename?: 'TableQuestion', id: string, slug: string }
+                  | { __typename?: 'TextQuestion', id: string, slug: string }
+                  | { __typename?: 'TextareaQuestion', id: string, slug: string }
+                 }
+             | null } | null> } | null } | null } | null> } | null };
+
+export type SaveDocumentMutationVariables = Exact<{
+  input: SaveDocumentInput;
+}>;
+
+
+export type SaveDocumentMutation = { __typename?: 'Mutation', saveDocument?: { __typename?: 'SaveDocumentPayload', clientMutationId?: string | null, document?: { __typename?: 'Document', id: string, createdAt: any, modifiedAt: any, meta?: any | null, form: { __typename?: 'Form', id: string, slug: string, name: string } } | null } | null };
+
+export type CopyDocumentMutationVariables = Exact<{
+  input: CopyDocumentInput;
+}>;
+
+
+export type CopyDocumentMutation = { __typename?: 'Mutation', copyDocument?: { __typename?: 'CopyDocumentPayload', clientMutationId?: string | null, document?: { __typename?: 'Document', id: string, createdAt: any, modifiedAt: any, meta?: any | null, form: { __typename?: 'Form', id: string, slug: string, name: string } } | null } | null };
+
+export type RemoveDocumentMutationVariables = Exact<{
+  input: RemoveDocumentInput;
+}>;
+
+
+export type RemoveDocumentMutation = { __typename?: 'Mutation', removeDocument?: { __typename?: 'RemoveDocumentPayload', clientMutationId?: string | null } | null };
+
+export type SaveDocumentStringAnswerMutationVariables = Exact<{
+  input: SaveDocumentStringAnswerInput;
+}>;
+
+
+export type SaveDocumentStringAnswerMutation = { __typename?: 'Mutation', saveDocumentStringAnswer?: { __typename?: 'SaveDocumentStringAnswerPayload', clientMutationId?: string | null, answer?:
+      | { __typename?: 'DateAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'FilesAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'FloatAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'IntegerAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'ListAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'StringAnswer', value?: string | null, id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'TableAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+     | null } | null };
+
+export type SaveDocumentIntegerAnswerMutationVariables = Exact<{
+  input: SaveDocumentIntegerAnswerInput;
+}>;
+
+
+export type SaveDocumentIntegerAnswerMutation = { __typename?: 'Mutation', saveDocumentIntegerAnswer?: { __typename?: 'SaveDocumentIntegerAnswerPayload', clientMutationId?: string | null, answer?:
+      | { __typename?: 'DateAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'FilesAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'FloatAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'IntegerAnswer', value?: number | null, id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'ListAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'StringAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'TableAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+     | null } | null };
+
+export type SaveDocumentFloatAnswerMutationVariables = Exact<{
+  input: SaveDocumentFloatAnswerInput;
+}>;
+
+
+export type SaveDocumentFloatAnswerMutation = { __typename?: 'Mutation', saveDocumentFloatAnswer?: { __typename?: 'SaveDocumentFloatAnswerPayload', clientMutationId?: string | null, answer?:
+      | { __typename?: 'DateAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'FilesAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'FloatAnswer', value?: number | null, id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'IntegerAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'ListAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'StringAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'TableAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+     | null } | null };
+
+export type SaveDocumentDateAnswerMutationVariables = Exact<{
+  input: SaveDocumentDateAnswerInput;
+}>;
+
+
+export type SaveDocumentDateAnswerMutation = { __typename?: 'Mutation', saveDocumentDateAnswer?: { __typename?: 'SaveDocumentDateAnswerPayload', clientMutationId?: string | null, answer?:
+      | { __typename?: 'DateAnswer', value?: any | null, id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'FilesAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'FloatAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'IntegerAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'ListAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'StringAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'TableAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+     | null } | null };
+
+export type SaveDocumentListAnswerMutationVariables = Exact<{
+  input: SaveDocumentListAnswerInput;
+}>;
+
+
+export type SaveDocumentListAnswerMutation = { __typename?: 'Mutation', saveDocumentListAnswer?: { __typename?: 'SaveDocumentListAnswerPayload', clientMutationId?: string | null, answer?:
+      | { __typename?: 'DateAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'FilesAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'FloatAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'IntegerAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'ListAnswer', value?: Array<string | null> | null, id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'StringAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'TableAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+     | null } | null };
+
+export type SaveDocumentTableAnswerMutationVariables = Exact<{
+  input: SaveDocumentTableAnswerInput;
+}>;
+
+
+export type SaveDocumentTableAnswerMutation = { __typename?: 'Mutation', saveDocumentTableAnswer?: { __typename?: 'SaveDocumentTableAnswerPayload', clientMutationId?: string | null, answer?:
+      | { __typename?: 'DateAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'FilesAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'FloatAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'IntegerAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'ListAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'StringAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'TableAnswer', id: string, meta: any, value?: Array<{ __typename?: 'Document', id: string, form: { __typename?: 'Form', id: string, slug: string } } | null> | null, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+     | null } | null };
+
+export type SaveDocumentFilesAnswerMutationVariables = Exact<{
+  input: SaveDocumentFilesAnswerInput;
+}>;
+
+
+export type SaveDocumentFilesAnswerMutation = { __typename?: 'Mutation', saveDocumentFilesAnswer?: { __typename?: 'SaveDocumentFilesAnswerPayload', clientMutationId?: string | null, answer?:
+      | { __typename?: 'DateAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'FilesAnswer', id: string, meta: any, value: Array<{ __typename?: 'File', id: string, name: string, downloadUrl?: string | null, uploadUrl?: string | null, metadata?: any | null } | null>, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'FloatAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'IntegerAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'ListAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'StringAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+      | { __typename?: 'TableAnswer', id: string, meta: any, question:
+          | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+          | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+          | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DateQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'FilesQuestion', id: string, slug: string }
+          | { __typename?: 'FloatQuestion', id: string, slug: string }
+          | { __typename?: 'FormQuestion', id: string, slug: string }
+          | { __typename?: 'IntegerQuestion', id: string, slug: string }
+          | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+          | { __typename?: 'StaticQuestion', id: string, slug: string }
+          | { __typename?: 'TableQuestion', id: string, slug: string }
+          | { __typename?: 'TextQuestion', id: string, slug: string }
+          | { __typename?: 'TextareaQuestion', id: string, slug: string }
+         }
+     | null } | null };
+
+export type RemoveAnswerMutationVariables = Exact<{
+  input: RemoveAnswerInput;
+}>;
+
+
+export type RemoveAnswerMutation = { __typename?: 'Mutation', removeAnswer?: { __typename?: 'RemoveAnswerPayload', clientMutationId?: string | null, answer?:
+      | { __typename?: 'DateAnswer', id: string }
+      | { __typename?: 'FilesAnswer', id: string }
+      | { __typename?: 'FloatAnswer', id: string }
+      | { __typename?: 'IntegerAnswer', id: string }
+      | { __typename?: 'ListAnswer', id: string }
+      | { __typename?: 'StringAnswer', id: string }
+      | { __typename?: 'TableAnswer', id: string }
+     | null } | null };
+
+export type SaveDefaultStringAnswerMutationVariables = Exact<{
+  input: SaveDefaultStringAnswerInput;
+}>;
+
+
+export type SaveDefaultStringAnswerMutation = { __typename?: 'Mutation', saveDefaultStringAnswer?: { __typename?: 'SaveDefaultStringAnswerPayload', clientMutationId?: string | null, answer?:
+      | { __typename?: 'DateAnswer', id: string }
+      | { __typename?: 'FilesAnswer', id: string }
+      | { __typename?: 'FloatAnswer', id: string }
+      | { __typename?: 'IntegerAnswer', id: string }
+      | { __typename?: 'ListAnswer', id: string }
+      | { __typename?: 'StringAnswer', value?: string | null, id: string }
+      | { __typename?: 'TableAnswer', id: string }
+     | null } | null };
+
+export type SaveDefaultIntegerAnswerMutationVariables = Exact<{
+  input: SaveDefaultIntegerAnswerInput;
+}>;
+
+
+export type SaveDefaultIntegerAnswerMutation = { __typename?: 'Mutation', saveDefaultIntegerAnswer?: { __typename?: 'SaveDefaultIntegerAnswerPayload', clientMutationId?: string | null, answer?:
+      | { __typename?: 'DateAnswer', id: string }
+      | { __typename?: 'FilesAnswer', id: string }
+      | { __typename?: 'FloatAnswer', id: string }
+      | { __typename?: 'IntegerAnswer', value?: number | null, id: string }
+      | { __typename?: 'ListAnswer', id: string }
+      | { __typename?: 'StringAnswer', id: string }
+      | { __typename?: 'TableAnswer', id: string }
+     | null } | null };
+
+export type SaveDefaultFloatAnswerMutationVariables = Exact<{
+  input: SaveDefaultFloatAnswerInput;
+}>;
+
+
+export type SaveDefaultFloatAnswerMutation = { __typename?: 'Mutation', saveDefaultFloatAnswer?: { __typename?: 'SaveDefaultFloatAnswerPayload', clientMutationId?: string | null, answer?:
+      | { __typename?: 'DateAnswer', id: string }
+      | { __typename?: 'FilesAnswer', id: string }
+      | { __typename?: 'FloatAnswer', value?: number | null, id: string }
+      | { __typename?: 'IntegerAnswer', id: string }
+      | { __typename?: 'ListAnswer', id: string }
+      | { __typename?: 'StringAnswer', id: string }
+      | { __typename?: 'TableAnswer', id: string }
+     | null } | null };
+
+export type SaveDefaultDateAnswerMutationVariables = Exact<{
+  input: SaveDefaultDateAnswerInput;
+}>;
+
+
+export type SaveDefaultDateAnswerMutation = { __typename?: 'Mutation', saveDefaultDateAnswer?: { __typename?: 'SaveDefaultDateAnswerPayload', clientMutationId?: string | null, answer?:
+      | { __typename?: 'DateAnswer', value?: any | null, id: string }
+      | { __typename?: 'FilesAnswer', id: string }
+      | { __typename?: 'FloatAnswer', id: string }
+      | { __typename?: 'IntegerAnswer', id: string }
+      | { __typename?: 'ListAnswer', id: string }
+      | { __typename?: 'StringAnswer', id: string }
+      | { __typename?: 'TableAnswer', id: string }
+     | null } | null };
+
+export type SaveDefaultListAnswerMutationVariables = Exact<{
+  input: SaveDefaultListAnswerInput;
+}>;
+
+
+export type SaveDefaultListAnswerMutation = { __typename?: 'Mutation', saveDefaultListAnswer?: { __typename?: 'SaveDefaultListAnswerPayload', clientMutationId?: string | null, answer?:
+      | { __typename?: 'DateAnswer', id: string }
+      | { __typename?: 'FilesAnswer', id: string }
+      | { __typename?: 'FloatAnswer', id: string }
+      | { __typename?: 'IntegerAnswer', id: string }
+      | { __typename?: 'ListAnswer', value?: Array<string | null> | null, id: string }
+      | { __typename?: 'StringAnswer', id: string }
+      | { __typename?: 'TableAnswer', id: string }
+     | null } | null };
+
+export type SaveDefaultTableAnswerMutationVariables = Exact<{
+  input: SaveDefaultTableAnswerInput;
+}>;
+
+
+export type SaveDefaultTableAnswerMutation = { __typename?: 'Mutation', saveDefaultTableAnswer?: { __typename?: 'SaveDefaultTableAnswerPayload', clientMutationId?: string | null, answer?:
+      | { __typename?: 'DateAnswer', id: string }
+      | { __typename?: 'FilesAnswer', id: string }
+      | { __typename?: 'FloatAnswer', id: string }
+      | { __typename?: 'IntegerAnswer', id: string }
+      | { __typename?: 'ListAnswer', id: string }
+      | { __typename?: 'StringAnswer', id: string }
+      | { __typename?: 'TableAnswer', id: string, value?: Array<{ __typename?: 'Document', id: string } | null> | null }
+     | null } | null };
+
+export type RemoveDefaultAnswerMutationVariables = Exact<{
+  input: RemoveDefaultAnswerInput;
+}>;
+
+
+export type RemoveDefaultAnswerMutation = { __typename?: 'Mutation', removeDefaultAnswer?: { __typename?: 'RemoveDefaultAnswerPayload', clientMutationId?: string | null, question?:
+      | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+      | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+      | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+      | { __typename?: 'DateQuestion', id: string, slug: string }
+      | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+      | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+      | { __typename?: 'FilesQuestion', id: string, slug: string }
+      | { __typename?: 'FloatQuestion', id: string, slug: string }
+      | { __typename?: 'FormQuestion', id: string, slug: string }
+      | { __typename?: 'IntegerQuestion', id: string, slug: string }
+      | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+      | { __typename?: 'StaticQuestion', id: string, slug: string }
+      | { __typename?: 'TableQuestion', id: string, slug: string }
+      | { __typename?: 'TextQuestion', id: string, slug: string }
+      | { __typename?: 'TextareaQuestion', id: string, slug: string }
+     | null } | null };
+
+export type GetFormQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type GetFormQuery = { __typename?: 'Query', allForms?: { __typename?: 'FormConnection', edges: Array<{ __typename?: 'FormEdge', node?: { __typename?: 'Form', id: string, name: string, slug: string, description?: string | null, isPublished: boolean, isArchived: boolean, meta?: any | null, createdByUser?: string | null, createdByGroup?: string | null } | null } | null> } | null };
 
 export type GetAllFormsQueryVariables = Exact<{
   filter?: InputMaybe<Array<InputMaybe<FormFilterSetType>> | InputMaybe<FormFilterSetType>>;
@@ -4207,6 +5626,641 @@ export type GetAllFormsQueryVariables = Exact<{
 
 export type GetAllFormsQuery = { __typename?: 'Query', allForms?: { __typename?: 'FormConnection', totalCount?: number | null, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, endCursor?: string | null }, edges: Array<{ __typename?: 'FormEdge', node?: { __typename?: 'Form', id: string, slug: string, name: string, description?: string | null, isPublished: boolean, isArchived: boolean, meta?: any | null, createdByUser?: string | null, createdByGroup?: string | null } | null } | null> } | null };
 
+export type CheckFormSlugQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
 
-export const SaveFormDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveForm"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveFormInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveForm"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"form"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"isPublished"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"createdByUser"}},{"kind":"Field","name":{"kind":"Name","value":"createdByGroup"}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveFormMutation, SaveFormMutationVariables>;
+
+export type CheckFormSlugQuery = { __typename?: 'Query', allForms?: { __typename?: 'FormConnection', edges: Array<{ __typename?: 'FormEdge', node?: { __typename?: 'Form', id: string, slug: string } | null } | null> } | null };
+
+export type SaveFormMutationVariables = Exact<{
+  input: SaveFormInput;
+}>;
+
+
+export type SaveFormMutation = { __typename?: 'Mutation', saveForm?: { __typename?: 'SaveFormPayload', clientMutationId?: string | null, form?: { __typename?: 'Form', id: string, slug: string, name: string, description?: string | null, isPublished: boolean, isArchived: boolean, meta?: any | null, createdByUser?: string | null, createdByGroup?: string | null } | null } | null };
+
+export type CopyFormMutationVariables = Exact<{
+  input: CopyFormInput;
+}>;
+
+
+export type CopyFormMutation = { __typename?: 'Mutation', copyForm?: { __typename?: 'CopyFormPayload', clientMutationId?: string | null, form?: { __typename?: 'Form', id: string, slug: string, name: string, description?: string | null, isPublished: boolean, isArchived: boolean, meta?: any | null } | null } | null };
+
+export type AddFormQuestionMutationVariables = Exact<{
+  input: AddFormQuestionInput;
+}>;
+
+
+export type AddFormQuestionMutation = { __typename?: 'Mutation', addFormQuestion?: { __typename?: 'AddFormQuestionPayload', clientMutationId?: string | null, form?: { __typename?: 'Form', id: string, slug: string, name: string } | null } | null };
+
+export type RemoveFormQuestionMutationVariables = Exact<{
+  input: RemoveFormQuestionInput;
+}>;
+
+
+export type RemoveFormQuestionMutation = { __typename?: 'Mutation', removeFormQuestion?: { __typename?: 'RemoveFormQuestionPayload', clientMutationId?: string | null, form?: { __typename?: 'Form', id: string, slug: string, name: string } | null } | null };
+
+export type ReorderFormQuestionsMutationVariables = Exact<{
+  input: ReorderFormQuestionsInput;
+}>;
+
+
+export type ReorderFormQuestionsMutation = { __typename?: 'Mutation', reorderFormQuestions?: { __typename?: 'ReorderFormQuestionsPayload', clientMutationId?: string | null, form?: { __typename?: 'Form', id: string, slug: string, name: string } | null } | null };
+
+export type CheckOptionSlugQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type CheckOptionSlugQuery = { __typename?: 'Query', allQuestions?: { __typename?: 'QuestionConnection', edges: Array<{ __typename?: 'QuestionEdge', node?:
+        | { __typename?: 'ActionButtonQuestion' }
+        | { __typename?: 'CalculatedFloatQuestion' }
+        | { __typename?: 'ChoiceQuestion', options?: { __typename?: 'OptionConnection', edges: Array<{ __typename?: 'OptionEdge', node?: { __typename?: 'Option', id: string, slug: string } | null } | null> } | null }
+        | { __typename?: 'DateQuestion' }
+        | { __typename?: 'DynamicChoiceQuestion' }
+        | { __typename?: 'DynamicMultipleChoiceQuestion' }
+        | { __typename?: 'FilesQuestion' }
+        | { __typename?: 'FloatQuestion' }
+        | { __typename?: 'FormQuestion' }
+        | { __typename?: 'IntegerQuestion' }
+        | { __typename?: 'MultipleChoiceQuestion', options?: { __typename?: 'OptionConnection', edges: Array<{ __typename?: 'OptionEdge', node?: { __typename?: 'Option', id: string, slug: string } | null } | null> } | null }
+        | { __typename?: 'StaticQuestion' }
+        | { __typename?: 'TableQuestion' }
+        | { __typename?: 'TextQuestion' }
+        | { __typename?: 'TextareaQuestion' }
+       | null } | null> } | null };
+
+export type SaveOptionMutationVariables = Exact<{
+  input: SaveOptionInput;
+}>;
+
+
+export type SaveOptionMutation = { __typename?: 'Mutation', saveOption?: { __typename?: 'SaveOptionPayload', clientMutationId?: string | null, option?: { __typename?: 'Option', id: string, slug: string, label: string, isHidden: any, meta?: any | null } | null } | null };
+
+export type CopyOptionMutationVariables = Exact<{
+  input: CopyOptionInput;
+}>;
+
+
+export type CopyOptionMutation = { __typename?: 'Mutation', copyOption?: { __typename?: 'CopyOptionPayload', clientMutationId?: string | null, option?: { __typename?: 'Option', id: string, slug: string, label: string, isHidden: any, meta?: any | null } | null } | null };
+
+export type GetAllQuestionsQueryVariables = Exact<{
+  filter?: InputMaybe<Array<InputMaybe<QuestionFilterSetType>> | InputMaybe<QuestionFilterSetType>>;
+  order?: InputMaybe<Array<InputMaybe<QuestionOrderSetType>> | InputMaybe<QuestionOrderSetType>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type GetAllQuestionsQuery = { __typename?: 'Query', allQuestions?: { __typename?: 'QuestionConnection', edges: Array<{ __typename?: 'QuestionEdge', node?:
+        | { __typename?: 'ActionButtonQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+        | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+        | { __typename?: 'ChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+        | { __typename?: 'DateQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+        | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+        | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+        | { __typename?: 'FilesQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+        | { __typename?: 'FloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+        | { __typename?: 'FormQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+        | { __typename?: 'IntegerQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+        | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+        | { __typename?: 'StaticQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+        | { __typename?: 'TableQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+        | { __typename?: 'TextQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+        | { __typename?: 'TextareaQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+       | null } | null> } | null };
+
+export type SearchQuestionsQueryVariables = Exact<{
+  search: Scalars['String']['input'];
+}>;
+
+
+export type SearchQuestionsQuery = { __typename?: 'Query', allQuestions?: { __typename?: 'QuestionConnection', edges: Array<{ __typename?: 'QuestionEdge', node?:
+        | { __typename?: 'ActionButtonQuestion', id: string, slug: string, label: string, isArchived: boolean }
+        | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string, label: string, isArchived: boolean }
+        | { __typename?: 'ChoiceQuestion', id: string, slug: string, label: string, isArchived: boolean }
+        | { __typename?: 'DateQuestion', id: string, slug: string, label: string, isArchived: boolean }
+        | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string, label: string, isArchived: boolean }
+        | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string, label: string, isArchived: boolean }
+        | { __typename?: 'FilesQuestion', id: string, slug: string, label: string, isArchived: boolean }
+        | { __typename?: 'FloatQuestion', id: string, slug: string, label: string, isArchived: boolean }
+        | { __typename?: 'FormQuestion', id: string, slug: string, label: string, isArchived: boolean }
+        | { __typename?: 'IntegerQuestion', id: string, slug: string, label: string, isArchived: boolean }
+        | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string, label: string, isArchived: boolean }
+        | { __typename?: 'StaticQuestion', id: string, slug: string, label: string, isArchived: boolean }
+        | { __typename?: 'TableQuestion', id: string, slug: string, label: string, isArchived: boolean }
+        | { __typename?: 'TextQuestion', id: string, slug: string, label: string, isArchived: boolean }
+        | { __typename?: 'TextareaQuestion', id: string, slug: string, label: string, isArchived: boolean }
+       | null } | null> } | null };
+
+export type CheckQuestionSlugQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type CheckQuestionSlugQuery = { __typename?: 'Query', allQuestions?: { __typename?: 'QuestionConnection', edges: Array<{ __typename?: 'QuestionEdge', node?:
+        | { __typename?: 'ActionButtonQuestion', id: string, slug: string }
+        | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string }
+        | { __typename?: 'ChoiceQuestion', id: string, slug: string }
+        | { __typename?: 'DateQuestion', id: string, slug: string }
+        | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string }
+        | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string }
+        | { __typename?: 'FilesQuestion', id: string, slug: string }
+        | { __typename?: 'FloatQuestion', id: string, slug: string }
+        | { __typename?: 'FormQuestion', id: string, slug: string }
+        | { __typename?: 'IntegerQuestion', id: string, slug: string }
+        | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string }
+        | { __typename?: 'StaticQuestion', id: string, slug: string }
+        | { __typename?: 'TableQuestion', id: string, slug: string }
+        | { __typename?: 'TextQuestion', id: string, slug: string }
+        | { __typename?: 'TextareaQuestion', id: string, slug: string }
+       | null } | null> } | null };
+
+export type SaveTextQuestionMutationVariables = Exact<{
+  input: SaveTextQuestionInput;
+}>;
+
+
+export type SaveTextQuestionMutation = { __typename?: 'Mutation', saveTextQuestion?: { __typename?: 'SaveTextQuestionPayload', clientMutationId?: string | null, question?:
+      | { __typename?: 'ActionButtonQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'ChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DateQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FilesQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FormQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'IntegerQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'StaticQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TableQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextQuestion', minLength?: number | null, maxLength?: number | null, placeholder?: string | null, hintText?: string | null, id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextareaQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+     | null } | null };
+
+export type SaveTextareaQuestionMutationVariables = Exact<{
+  input: SaveTextareaQuestionInput;
+}>;
+
+
+export type SaveTextareaQuestionMutation = { __typename?: 'Mutation', saveTextareaQuestion?: { __typename?: 'SaveTextareaQuestionPayload', clientMutationId?: string | null, question?:
+      | { __typename?: 'ActionButtonQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'ChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DateQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FilesQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FormQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'IntegerQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'StaticQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TableQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextareaQuestion', minLength?: number | null, maxLength?: number | null, placeholder?: string | null, hintText?: string | null, id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+     | null } | null };
+
+export type SaveIntegerQuestionMutationVariables = Exact<{
+  input: SaveIntegerQuestionInput;
+}>;
+
+
+export type SaveIntegerQuestionMutation = { __typename?: 'Mutation', saveIntegerQuestion?: { __typename?: 'SaveIntegerQuestionPayload', clientMutationId?: string | null, question?:
+      | { __typename?: 'ActionButtonQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'ChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DateQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FilesQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FormQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'IntegerQuestion', minValue?: number | null, maxValue?: number | null, placeholder?: string | null, hintText?: string | null, id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'StaticQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TableQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextareaQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+     | null } | null };
+
+export type SaveFloatQuestionMutationVariables = Exact<{
+  input: SaveFloatQuestionInput;
+}>;
+
+
+export type SaveFloatQuestionMutation = { __typename?: 'Mutation', saveFloatQuestion?: { __typename?: 'SaveFloatQuestionPayload', clientMutationId?: string | null, question?:
+      | { __typename?: 'ActionButtonQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'ChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DateQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FilesQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FloatQuestion', minValue?: number | null, maxValue?: number | null, placeholder?: string | null, hintText?: string | null, id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FormQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'IntegerQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'StaticQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TableQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextareaQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+     | null } | null };
+
+export type SaveDateQuestionMutationVariables = Exact<{
+  input: SaveDateQuestionInput;
+}>;
+
+
+export type SaveDateQuestionMutation = { __typename?: 'Mutation', saveDateQuestion?: { __typename?: 'SaveDateQuestionPayload', clientMutationId?: string | null, question?:
+      | { __typename?: 'ActionButtonQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'ChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DateQuestion', hintText?: string | null, id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FilesQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FormQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'IntegerQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'StaticQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TableQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextareaQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+     | null } | null };
+
+export type SaveChoiceQuestionMutationVariables = Exact<{
+  input: SaveChoiceQuestionInput;
+}>;
+
+
+export type SaveChoiceQuestionMutation = { __typename?: 'Mutation', saveChoiceQuestion?: { __typename?: 'SaveChoiceQuestionPayload', clientMutationId?: string | null, question?:
+      | { __typename?: 'ActionButtonQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'ChoiceQuestion', hintText?: string | null, id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null, options?: { __typename?: 'OptionConnection', edges: Array<{ __typename?: 'OptionEdge', node?: { __typename?: 'Option', id: string, slug: string, label: string, isHidden: any } | null } | null> } | null }
+      | { __typename?: 'DateQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FilesQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FormQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'IntegerQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'StaticQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TableQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextareaQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+     | null } | null };
+
+export type SaveMultipleChoiceQuestionMutationVariables = Exact<{
+  input: SaveMultipleChoiceQuestionInput;
+}>;
+
+
+export type SaveMultipleChoiceQuestionMutation = { __typename?: 'Mutation', saveMultipleChoiceQuestion?: { __typename?: 'SaveMultipleChoiceQuestionPayload', clientMutationId?: string | null, question?:
+      | { __typename?: 'ActionButtonQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'ChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DateQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FilesQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FormQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'IntegerQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'MultipleChoiceQuestion', hintText?: string | null, id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null, options?: { __typename?: 'OptionConnection', edges: Array<{ __typename?: 'OptionEdge', node?: { __typename?: 'Option', id: string, slug: string, label: string, isHidden: any } | null } | null> } | null }
+      | { __typename?: 'StaticQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TableQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextareaQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+     | null } | null };
+
+export type SaveDynamicChoiceQuestionMutationVariables = Exact<{
+  input: SaveDynamicChoiceQuestionInput;
+}>;
+
+
+export type SaveDynamicChoiceQuestionMutation = { __typename?: 'Mutation', saveDynamicChoiceQuestion?: { __typename?: 'SaveDynamicChoiceQuestionPayload', clientMutationId?: string | null, question?:
+      | { __typename?: 'ActionButtonQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'ChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DateQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicChoiceQuestion', hintText?: string | null, dataSource: string, id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FilesQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FormQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'IntegerQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'StaticQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TableQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextareaQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+     | null } | null };
+
+export type SaveDynamicMultipleChoiceQuestionMutationVariables = Exact<{
+  input: SaveDynamicMultipleChoiceQuestionInput;
+}>;
+
+
+export type SaveDynamicMultipleChoiceQuestionMutation = { __typename?: 'Mutation', saveDynamicMultipleChoiceQuestion?: { __typename?: 'SaveDynamicMultipleChoiceQuestionPayload', clientMutationId?: string | null, question?:
+      | { __typename?: 'ActionButtonQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'ChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DateQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicMultipleChoiceQuestion', hintText?: string | null, dataSource: string, id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FilesQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FormQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'IntegerQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'StaticQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TableQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextareaQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+     | null } | null };
+
+export type SaveTableQuestionMutationVariables = Exact<{
+  input: SaveTableQuestionInput;
+}>;
+
+
+export type SaveTableQuestionMutation = { __typename?: 'Mutation', saveTableQuestion?: { __typename?: 'SaveTableQuestionPayload', clientMutationId?: string | null, question?:
+      | { __typename?: 'ActionButtonQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'ChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DateQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FilesQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FormQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'IntegerQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'StaticQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TableQuestion', hintText?: string | null, id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextareaQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+     | null } | null };
+
+export type SaveFormQuestionMutationVariables = Exact<{
+  input: SaveFormQuestionInput;
+}>;
+
+
+export type SaveFormQuestionMutation = { __typename?: 'Mutation', saveFormQuestion?: { __typename?: 'SaveFormQuestionPayload', clientMutationId?: string | null, question?:
+      | { __typename?: 'ActionButtonQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'ChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DateQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FilesQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FormQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null, subForm?: { __typename?: 'Form', id: string, slug: string, name: string } | null }
+      | { __typename?: 'IntegerQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'StaticQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TableQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextareaQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+     | null } | null };
+
+export type SaveFilesQuestionMutationVariables = Exact<{
+  input: SaveFilesQuestionInput;
+}>;
+
+
+export type SaveFilesQuestionMutation = { __typename?: 'Mutation', saveFilesQuestion?: { __typename?: 'SaveFilesQuestionPayload', clientMutationId?: string | null, question?:
+      | { __typename?: 'ActionButtonQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'ChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DateQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FilesQuestion', hintText?: string | null, id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FormQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'IntegerQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'StaticQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TableQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextareaQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+     | null } | null };
+
+export type SaveStaticQuestionMutationVariables = Exact<{
+  input: SaveStaticQuestionInput;
+}>;
+
+
+export type SaveStaticQuestionMutation = { __typename?: 'Mutation', saveStaticQuestion?: { __typename?: 'SaveStaticQuestionPayload', clientMutationId?: string | null, question?:
+      | { __typename?: 'ActionButtonQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'ChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DateQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FilesQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FormQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'IntegerQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'StaticQuestion', staticContent?: string | null, id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TableQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextareaQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+     | null } | null };
+
+export type SaveCalculatedFloatQuestionMutationVariables = Exact<{
+  input: SaveCalculatedFloatQuestionInput;
+}>;
+
+
+export type SaveCalculatedFloatQuestionMutation = { __typename?: 'Mutation', saveCalculatedFloatQuestion?: { __typename?: 'SaveCalculatedFloatQuestionPayload', clientMutationId?: string | null, question?:
+      | { __typename?: 'ActionButtonQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'CalculatedFloatQuestion', calcExpression?: string | null, hintText?: string | null, id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'ChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DateQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FilesQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FormQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'IntegerQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'StaticQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TableQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextareaQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+     | null } | null };
+
+export type SaveActionButtonQuestionMutationVariables = Exact<{
+  input: SaveActionButtonQuestionInput;
+}>;
+
+
+export type SaveActionButtonQuestionMutation = { __typename?: 'Mutation', saveActionButtonQuestion?: { __typename?: 'SaveActionButtonQuestionPayload', clientMutationId?: string | null, question?:
+      | { __typename?: 'ActionButtonQuestion', action: ButtonAction, color: ButtonColor, validateOnEnter: boolean, showValidation: boolean, id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'ChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DateQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FilesQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FloatQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'FormQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'IntegerQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'StaticQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TableQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+      | { __typename?: 'TextareaQuestion', id: string, slug: string, label: string, isRequired: any, isHidden: any, isArchived: boolean, meta: any, infoText?: string | null }
+     | null } | null };
+
+export type CopyQuestionMutationVariables = Exact<{
+  input: CopyQuestionInput;
+}>;
+
+
+export type CopyQuestionMutation = { __typename?: 'Mutation', copyQuestion?: { __typename?: 'CopyQuestionPayload', clientMutationId?: string | null, question?:
+      | { __typename?: 'ActionButtonQuestion', id: string, slug: string, label: string }
+      | { __typename?: 'CalculatedFloatQuestion', id: string, slug: string, label: string }
+      | { __typename?: 'ChoiceQuestion', id: string, slug: string, label: string }
+      | { __typename?: 'DateQuestion', id: string, slug: string, label: string }
+      | { __typename?: 'DynamicChoiceQuestion', id: string, slug: string, label: string }
+      | { __typename?: 'DynamicMultipleChoiceQuestion', id: string, slug: string, label: string }
+      | { __typename?: 'FilesQuestion', id: string, slug: string, label: string }
+      | { __typename?: 'FloatQuestion', id: string, slug: string, label: string }
+      | { __typename?: 'FormQuestion', id: string, slug: string, label: string }
+      | { __typename?: 'IntegerQuestion', id: string, slug: string, label: string }
+      | { __typename?: 'MultipleChoiceQuestion', id: string, slug: string, label: string }
+      | { __typename?: 'StaticQuestion', id: string, slug: string, label: string }
+      | { __typename?: 'TableQuestion', id: string, slug: string, label: string }
+      | { __typename?: 'TextQuestion', id: string, slug: string, label: string }
+      | { __typename?: 'TextareaQuestion', id: string, slug: string, label: string }
+     | null } | null };
+
+export type GetAllFormatValidatorsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllFormatValidatorsQuery = { __typename?: 'Query', allFormatValidators?: { __typename?: 'FormatValidatorConnection', edges: Array<{ __typename?: 'FormatValidatorEdge', node?: { __typename?: 'FormatValidator', slug: string, name: string, regex?: string | null, allowedQuestionTypes?: Array<string | null> | null } | null } | null> } | null };
+
+export type GetAllDataSourcesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllDataSourcesQuery = { __typename?: 'Query', __type?: { __typename?: '__Type', enumValues?: Array<{ __typename?: '__EnumValue', name: string, description?: string | null }> | null } | null };
+
+export type CheckDocumentValidityQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+  dataSourceContext?: InputMaybe<Scalars['JSONString']['input']>;
+}>;
+
+
+export type CheckDocumentValidityQuery = { __typename?: 'Query', documentValidity?: { __typename?: 'DocumentValidityConnection', edges: Array<{ __typename?: 'DocumentValidityEdge', node?: { __typename?: 'ValidationResult', id?: string | null, isValid?: boolean | null, errors?: Array<{ __typename?: 'ValidationEntry', slug: string, errorMsg: string } | null> | null } | null } | null> } | null };
+
+export type GetAllWorkItemsQueryVariables = Exact<{
+  filter?: InputMaybe<Array<InputMaybe<WorkItemFilterSetType>> | InputMaybe<WorkItemFilterSetType>>;
+  order?: InputMaybe<Array<InputMaybe<WorkItemOrderSetType>> | InputMaybe<WorkItemOrderSetType>>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type GetAllWorkItemsQuery = { __typename?: 'Query', allWorkItems?: { __typename?: 'WorkItemConnection', edges: Array<{ __typename?: 'WorkItemEdge', node?: { __typename?: 'WorkItem', id: string, status: WorkItemStatus, createdAt: any, closedAt?: any | null, meta?: any | null, addressedGroups: Array<string | null>, assignedUsers: Array<string | null>, case: { __typename?: 'Case', id: string, document?: { __typename?: 'Document', id: string, form: { __typename?: 'Form', id: string, slug: string, name: string } } | null }, task:
+          | { __typename?: 'CompleteTaskFormTask', id: string, slug: string, name: string }
+          | { __typename?: 'CompleteWorkflowFormTask', id: string, slug: string, name: string }
+          | { __typename?: 'SimpleTask', id: string, slug: string, name: string }
+         } | null } | null> } | null };
+
+export type GetWorkItemStatusQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type GetWorkItemStatusQuery = { __typename?: 'Query', allWorkItems?: { __typename?: 'WorkItemConnection', edges: Array<{ __typename?: 'WorkItemEdge', node?: { __typename?: 'WorkItem', id: string, status: WorkItemStatus, meta?: any | null } | null } | null> } | null };
+
+export type CompleteWorkItemMutationVariables = Exact<{
+  input: CompleteWorkItemInput;
+}>;
+
+
+export type CompleteWorkItemMutation = { __typename?: 'Mutation', completeWorkItem?: { __typename?: 'CompleteWorkItemPayload', clientMutationId?: string | null, workItem?: { __typename?: 'WorkItem', id: string, status: WorkItemStatus, closedAt?: any | null } | null } | null };
+
+export type CancelWorkItemMutationVariables = Exact<{
+  input: CancelWorkItemInput;
+}>;
+
+
+export type CancelWorkItemMutation = { __typename?: 'Mutation', cancelWorkItem?: { __typename?: 'CancelWorkItemPayload', clientMutationId?: string | null, workItem?: { __typename?: 'WorkItem', id: string, status: WorkItemStatus, closedAt?: any | null } | null } | null };
+
+export type SkipWorkItemMutationVariables = Exact<{
+  input: SkipWorkItemInput;
+}>;
+
+
+export type SkipWorkItemMutation = { __typename?: 'Mutation', skipWorkItem?: { __typename?: 'SkipWorkItemPayload', clientMutationId?: string | null, workItem?: { __typename?: 'WorkItem', id: string, status: WorkItemStatus, closedAt?: any | null } | null } | null };
+
+
+export const GetAllDocumentsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAllDocuments"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filter"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"DocumentFilterSetType"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"order"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"DocumentOrderSetType"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allDocuments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filter"}}},{"kind":"Argument","name":{"kind":"Name","value":"order"},"value":{"kind":"Variable","name":{"kind":"Name","value":"order"}}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"modifiedAt"}},{"kind":"Field","name":{"kind":"Name","value":"createdByUser"}},{"kind":"Field","name":{"kind":"Name","value":"createdByGroup"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"form"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetAllDocumentsQuery, GetAllDocumentsQueryVariables>;
+export const GetDocumentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetDocument"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allDocuments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"modifiedAt"}},{"kind":"Field","name":{"kind":"Name","value":"createdByUser"}},{"kind":"Field","name":{"kind":"Name","value":"createdByGroup"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"form"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"questions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"answers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"StringAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"stringValue"},"name":{"kind":"Name","value":"value"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IntegerAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"integerValue"},"name":{"kind":"Name","value":"value"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"FloatAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"floatValue"},"name":{"kind":"Name","value":"value"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ListAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"listValue"},"name":{"kind":"Name","value":"value"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"DateAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"dateValue"},"name":{"kind":"Name","value":"value"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"FilesAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"filesValue"},"name":{"kind":"Name","value":"value"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"downloadUrl"}},{"kind":"Field","name":{"kind":"Name","value":"uploadUrl"}},{"kind":"Field","name":{"kind":"Name","value":"metadata"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TableAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"tableValue"},"name":{"kind":"Name","value":"value"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"form"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"Field","name":{"kind":"Name","value":"answers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"StringAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"stringValue"},"name":{"kind":"Name","value":"value"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IntegerAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"integerValue"},"name":{"kind":"Name","value":"value"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"FloatAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"floatValue"},"name":{"kind":"Name","value":"value"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ListAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"listValue"},"name":{"kind":"Name","value":"value"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"DateAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"dateValue"},"name":{"kind":"Name","value":"value"}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetDocumentQuery, GetDocumentQueryVariables>;
+export const SaveDocumentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveDocument"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveDocumentInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveDocument"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"document"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"modifiedAt"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"form"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveDocumentMutation, SaveDocumentMutationVariables>;
+export const CopyDocumentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CopyDocument"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CopyDocumentInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"copyDocument"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"document"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"modifiedAt"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"form"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<CopyDocumentMutation, CopyDocumentMutationVariables>;
+export const RemoveDocumentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RemoveDocument"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RemoveDocumentInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"removeDocument"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<RemoveDocumentMutation, RemoveDocumentMutationVariables>;
+export const SaveDocumentStringAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveDocumentStringAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveDocumentStringAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveDocumentStringAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"answer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"StringAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveDocumentStringAnswerMutation, SaveDocumentStringAnswerMutationVariables>;
+export const SaveDocumentIntegerAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveDocumentIntegerAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveDocumentIntegerAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveDocumentIntegerAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"answer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IntegerAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveDocumentIntegerAnswerMutation, SaveDocumentIntegerAnswerMutationVariables>;
+export const SaveDocumentFloatAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveDocumentFloatAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveDocumentFloatAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveDocumentFloatAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"answer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"FloatAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveDocumentFloatAnswerMutation, SaveDocumentFloatAnswerMutationVariables>;
+export const SaveDocumentDateAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveDocumentDateAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveDocumentDateAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveDocumentDateAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"answer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"DateAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveDocumentDateAnswerMutation, SaveDocumentDateAnswerMutationVariables>;
+export const SaveDocumentListAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveDocumentListAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveDocumentListAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveDocumentListAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"answer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ListAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveDocumentListAnswerMutation, SaveDocumentListAnswerMutationVariables>;
+export const SaveDocumentTableAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveDocumentTableAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveDocumentTableAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveDocumentTableAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"answer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TableAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"form"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveDocumentTableAnswerMutation, SaveDocumentTableAnswerMutationVariables>;
+export const SaveDocumentFilesAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveDocumentFilesAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveDocumentFilesAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveDocumentFilesAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"answer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"FilesAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"downloadUrl"}},{"kind":"Field","name":{"kind":"Name","value":"uploadUrl"}},{"kind":"Field","name":{"kind":"Name","value":"metadata"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveDocumentFilesAnswerMutation, SaveDocumentFilesAnswerMutationVariables>;
+export const RemoveAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RemoveAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RemoveAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"removeAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"answer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<RemoveAnswerMutation, RemoveAnswerMutationVariables>;
+export const SaveDefaultStringAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveDefaultStringAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveDefaultStringAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveDefaultStringAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"answer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"StringAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveDefaultStringAnswerMutation, SaveDefaultStringAnswerMutationVariables>;
+export const SaveDefaultIntegerAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveDefaultIntegerAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveDefaultIntegerAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveDefaultIntegerAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"answer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IntegerAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveDefaultIntegerAnswerMutation, SaveDefaultIntegerAnswerMutationVariables>;
+export const SaveDefaultFloatAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveDefaultFloatAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveDefaultFloatAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveDefaultFloatAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"answer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"FloatAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveDefaultFloatAnswerMutation, SaveDefaultFloatAnswerMutationVariables>;
+export const SaveDefaultDateAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveDefaultDateAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveDefaultDateAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveDefaultDateAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"answer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"DateAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveDefaultDateAnswerMutation, SaveDefaultDateAnswerMutationVariables>;
+export const SaveDefaultListAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveDefaultListAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveDefaultListAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveDefaultListAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"answer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ListAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveDefaultListAnswerMutation, SaveDefaultListAnswerMutationVariables>;
+export const SaveDefaultTableAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveDefaultTableAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveDefaultTableAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveDefaultTableAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"answer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TableAnswer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveDefaultTableAnswerMutation, SaveDefaultTableAnswerMutationVariables>;
+export const RemoveDefaultAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RemoveDefaultAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RemoveDefaultAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"removeDefaultAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<RemoveDefaultAnswerMutation, RemoveDefaultAnswerMutationVariables>;
+export const GetFormDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetForm"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allForms"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slugs"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"slug"}}]}}]}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"isPublished"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"createdByUser"}},{"kind":"Field","name":{"kind":"Name","value":"createdByGroup"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetFormQuery, GetFormQueryVariables>;
 export const GetAllFormsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAllForms"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filter"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"FormFilterSetType"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"order"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"FormOrderSetType"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"offset"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allForms"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filter"}}},{"kind":"Argument","name":{"kind":"Name","value":"order"},"value":{"kind":"Variable","name":{"kind":"Name","value":"order"}}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}},{"kind":"Argument","name":{"kind":"Name","value":"offset"},"value":{"kind":"Variable","name":{"kind":"Name","value":"offset"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}},{"kind":"Field","name":{"kind":"Name","value":"endCursor"}}]}},{"kind":"Field","name":{"kind":"Name","value":"totalCount"}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"isPublished"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"createdByUser"}},{"kind":"Field","name":{"kind":"Name","value":"createdByGroup"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetAllFormsQuery, GetAllFormsQueryVariables>;
+export const CheckFormSlugDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CheckFormSlug"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allForms"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slugs"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"slug"}}]}}]}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]}}]} as unknown as DocumentNode<CheckFormSlugQuery, CheckFormSlugQueryVariables>;
+export const SaveFormDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveForm"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveFormInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveForm"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"form"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"isPublished"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"createdByUser"}},{"kind":"Field","name":{"kind":"Name","value":"createdByGroup"}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveFormMutation, SaveFormMutationVariables>;
+export const CopyFormDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CopyForm"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CopyFormInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"copyForm"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"form"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"isPublished"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<CopyFormMutation, CopyFormMutationVariables>;
+export const AddFormQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"AddFormQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"AddFormQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"addFormQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"form"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<AddFormQuestionMutation, AddFormQuestionMutationVariables>;
+export const RemoveFormQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RemoveFormQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RemoveFormQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"removeFormQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"form"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<RemoveFormQuestionMutation, RemoveFormQuestionMutationVariables>;
+export const ReorderFormQuestionsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"ReorderFormQuestions"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ReorderFormQuestionsInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"reorderFormQuestions"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"form"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<ReorderFormQuestionsMutation, ReorderFormQuestionsMutationVariables>;
+export const CheckOptionSlugDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CheckOptionSlug"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allQuestions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ChoiceQuestion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"options"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MultipleChoiceQuestion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"options"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<CheckOptionSlugQuery, CheckOptionSlugQueryVariables>;
+export const SaveOptionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveOption"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveOptionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveOption"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"option"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveOptionMutation, SaveOptionMutationVariables>;
+export const CopyOptionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CopyOption"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CopyOptionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"copyOption"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"option"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<CopyOptionMutation, CopyOptionMutationVariables>;
+export const GetAllQuestionsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAllQuestions"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filter"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"QuestionFilterSetType"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"order"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"QuestionOrderSetType"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allQuestions"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filter"}}},{"kind":"Argument","name":{"kind":"Name","value":"order"},"value":{"kind":"Variable","name":{"kind":"Name","value":"order"}}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isRequired"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"infoText"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetAllQuestionsQuery, GetAllQuestionsQueryVariables>;
+export const SearchQuestionsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SearchQuestions"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"search"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allQuestions"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"search"},"value":{"kind":"Variable","name":{"kind":"Name","value":"search"}}}]}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}}]}}]}}]}}]}}]} as unknown as DocumentNode<SearchQuestionsQuery, SearchQuestionsQueryVariables>;
+export const CheckQuestionSlugDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CheckQuestionSlug"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allQuestions"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slugs"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"slug"}}]}}]}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]}}]} as unknown as DocumentNode<CheckQuestionSlugQuery, CheckQuestionSlugQueryVariables>;
+export const SaveTextQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveTextQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveTextQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveTextQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isRequired"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"infoText"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextQuestion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"minLength"}},{"kind":"Field","name":{"kind":"Name","value":"maxLength"}},{"kind":"Field","name":{"kind":"Name","value":"placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"hintText"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveTextQuestionMutation, SaveTextQuestionMutationVariables>;
+export const SaveTextareaQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveTextareaQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveTextareaQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveTextareaQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isRequired"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"infoText"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextareaQuestion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"minLength"}},{"kind":"Field","name":{"kind":"Name","value":"maxLength"}},{"kind":"Field","name":{"kind":"Name","value":"placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"hintText"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveTextareaQuestionMutation, SaveTextareaQuestionMutationVariables>;
+export const SaveIntegerQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveIntegerQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveIntegerQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveIntegerQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isRequired"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"infoText"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IntegerQuestion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"minValue"}},{"kind":"Field","name":{"kind":"Name","value":"maxValue"}},{"kind":"Field","name":{"kind":"Name","value":"placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"hintText"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveIntegerQuestionMutation, SaveIntegerQuestionMutationVariables>;
+export const SaveFloatQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveFloatQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveFloatQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveFloatQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isRequired"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"infoText"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"FloatQuestion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"minValue"}},{"kind":"Field","name":{"kind":"Name","value":"maxValue"}},{"kind":"Field","name":{"kind":"Name","value":"placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"hintText"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveFloatQuestionMutation, SaveFloatQuestionMutationVariables>;
+export const SaveDateQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveDateQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveDateQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveDateQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isRequired"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"infoText"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"DateQuestion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hintText"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveDateQuestionMutation, SaveDateQuestionMutationVariables>;
+export const SaveChoiceQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveChoiceQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveChoiceQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveChoiceQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isRequired"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"infoText"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ChoiceQuestion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hintText"}},{"kind":"Field","name":{"kind":"Name","value":"options"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveChoiceQuestionMutation, SaveChoiceQuestionMutationVariables>;
+export const SaveMultipleChoiceQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveMultipleChoiceQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveMultipleChoiceQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveMultipleChoiceQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isRequired"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"infoText"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MultipleChoiceQuestion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hintText"}},{"kind":"Field","name":{"kind":"Name","value":"options"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveMultipleChoiceQuestionMutation, SaveMultipleChoiceQuestionMutationVariables>;
+export const SaveDynamicChoiceQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveDynamicChoiceQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveDynamicChoiceQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveDynamicChoiceQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isRequired"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"infoText"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"DynamicChoiceQuestion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hintText"}},{"kind":"Field","name":{"kind":"Name","value":"dataSource"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveDynamicChoiceQuestionMutation, SaveDynamicChoiceQuestionMutationVariables>;
+export const SaveDynamicMultipleChoiceQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveDynamicMultipleChoiceQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveDynamicMultipleChoiceQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveDynamicMultipleChoiceQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isRequired"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"infoText"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"DynamicMultipleChoiceQuestion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hintText"}},{"kind":"Field","name":{"kind":"Name","value":"dataSource"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveDynamicMultipleChoiceQuestionMutation, SaveDynamicMultipleChoiceQuestionMutationVariables>;
+export const SaveTableQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveTableQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveTableQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveTableQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isRequired"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"infoText"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TableQuestion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hintText"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveTableQuestionMutation, SaveTableQuestionMutationVariables>;
+export const SaveFormQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveFormQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveFormQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveFormQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isRequired"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"infoText"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"FormQuestion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subForm"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveFormQuestionMutation, SaveFormQuestionMutationVariables>;
+export const SaveFilesQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveFilesQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveFilesQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveFilesQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isRequired"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"infoText"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"FilesQuestion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hintText"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveFilesQuestionMutation, SaveFilesQuestionMutationVariables>;
+export const SaveStaticQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveStaticQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveStaticQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveStaticQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isRequired"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"infoText"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"StaticQuestion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"staticContent"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveStaticQuestionMutation, SaveStaticQuestionMutationVariables>;
+export const SaveCalculatedFloatQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveCalculatedFloatQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveCalculatedFloatQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveCalculatedFloatQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isRequired"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"infoText"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CalculatedFloatQuestion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"calcExpression"}},{"kind":"Field","name":{"kind":"Name","value":"hintText"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveCalculatedFloatQuestionMutation, SaveCalculatedFloatQuestionMutationVariables>;
+export const SaveActionButtonQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveActionButtonQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveActionButtonQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveActionButtonQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"isRequired"}},{"kind":"Field","name":{"kind":"Name","value":"isHidden"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"infoText"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ActionButtonQuestion"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"action"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"validateOnEnter"}},{"kind":"Field","name":{"kind":"Name","value":"showValidation"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SaveActionButtonQuestionMutation, SaveActionButtonQuestionMutationVariables>;
+export const CopyQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CopyQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CopyQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"copyQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"label"}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<CopyQuestionMutation, CopyQuestionMutationVariables>;
+export const GetAllFormatValidatorsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAllFormatValidators"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allFormatValidators"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"regex"}},{"kind":"Field","name":{"kind":"Name","value":"allowedQuestionTypes"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetAllFormatValidatorsQuery, GetAllFormatValidatorsQueryVariables>;
+export const GetAllDataSourcesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAllDataSources"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__type"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"name"},"value":{"kind":"StringValue","value":"DataSource","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"enumValues"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]}}]} as unknown as DocumentNode<GetAllDataSourcesQuery, GetAllDataSourcesQueryVariables>;
+export const CheckDocumentValidityDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CheckDocumentValidity"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"dataSourceContext"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"JSONString"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"documentValidity"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}},{"kind":"Argument","name":{"kind":"Name","value":"dataSourceContext"},"value":{"kind":"Variable","name":{"kind":"Name","value":"dataSourceContext"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"isValid"}},{"kind":"Field","name":{"kind":"Name","value":"errors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"errorMsg"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<CheckDocumentValidityQuery, CheckDocumentValidityQueryVariables>;
+export const GetAllWorkItemsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAllWorkItems"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filter"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"WorkItemFilterSetType"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"order"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"WorkItemOrderSetType"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allWorkItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filter"}}},{"kind":"Argument","name":{"kind":"Name","value":"order"},"value":{"kind":"Variable","name":{"kind":"Name","value":"order"}}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"closedAt"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"addressedGroups"}},{"kind":"Field","name":{"kind":"Name","value":"assignedUsers"}},{"kind":"Field","name":{"kind":"Name","value":"case"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"document"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"form"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"task"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetAllWorkItemsQuery, GetAllWorkItemsQueryVariables>;
+export const GetWorkItemStatusDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetWorkItemStatus"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allWorkItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetWorkItemStatusQuery, GetWorkItemStatusQueryVariables>;
+export const CompleteWorkItemDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CompleteWorkItem"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CompleteWorkItemInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"completeWorkItem"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"workItem"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"closedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<CompleteWorkItemMutation, CompleteWorkItemMutationVariables>;
+export const CancelWorkItemDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CancelWorkItem"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CancelWorkItemInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cancelWorkItem"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"workItem"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"closedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<CancelWorkItemMutation, CancelWorkItemMutationVariables>;
+export const SkipWorkItemDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SkipWorkItem"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SkipWorkItemInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"skipWorkItem"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"workItem"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"closedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SkipWorkItemMutation, SkipWorkItemMutationVariables>;

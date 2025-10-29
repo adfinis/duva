@@ -1,0 +1,45 @@
+# ============================================
+# UTILITIES - Validators, Data Sources, etc.
+# ============================================
+
+# == QUERIES ==
+
+# Format Validators
+query GetAllFormatValidators {
+  allFormatValidators {
+    edges {
+      node {
+        slug
+        name
+        regex
+        allowedQuestionTypes
+      }
+    }
+  }
+}
+
+# Data Sources (for dynamic questions)
+query GetAllDataSources {
+  __type(name: "DataSource") {
+    enumValues {
+      name
+      description
+    }
+  }
+}
+
+# Document Validity Check
+query CheckDocumentValidity($id: ID!, $dataSourceContext: JSONString) {
+  documentValidity(id: $id, dataSourceContext: $dataSourceContext) {
+    edges {
+      node {
+        id
+        isValid
+        errors {
+          slug
+          errorMsg
+        }
+      }
+    }
+  }
+}
