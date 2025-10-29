@@ -4,31 +4,12 @@ import { TextArea } from '@shared/TextArea';
 import { Toggle } from '@shared/Toggle';
 import { useMemo, useState } from 'react';
 import './FormDetails.css';
-import { useMutation } from '@apollo/client/react';
-import { useNotifications } from '@/components/shared/Notification';
-import { SaveFormDocument } from '@/gql/__generated__/graphql';
-
-interface FormValues {
-  name: string;
-  slug: string;
-  description: string;
-  isArchived: boolean;
-  isPublished: boolean;
-}
+import type { SaveFormInput } from '@/gql/__generated__/graphql';
+import { useSaveForm } from './useSaveForm';
 
 interface FormDetailsProps {
-  initialName?: string;
-  initialSlug?: string;
-  initialDescription?: string;
-  initialIsArchived?: boolean;
-  initialIsPublished?: boolean;
-  onSave?: (data: {
-    name: string;
-    slug: string;
-    description: string;
-    isArchived: boolean;
-    isPublished: boolean;
-  }) => void;
+  initialValues?: Partial<SaveFormInput>;
+  onSave?: (data: SaveFormInput) => void;
 }
 
 function slugify(text: string) {
@@ -41,25 +22,17 @@ function slugify(text: string) {
     .replace(/-+/g, '-');
 }
 
-export function FormDetails({
-  initialName = '',
-  initialSlug = '',
-  initialDescription = '',
-  initialIsArchived = false,
-  initialIsPublished = false,
-  onSave,
-}: FormDetailsProps) {
-  const [saveForm] = useMutation(SaveFormDocument);
-  const { addNotification } = useNotifications();
-
-  const [values, setValues] = useState<FormValues>({
-    name: initialName,
-    slug: initialSlug,
-    description: initialDescription,
-    isArchived: initialIsArchived,
-    isPublished: initialIsPublished,
+export function FormDetails({ initialValues, onSave }: FormDetailsProps) {
+  const [values, setValues] = useState<SaveFormInput>({
+    name: '',
+    slug: '',
+    description: '',
+    isArchived: false,
+    isPublished: false,
+    ...initialValues,
   });
   const [slugTouched, setSlugTouched] = useState(false);
+  const { handleSave: saveForm, loading } = useSaveForm();
 
   const suggestedSlug = useMemo(() => slugify(values.name), [values.name]);
   const displaySlug = slugTouched ? values.slug : suggestedSlug;
@@ -92,7 +65,7 @@ export function FormDetails({
 
     const finalSlug = slugTouched ? values.slug : suggestedSlug;
 
-    const formData = {
+    const formData: SaveFormInput = {
       name: values.name,
       slug: finalSlug,
       description: values.description,
@@ -100,31 +73,10 @@ export function FormDetails({
       isPublished: values.isPublished,
     };
 
-    try {
-      const response = await saveForm({
-        variables: { input: formData },
-      });
+    const savedForm = await saveForm(formData);
 
-      if (response.data?.saveForm?.form) {
-        addNotification({
-          type: 'success',
-          title: 'Form created successfully',
-          message: `Form "${formData.name}" has been created`,
-        });
-
-        if (onSave) {
-          onSave(formData);
-        }
-      }
-    } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : 'Unknown error occurred';
-      addNotification({
-        type: 'error',
-        title: 'Failed to create form',
-        message: errorMessage,
-      });
-      console.error('Error saving form:', err);
+    if (savedForm && onSave) {
+      onSave(formData);
     }
   }
 
@@ -149,7 +101,7 @@ export function FormDetails({
 
       <TextArea
         label="Description"
-        value={values.description}
+        value={values.description || ''}
         onChange={handleDescriptionChange}
         placeholder="Enter your description here..."
         rows={5}
@@ -157,14 +109,14 @@ export function FormDetails({
 
       <div className="form-toggles">
         <Toggle
-          checked={values.isArchived}
+          checked={values.isArchived || false}
           onChange={handleIsArchivedChange}
           label="Archived"
           size="sm"
           name="isArchived"
         />
         <Toggle
-          checked={values.isPublished}
+          checked={values.isPublished || false}
           onChange={handleIsPublishedChange}
           label="Published"
           size="sm"
@@ -173,8 +125,12 @@ export function FormDetails({
       </div>
 
       <div className="form-actions">
-        <Button variant="success" onClick={handleSave} disabled={!isValid}>
-          SAVE
+        <Button
+          variant="success"
+          onClick={handleSave}
+          disabled={!isValid || loading}
+        >
+          {loading ? 'SAVING...' : 'SAVE'}
         </Button>
       </div>
     </div>

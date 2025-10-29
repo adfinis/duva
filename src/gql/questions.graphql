@@ -353,7 +353,9 @@ mutation SaveStaticQuestion($input: SaveStaticQuestionInput!) {
 }
 
 # Calculated Float Question
-mutation SaveCalculatedFloatQuestion($input: SaveCalculatedFloatQuestionInput!) {
+mutation SaveCalculatedFloatQuestion(
+  $input: SaveCalculatedFloatQuestionInput!
+) {
   saveCalculatedFloatQuestion(input: $input) {
     question {
       id
