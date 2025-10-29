@@ -49,7 +49,6 @@ query GetAllForms(
         description
         isPublished
         isArchived
-        meta
         createdByUser
         createdByGroup
       }
