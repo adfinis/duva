@@ -1,88 +1,37 @@
-import { useQuery } from '@apollo/client/react';
 import { Button } from '@shared/Button';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import {
-  AscDesc,
-  type FormFilterSetType,
-  GetAllFormsDocument,
-  SortableFormAttributes,
-} from '@/gql/__generated__/graphql';
+import { IconButton } from '@shared/IconButton';
+import { useNavigate } from 'react-router-dom';
 import { Card } from '../components/shared/Card';
 import './Forms.css';
-import { type ChangeEvent, useCallback, useEffect, useState } from 'react';
+import { CreateIcon } from '@icons';
+import type { ChangeEvent } from 'react';
+import {
+  type FilterCategory,
+  useGetAllForms,
+} from '@/components/features/forms/hooks/useGetAllForms';
 
-type FilterCategory = 'active' | 'archived' | 'published' | 'all';
-const FILTER_CATEGORIES = [
+const FILTER_CATEGORIES: Array<{ value: FilterCategory; label: string }> = [
   { value: 'active', label: 'Active' },
   { value: 'archived', label: 'Archived' },
   { value: 'published', label: 'Published' },
   { value: 'all', label: 'All' },
 ];
 
-const PAGE_SIZE = 10;
-
 export function Forms() {
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const [category, setCategory] = useState<FilterCategory>(
-    (searchParams.get('category') as FilterCategory) || 'all',
-  );
-  const [searchText, setSearchText] = useState(
-    searchParams.get('search') || '',
-  );
-  const [debouncedSearch, setDebouncedSearch] = useState(searchText);
-
-  // Pagination state
-  const [currentPage, setCurrentPage] = useState(
-    Number.parseInt(searchParams.get('page') || '1', 10),
-  );
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedSearch(searchText);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [searchText]);
-
-  useEffect(() => {
-    const params = new URLSearchParams();
-    if (category !== 'all') params.set('category', category);
-    if (debouncedSearch) params.set('search', debouncedSearch);
-    if (currentPage > 1) params.set('page', currentPage.toString());
-    setSearchParams(params, { replace: true });
-  }, [category, debouncedSearch, currentPage, setSearchParams]);
-
-  const buildFilter = useCallback(() => {
-    const filters: FormFilterSetType[] = [];
-
-    if (category === 'active') {
-      filters.push({ isArchived: false });
-    } else if (category === 'archived') {
-      filters.push({ isArchived: true });
-    } else if (category === 'published') {
-      filters.push({ isPublished: true });
-    }
-
-    if (debouncedSearch) {
-      filters.push({ search: debouncedSearch });
-    }
-
-    return filters.length > 0 ? filters : undefined;
-  }, [category, debouncedSearch]);
-
-  const { data, loading, error } = useQuery(GetAllFormsDocument, {
-    variables: {
-      filter: buildFilter(),
-      order: [
-        { attribute: SortableFormAttributes.Name, direction: AscDesc.Asc },
-      ],
-      first: PAGE_SIZE,
-      offset: currentPage > 1 ? (currentPage - 1) * PAGE_SIZE : undefined,
-    },
-    fetchPolicy: 'cache-and-network',
-  });
+  const {
+    forms,
+    totalCount,
+    totalPages,
+    loading,
+    error,
+    currentPage,
+    category,
+    searchText,
+    handleCategoryChange,
+    handleSearchChange,
+    toPage,
+  } = useGetAllForms();
 
   const handleBackClick = () => {
     navigate('/');
@@ -92,18 +41,12 @@ export function Forms() {
     navigate('/forms/create');
   };
 
-  const handleCategoryChange = (newCategory: FilterCategory) => {
-    setCategory(newCategory);
-    setCurrentPage(1); // Reset to first page when filter changes
+  const handleEditClick = (slug: string) => {
+    navigate(`/forms/${slug}/edit`);
   };
 
-  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchText(e.target.value);
-    setCurrentPage(1); // Reset to first page when search changes
-  };
-
-  const toPage = (page: number) => {
-    setCurrentPage(page);
+  const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    handleSearchChange(e.target.value);
   };
 
   const getStatusClass = (isPublished: boolean, isArchived: boolean) => {
@@ -143,10 +86,6 @@ export function Forms() {
       </>
     );
   }
-
-  const forms = data?.allForms?.edges || [];
-  const totalCount = data?.allForms?.totalCount || 0;
-  const totalPages = Math.ceil(totalCount / PAGE_SIZE);
 
   // Generate page numbers to display
   const getPageNumbers = () => {
@@ -202,7 +141,7 @@ export function Forms() {
             className="search-input text-xs"
             placeholder="Search forms..."
             value={searchText}
-            onChange={handleSearchChange}
+            onChange={onSearchChange}
             aria-label="Search forms"
           />
         </div>
@@ -221,7 +160,7 @@ export function Forms() {
       </div>
 
       <div className="forms-summary">
-        <p className="forms-count">Total Forms: {totalCount}</p>
+        <p className="text-md-bold">Total Forms: {totalCount}</p>
       </div>
 
       {/* Forms List */}
@@ -231,22 +170,31 @@ export function Forms() {
           if (!node) return null;
 
           return (
-            <Card key={node.id} className="form-card">
+            <Card key={node.id} hoverable={false} className="form-card">
               <div className="form-card-content">
                 <h3>{node.name}</h3>
-                <p className="form-card-description">
+                <p className="text-description">
                   {node.description || 'No description available'}
                 </p>
               </div>
-              <div className="form-card-status">
-                <span
-                  className={`status-badge ${getStatusClass(
-                    node.isPublished,
-                    node.isArchived,
-                  )}`}
-                >
-                  {getStatusText(node.isPublished, node.isArchived)}
-                </span>
+
+              <div className="form-card-right">
+                <div className="form-card-status">
+                  <span
+                    className={`text-description status-badge ${getStatusClass(
+                      node.isPublished,
+                      node.isArchived,
+                    )}`}
+                  >
+                    {getStatusText(node.isPublished, node.isArchived)}
+                  </span>
+                </div>
+                <div className="form-card-actions">
+                  <IconButton
+                    icon={<CreateIcon />}
+                    onClick={() => handleEditClick(node.slug)}
+                  />
+                </div>
               </div>
             </Card>
           );

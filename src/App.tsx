@@ -7,6 +7,8 @@ import { Header } from '@/components/layout/Header';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { createApolloClient } from './gql/client';
 import { CreateForm } from './pages/CreateForm';
+import { DataPage } from './pages/Data';
+import { EditForm } from './pages/EditForm';
 import { Forms } from './pages/Forms';
 import { HomePage } from './pages/HomePage';
 import { RedirectPage } from './pages/Redirect';
@@ -60,6 +62,8 @@ function AuthenticatedApp({ auth }: { auth: ReturnType<typeof useAuth> }) {
             <Route path="/" element={<HomePage />} />
             <Route path="/forms" element={<Forms />} />
             <Route path="/forms/create" element={<CreateForm />} />
+            <Route path="/data" element={<DataPage />} />
+            <Route path="/forms/:slug/edit" element={<EditForm />} />
           </Routes>
         </PageContainer>
       </Router>

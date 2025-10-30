@@ -49,13 +49,6 @@
   margin-bottom: var(--spacing-lg);
 }
 
-.forms-count {
-  font-size: var(--spacing-lg);
-  font-weight: 600;
-  color: var(--color-black);
-  margin: 0;
-}
-
 .forms-cards-container {
   display: flex;
   flex-direction: column;
@@ -64,37 +57,47 @@
 
 .form-card {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   box-sizing: border-box;
+  gap: var(--spacing-md);
 }
 
 .form-card-content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
 }
 
-.form-card-description {
-  font-size: var(--spacing-md);
-  color: #6c757d;
+.form-card-content h3 {
   margin: 0;
-  line-height: 1.4;
+}
+
+.form-card-content p {
+  margin: 0;
+}
+
+.form-card-right {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
 }
 
 .form-card-status {
   display: flex;
   align-items: center;
-  margin-left: var(--spacing-md);
+}
+
+.form-card-actions {
+  display: flex;
+  align-items: center;
 }
 
 .status-badge {
-  display: inline-block;
-  padding: var(--spacing-sm) var(--spacing-sm);
-  border-radius: var(--radius-lg);
-  font-size: var(--radius-xl);
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
   text-transform: uppercase;
 }
 
