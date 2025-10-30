@@ -1,6 +1,7 @@
 import './Header.css';
 import { DuvaLogoSimple, FreiburgLogo, Person } from '@icons';
 import { Dropdown } from '@shared/Dropdown';
+import { IconButton } from '@shared/IconButton';
 import { NavItem } from '@shared/NavItem';
 import { useAuth } from 'react-oidc-context';
 import { Link } from 'react-router-dom';
@@ -25,15 +26,7 @@ export function Header() {
 
         <div className="header-right">
           <Dropdown
-            trigger={
-              <button
-                type="button"
-                className="profile-button"
-                aria-label="User Menu"
-              >
-                <Person />
-              </button>
-            }
+            trigger={<IconButton icon={<Person />} size="lg" color="red" />}
           >
             <div className="profile-info">
               {userProfile?.given_name && userProfile?.family_name && (

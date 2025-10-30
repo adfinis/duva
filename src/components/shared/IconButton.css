@@ -1,0 +1,65 @@
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
+  transition: all var(--transition-base);
+}
+
+.icon-btn:hover {
+  transform: scale(1.15);
+}
+
+.icon-btn--disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Button size variants - controls container dimensions */
+.icon-btn--sm {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.icon-btn--md {
+  width: 2rem;
+  height: 2rem;
+}
+
+.icon-btn--lg {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* SVG fills the button container */
+.icon-btn svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+/* Color variants */
+.icon-btn--black {
+  color: var(--color-black);
+}
+
+.icon-btn--red {
+  color: var(--color-red);
+}
+
+.icon-btn--green {
+  color: var(--color-green);
+}
+
+.icon-btn--anthracite {
+  color: var(--color-anthracite);
+}
+
+.icon-btn--white {
+  color: var(--color-white);
+}
