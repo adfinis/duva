@@ -3,7 +3,7 @@
 .card {
   background-color: var(--color-white);
   border-radius: var(--radius-xl);
-  padding: var(--spacing-lg);
+  padding: var(--spacing-lg) var(--spacing-xl);
   box-shadow: var(--shadow-md);
   transition: var(--transition-fast);
   width: 100%;
@@ -23,6 +23,6 @@
 /* Responsive design */
 @media (max-width: 48rem) {
   .card {
-    padding: 1rem;
+    padding: var(--spacing-sm);
   }
 }
