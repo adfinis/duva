@@ -19,6 +19,7 @@ export { default as Barrierefreiheit } from '@public/icons/barrierefreiheit.svg?
 export { default as BugIcon } from '@public/icons/bug-outline.svg?react';
 export { default as ChevronRight } from '@public/icons/chevron-right.svg?react';
 export { default as CloseIcon } from '@public/icons/close-outline.svg?react';
+export { default as CreateIcon } from '@public/icons/create-outline.svg?react';
 export { default as Gebaerdesprache } from '@public/icons/gebaerdesprache.svg?react';
 export { default as LeichteSprache } from '@public/icons/leichte-sprache.svg?react';
 export { default as MegaphoneIcon } from '@public/icons/megaphone-outline.svg?react';
