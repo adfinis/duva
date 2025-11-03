@@ -39,53 +39,58 @@ export function useSaveQuestion() {
 
   async function saveQuestion(input: QuestionInput) {
     // Dynamic dispatch based on question type (like Ember's TYPES mapping)
-    const { __typename, ...mutationInput } = input;
-
-    switch (__typename) {
+    switch (input.__typename) {
       case 'TextQuestion': {
+        const { __typename, ...mutationInput } = input;
         const result = await saveTextQuestion({
           variables: { input: mutationInput },
         });
         return result.data?.saveTextQuestion?.question;
       }
       case 'TextareaQuestion': {
+        const { __typename, ...mutationInput } = input;
         const result = await saveTextareaQuestion({
           variables: { input: mutationInput },
         });
         return result.data?.saveTextareaQuestion?.question;
       }
       case 'IntegerQuestion': {
+        const { __typename, ...mutationInput } = input;
         const result = await saveIntegerQuestion({
           variables: { input: mutationInput },
         });
         return result.data?.saveIntegerQuestion?.question;
       }
       case 'FloatQuestion': {
+        const { __typename, ...mutationInput } = input;
         const result = await saveFloatQuestion({
           variables: { input: mutationInput },
         });
         return result.data?.saveFloatQuestion?.question;
       }
       case 'ChoiceQuestion': {
+        const { __typename, ...mutationInput } = input;
         const result = await saveChoiceQuestion({
           variables: { input: mutationInput },
         });
         return result.data?.saveChoiceQuestion?.question;
       }
       case 'MultipleChoiceQuestion': {
+        const { __typename, ...mutationInput } = input;
         const result = await saveMultipleChoiceQuestion({
           variables: { input: mutationInput },
         });
         return result.data?.saveMultipleChoiceQuestion?.question;
       }
       case 'DateQuestion': {
+        const { __typename, ...mutationInput } = input;
         const result = await saveDateQuestion({
           variables: { input: mutationInput },
         });
         return result.data?.saveDateQuestion?.question;
       }
       default: {
-        const exhaustiveCheck: never = __typename;
+        const exhaustiveCheck: never = input;
         throw new Error(`Unknown question type: ${exhaustiveCheck}`);
       }
     }
