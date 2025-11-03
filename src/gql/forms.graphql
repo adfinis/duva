@@ -67,6 +67,32 @@ query CheckFormSlug($slug: String!) {
   }
 }
 
+query GetFormQuestions($slug: String!) {
+  allForms(filter: [{ slugs: [$slug] }]) {
+    edges {
+      node {
+        id
+        slug
+        name
+        questions {
+          edges {
+            node {
+              id
+              slug
+              label
+              isRequired
+              isHidden
+              isArchived
+              meta
+              infoText
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 # == MUTATIONS ==
 
 mutation SaveForm($input: SaveFormInput!) {

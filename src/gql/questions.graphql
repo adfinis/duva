@@ -9,8 +9,20 @@ query GetAllQuestions(
   $order: [QuestionOrderSetType]
   $first: Int
   $after: String
+  $offset: Int
 ) {
-  allQuestions(filter: $filter, order: $order, first: $first, after: $after) {
+  allQuestions(
+    filter: $filter
+    order: $order
+    first: $first
+    after: $after
+    offset: $offset
+  ) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    totalCount
     edges {
       node {
         id
