@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ButtonHTMLAttributes, forwardRef, type ReactNode } from 'react';
 import './IconButton.css';
 
 export type IconButtonSize = 'sm' | 'md' | 'lg';
@@ -9,41 +9,40 @@ export type IconButtonColor =
   | 'anthracite'
   | 'white';
 
-interface IconButtonProps {
+interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon: ReactNode;
   size?: IconButtonSize;
   color?: IconButtonColor;
-  onClick?: () => void;
-  className?: string;
   disabled?: boolean;
 }
 
-export function IconButton({
-  icon,
-  size = 'md',
-  color,
-  onClick,
-  className = '',
-  disabled = false,
-}: IconButtonProps) {
-  const buttonClasses = [
-    'icon-btn',
-    `icon-btn--${size}`,
-    color && `icon-btn--${color}`,
-    disabled && 'icon-btn--disabled',
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
+export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
+  (
+    { icon, size = 'md', color, className = '', disabled = false, ...props },
+    ref,
+  ) => {
+    const buttonClasses = [
+      'icon-btn',
+      `icon-btn--${size}`,
+      color && `icon-btn--${color}`,
+      disabled && 'icon-btn--disabled',
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ');
 
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={buttonClasses}
-      disabled={disabled}
-    >
-      {icon}
-    </button>
-  );
-}
+    return (
+      <button
+        ref={ref}
+        type="button"
+        className={buttonClasses}
+        disabled={disabled}
+        {...props}
+      >
+        {icon}
+      </button>
+    );
+  },
+);
+
+IconButton.displayName = 'IconButton';

@@ -5,7 +5,7 @@ import { Toggle } from '@shared/Toggle';
 import { useMemo, useState } from 'react';
 import './FormDetails.css';
 import type { SaveFormInput } from '@/gql/__generated__/graphql';
-import { useSaveForm } from './useSaveForm';
+import { useSaveForm } from '../hooks/useSaveForm';
 
 interface FormDetailsProps {
   initialValues?: Partial<SaveFormInput>;

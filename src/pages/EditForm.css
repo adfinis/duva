@@ -9,6 +9,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-xl);
+  align-items: start;
 }
 
 .edit-form-left,
@@ -16,4 +17,25 @@
   padding: var(--spacing-lg);
   border: 1px solid var(--color-anthracite-dark);
   border-radius: var(--radius-lg);
+}
+
+.edit-form-right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.edit-form-right-questions {
+  overflow-y: auto;
+  max-height: calc(100vh - 400px);
+}
+
+@media (max-width: 64rem) {
+  .edit-form-content {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-form-right-questions {
+    max-height: 43rem;
+  }
 }

@@ -1,9 +1,10 @@
 import { useQuery } from '@apollo/client/react';
 import { useParams } from 'react-router-dom';
-import { QuestionList } from '@/components/features/forms/components/QuestionList';
-import { FormDetails } from '@/components/features/forms/FormDetails';
+import { FormDetails } from '@/components/features/forms/components/FormDetails';
+import { FormQuestionsList } from '@/components/features/questions/components/FormQuestionsList';
 import { GetFormDocument } from '@/gql/__generated__/graphql';
 import './EditForm.css';
+import { Button } from '@/components/shared/Button';
 
 export function EditForm() {
   const { slug } = useParams<{ slug: string }>();
@@ -20,11 +21,11 @@ export function EditForm() {
       <div className="edit-form-header">
         <h1>Edit Form: {form?.name}</h1>
       </div>
+      {form && (
+        <div className="edit-form-content">
+          <div className="edit-form-left">
+            <h2>Form Settings</h2>
 
-      <div className="edit-form-content">
-        <div className="edit-form-left">
-          <h2>Form Settings</h2>
-          {form && (
             <FormDetails
               initialValues={{
                 slug: form.slug,
@@ -34,14 +35,20 @@ export function EditForm() {
                 isPublished: form.isPublished || false,
               }}
             />
-          )}
-        </div>
+          </div>
 
-        <div className="edit-form-right">
-          <h2>Form Questions</h2>
-          <QuestionList />
+          <div className="edit-form-right">
+            <div>
+              <Button variant="outline" size="sm">
+                +
+              </Button>
+            </div>
+            <div className="edit-form-right-questions">
+              <FormQuestionsList formSlug={form.slug} />
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
