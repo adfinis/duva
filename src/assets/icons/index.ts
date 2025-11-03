@@ -24,6 +24,7 @@ export { default as Gebaerdesprache } from '@public/icons/gebaerdesprache.svg?re
 export { default as LeichteSprache } from '@public/icons/leichte-sprache.svg?react';
 export { default as MegaphoneIcon } from '@public/icons/megaphone-outline.svg?react';
 export { default as MenuIcon } from '@public/icons/menu.svg?react';
+export { default as MoveIcon } from '@public/icons/move-outline.svg?react';
 export { default as NotificationIcon } from '@public/icons/notifications-outline.svg?react';
 export { default as Person } from '@public/icons/person-outline.svg?react';
 export { default as Suche } from '@public/icons/suche.svg?react';
