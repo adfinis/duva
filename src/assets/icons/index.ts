@@ -28,3 +28,4 @@ export { default as NotificationIcon } from '@public/icons/notifications-outline
 export { default as Person } from '@public/icons/person-outline.svg?react';
 export { default as Suche } from '@public/icons/suche.svg?react';
 export { default as ThumbsUp } from '@public/icons/thumbs-up-outline.svg?react';
+export { default as Trash } from '@public/icons/trash-outline.svg?react';
